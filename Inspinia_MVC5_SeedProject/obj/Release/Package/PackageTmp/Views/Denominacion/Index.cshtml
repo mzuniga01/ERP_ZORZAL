@@ -1,0 +1,92 @@
+﻿@model IEnumerable<ERP_GMEDINA.Models.tbDenominacion>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-sm-4">
+        <h2>Denominaciones</h2>
+    </div>
+</div>
+
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Listado de Denominaciones </h5>
+                    <div class="ibox-tools">
+                        @Html.ActionLink("Registrar Denominación", "Create", null, new { @class = "btn btn-primary " })
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <div class="table-responsive">
+                        <table class="table table-striped " id="Denominacion">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.mnda_Id)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.deno_Descripcion)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.deno_Tipo)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.deno_valor)
+                                    </th>
+                                    <th>
+                                        Acciones
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.tbMoneda.mnda_Nombre)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.deno_Descripcion)
+                                        </td>
+                                        @if (item.deno_Tipo == 1)
+                {
+                                            <td>Billete</td>
+                                        }
+                                        else
+                                        {
+                                            <td>Moneda</td>
+                                        }
+
+
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.deno_valor)
+                                        </td>
+
+                                        <td>
+                                            @Html.ActionLink("Detalles", "Details", new { id = item.deno_Id }, new { @class = "btn btn-primary btn-xs" })
+                                            @Html.ActionLink("Editar", "Edit", new { id = item.deno_Id }, new { @class = "btn btn-white btn-xs" })
+                                            @*@Html.ActionLink("Delete", "Delete", new { id=item.deno_Id }, new { @class = "btn btn-white btn-sm"})*@
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<script src="~/Scripts/app/Denominacion.js"></script>
+

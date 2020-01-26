@@ -1,0 +1,198 @@
+﻿@model IEnumerable<ERP_GMEDINA.Models.tbPuntoEmisionDetalle>
+
+<style type="text/css">
+    .red {
+        background: #FF0000;
+        border-radius: 0.8em;
+        -moz-border-radius: 0.8em;
+        -webkit-border-radius: 0.8em;
+        color: #ffffff;
+        display: inline-block;
+        font-weight: bold;
+        line-height: 1.6em;
+        margin-right: 15px;
+        text-align: center;
+        width: 1.6em;
+    }
+
+
+    .green {
+        background: #5EA226;
+        border-radius: 0.8em;
+        -moz-border-radius: 0.8em;
+        -webkit-border-radius: 0.8em;
+        color: #ffffff;
+        display: inline-block;
+        font-weight: bold;
+        line-height: 1.6em;
+        margin-right: 15px;
+        text-align: center;
+        width: 1.6em;
+    }
+
+    .amarillo {
+        background: #FAFA00;
+        border-radius: 0.8em;
+        -moz-border-radius: 0.8em;
+        -webkit-border-radius: 0.8em;
+        color: #ffffff;
+        display: inline-block;
+        font-weight: bold;
+        line-height: 1.6em;
+        margin-right: 15px;
+        text-align: center;
+        width: 1.6em;
+    }
+</style>
+
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h3><b>Listado de Numeración</b></h3>
+                    <div class="ibox-tools">
+                        <button type="button" id="btnModalGuardarNumeracion" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#Nuevo">
+                            Registrar Numeración
+                        </button>
+                    </div>
+                </div>
+                <div class="ibox-content">
+
+                    <table class="table table table-striped  table-bordered" id="PuntoEmision">
+                        <thead>
+                            <tr>
+                                <th hidden>
+                                    @Html.DisplayNameFor(model => model.pemid_Id)
+                                </th>
+                                <th hidden>
+                                    @Html.DisplayNameFor(model => model.pemi_Id)
+                                </th>
+                                <th hidden>
+                                    @Html.DisplayNameFor(model => model.dfisc_Id)
+                                </th>
+                                <th>
+                                    Documento Fiscal
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.pemid_RangoInicio)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.pemid_RangoFinal)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.pemid_NumeroActual)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.pemid_FechaLimite)
+                                </th>
+                                <th>Status</th>
+                                <th hidden>
+                                    @Html.DisplayNameFor(model => model.tbUsuario.usu_Nombres)
+                                </th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                           
+                            @foreach (var item in Model)
+                            {
+                                <tr data-usuariocrea="@item.tbUsuario.usu_Nombres">
+                                    <td hidden>
+                                        @Html.DisplayFor(modelItem => item.pemid_Id)
+                                    </td>
+                                    <td hidden>
+                                        @Html.DisplayFor(modelItem => item.pemi_Id)
+                                    </td>
+                                    <td hidden>
+                                        @Html.DisplayFor(modelItem => item.dfisc_Id)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.tbDocumentoFiscal.dfisc_Descripcion)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.pemid_RangoInicio)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.pemid_RangoFinal)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.pemid_NumeroActual)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.pemid_FechaLimite)
+                                    </td>
+                                    <td>
+                                        <span id="Circulos_@item.pemid_Id" data-toggle="tooltip" title="Vigente">&nbsp;</span>
+                                    </td>
+                                    <td hidden>
+                                        @Html.DisplayFor(modelItem => item.tbUsuario.usu_Nombres)
+                                    </td>
+                                    <td>
+                                        <button type="button" id="btnModalDetallesEdit_@item.pemid_Id" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#Detalle_@item.pemid_Id">
+                                            Detalles
+                                        </button>
+                                        <button type="button" id="btnModalEditarEdit_@item.pemid_Id" class="btn btn-white btn-xs" data-toggle="modal" data-target="#Editar_@item.pemid_Id" onclick="FechaLimite(@item.pemid_Id);">
+                                            Editar
+                                        </button>
+                                    </td>
+                                </tr>
+                                <div class="modal fade" id="Editar_@item.pemid_Id" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Editar Numeración</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body" id="mdlEditNumeracion">
+                                                @Html.Partial("_EditNumeracion", new ERP_GMEDINA.Models.tbPuntoEmisionDetalle() { pemid_Id = item.pemid_Id, pemi_Id = item.pemi_Id, dfisc_Id = item.dfisc_Id, pemid_RangoInicio = item.pemid_RangoInicio, pemid_RangoFinal = item.pemid_RangoFinal, pemid_NumeroActual = item.pemid_NumeroActual, pemid_FechaLimite = item.pemid_FechaLimite, pemid_UsuarioCrea = item.pemid_UsuarioCrea, pemid_FechaCrea = item.pemid_FechaCrea, pemid_UsuarioModifica = item.pemid_UsuarioModifica, pemid_FechaModifica = item.pemid_FechaModifica })                                               
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button class="btn btn-primary" type="button" id="btnGuardarEditNumeracion" onclick="GuardarEditNumeracion(@item.pemid_Id);">Guardar</button>
+                                                <button type="button" class="btn btn-white" data-dismiss="modal">Cerrar</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                 string DocumentoFiscal = item.dfisc_Id + "-" +item.tbDocumentoFiscal.dfisc_Descripcion;
+                                <div class="modal fade" id="Detalle_@item.pemid_Id" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Detalle Numeración</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                @Html.Partial("_DetailsNumeracion", new ERP_GMEDINA.Models.tbPuntoEmisionDetalle() { pemid_Id = item.pemid_Id, pemi_Id = item.pemi_Id, dfisc_Id = DocumentoFiscal, pemid_RangoInicio = item.pemid_RangoInicio, pemid_RangoFinal = item.pemid_RangoFinal, pemid_NumeroActual= item.pemid_NumeroActual, pemid_FechaLimite = item.pemid_FechaLimite, pemid_UsuarioCrea = item.pemid_UsuarioCrea, pemid_FechaCrea = item.pemid_FechaCrea, pemid_UsuarioModifica = item.pemid_UsuarioModifica, pemid_FechaModifica = item.pemid_FechaModifica })
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-white" data-dismiss="modal">Cerrar</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+ 
+<!-- Modal -->
+<div class="modal fade" id="Nuevo" tabindex="-1" role="dialog" aria-labelledby="DetalleNumeracion" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Registar Numeración</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" id="AjaxCreateNumeracion">
+                @Html.Partial("_CreateNumeracionDetails", new ERP_GMEDINA.Models.tbPuntoEmisionDetalle())
+            </div>
+        </div>
+    </div>
+</div>

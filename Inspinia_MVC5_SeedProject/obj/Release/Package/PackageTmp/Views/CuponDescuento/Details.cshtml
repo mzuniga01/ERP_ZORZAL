@@ -1,0 +1,167 @@
+﻿@model ERP_GMEDINA.Models.tbCuponDescuento
+
+@{
+    ViewBag.Title = "Detalles";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-sm-4">
+        <h2>Cupón Descuento</h2>
+    </div>
+    <div class="col-sm-8">
+        <div class="title-action">
+            @Html.ActionLink("Regresar", "Index")
+        </div>
+    </div>
+</div>
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Detalle Cupón Descuento</h5>
+                </div>
+                <div class="ibox-content">
+
+                    <dl class="dl-horizontal">
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.tbSucursal.suc_Descripcion)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.tbSucursal.suc_Descripcion)
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.cdto_ID)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.cdto_ID)
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.cdto_PorcentajeDescuento)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.cdto_PorcentajeDescuento)
+                        </dd>
+                        <dt>
+                            Máximo Descuento
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.cdto_MaximoMontoDescuento)
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.cdto_MontoDescuento)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.cdto_MontoDescuento)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.cdto_CantidadCompraMinima)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.cdto_CantidadCompraMinima)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.cdto_Anulado)
+                        </dt>
+                        @if (Model.cdto_Anulado == true)
+                        {
+                            <dd>Si</dd>
+                        }
+                        else
+                        {
+                            <dd>No</dd>
+                        }
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.cdto_Redimido)
+                        </dt>
+                        @if(Model.cdto_Redimido == true)
+                        {
+                            <dd>Si</dd>
+                        }
+                        else
+                        {
+                            <dd> No</dd>
+                        }
+                        
+                        <dt>
+                            @Html.DisplayNameFor(model => model.cdto_FechaEmision)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.cdto_FechaEmision)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.cdto_FechaVencimiento)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.cdto_FechaVencimiento)
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.cdto_FechaRedencion)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.cdto_FechaRedencion)
+                        </dd>
+                    </dl>
+                    @if (Model.cdto_Anulado == false && Model.cdto_Redimido == false && Model.cdto_EsImpreso==false)
+                    {
+                        @Html.ActionLink("Editar", "Edit", new { id = Model.cdto_ID }, new { @class = "btn btn-primary" })
+                    }
+                    else
+                    {
+                        <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="No se puede Editar">
+                            <button class="btn btn-primary" style="pointer-events: none;" type="button" disabled>Editar</button>
+                        </span>
+                    }
+                </div>
+            </div>
+            <div class="ibox-content">
+                <table class="table table-striped">
+                    <tr>
+                        <th>Acción</th>
+                        <th>Usuario</th>
+                        <th>Fecha</th>
+                    </tr>
+                    <tr>
+                        <td>Creado</td>
+                        <td>
+                            @Html.DisplayFor(model => model.tbUsuario1.usu_Nombres)
+                            @Html.DisplayFor(model => model.tbUsuario1.usu_Apellidos)
+                        </td>
+                        <td>@Html.DisplayFor(model => model.cdto_FechaCrea)</td>
+                    </tr>
+                    <tr>
+                        <td>Modificado</td>
+                        <td>
+                            @Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
+                            @Html.DisplayFor(model => model.tbUsuario.usu_Apellidos)
+                        </td>
+                        <td>@Html.DisplayFor(model => model.cdto_FechaModifica)</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+    });
+</script>

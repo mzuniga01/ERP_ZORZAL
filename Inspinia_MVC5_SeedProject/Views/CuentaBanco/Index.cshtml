@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ERP_ZORZAL.Models.tbCuentasBanco>
+﻿@model IEnumerable<ERP_GMEDINA.Models.tbCuentasBanco>
 
 @{
     ViewBag.Title = "Index";
@@ -7,12 +7,7 @@
 
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
-        <h2>Cuentas Banco</h2>
-        @*<ol class="breadcrumb">
-            <li class="active">
-                <strong>tbCuentasBanco</strong>
-            </li>
-        </ol>*@
+        <h2>Cuentas Bancarias</h2>
     </div>
 </div>
 
@@ -22,9 +17,9 @@
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h5>Listado Cuentas de Banco</h5>
+                    <h5>Listado de Cuentas Bancarias</h5>
 					<div class="ibox-tools">
-						@Html.ActionLink("Registrar", "Create", null, new { @class = "btn btn-primary btn-xs"})
+						@Html.ActionLink("Registrar Cuenta Bancaria", "Create", null, new { @class = "btn btn-primary"})
 					</div>
                 </div>
                 <div class="ibox-content">
@@ -43,29 +38,10 @@
                                 </th>
                                 <th>
                                     @Html.DisplayNameFor(model => model.bcta_TipoCuenta)
-                                </th>
-                                @*<th>
-                                    @Html.DisplayNameFor(model => model.bcta_TotalCredito)
-                                </th>*@
-                                @*<th>
-                                    @Html.DisplayNameFor(model => model.bcta_TotalDebito)
-                                </th>*@
+                                </th>   
                                 <th>
                                     @Html.DisplayNameFor(model => model.bcta_FechaApertura)
                                 </th>
-                               
-                                @*<th>
-                                    @Html.DisplayNameFor(model => model.bcta_UsuarioCrea)
-                                </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.bcta_FechaCrea)
-                                </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.bcta_UsuarioModifica)
-                                </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.bcta_FechaModifica)
-                                </th>*@
                                 
                                 <th>Acciones</th>
                             </tr>
@@ -81,11 +57,8 @@
                                         @Html.DisplayFor(modelItem => item.bcta_Numero)
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.tbMoneda.mnda_Nombre)
+                                        @Html.DisplayFor(modelItem => item.tbMoneda.mnda_Abreviatura)
                                     </td>
-                                    @*<td>
-                                        @Html.DisplayFor(modelItem => item.bcta_TipoCuenta)
-                                    </td>*@
 
                                     @if (item.bcta_TipoCuenta == 1)
                                     {
@@ -95,35 +68,14 @@
                                     {
                                         <td>Cheques</td>
                                     }
-                                 
-
-                                        @*<td>
-                @Html.DisplayFor(modelItem => item.bcta_TotalCredito)
-            </td>*@
-                                        @*<td>
-                @Html.DisplayFor(modelItem => item.bcta_TotalDebito)
-            </td>*@
                                         <td>
-                                        @Html.DisplayFor(modelItem => item.bcta_FechaApertura)
+                                        @Html.DisplayFor(modelItem => item.bcta_FechaApertura, "{0:dd-MM-yyyy}", new { htmlAttributes = new { @id = "fechaapertura" } })
                                     </td>
                                     
-                                    @*<td>
-                                        @Html.DisplayFor(modelItem => item.bcta_UsuarioCrea)
-                                    </td>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.bcta_FechaCrea)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.bcta_UsuarioModifica)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.bcta_FechaModifica)
-                                    </td>*@
-                                    
-                                    <td>
-                                        @Html.ActionLink("Detalle", "Details", new { id = item.bcta_Id }, new { @class = "btn btn-primary btn-sm" })
-                                        @Html.ActionLink("Editar", "Edit", new { id = item.bcta_Id }, new { @class = "btn btn-white btn-sm" })
-                                        @*@Html.ActionLink("Delete", "Delete", new { id = item.bcta_Id }, new { @class = "btn btn-white btn-sm" })*@
+                                        @Html.ActionLink("Detalles", "Details", new { id = item.bcta_Id }, new { @class = "btn btn-primary btn-xs" })
+                                        @Html.ActionLink("Editar", "Edit", new { id = item.bcta_Id }, new { @class = "btn btn-white btn-xs" })
+                                       
                                     </td>
                                 </tr>
 
@@ -138,5 +90,5 @@
  </div>
 
 
-<script src="~/Scripts/jquery-3.3.1.js"></script>
+<script src="~/Scripts/jquery-3.4.1.js"></script>
 <script src="~/Scripts/app/DataTable.js"></script>

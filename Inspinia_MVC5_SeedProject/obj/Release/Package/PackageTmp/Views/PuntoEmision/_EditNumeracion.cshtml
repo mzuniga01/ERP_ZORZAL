@@ -1,0 +1,79 @@
+﻿@model ERP_GMEDINA.Models.tbPuntoEmisionDetalle
+
+@{
+    IEnumerable<SelectListItem> listItems = (IEnumerable<SelectListItem>)Model.tbDocumentoFiscal;
+}
+ 
+  
+    <div class="form-horizontal">
+         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <input type="hidden" name="pemi_Id" id="pemi_Id"  value="@ViewBag.IdPuntoEmisionEdit">
+        <input type="hidden" name="pemid_Id" id="pemid_Id_@Model.pemid_Id" value="@Model.pemid_Id" />
+        <input type="hidden" name="pemid_UsuarioCrea" id="pemid_UsuarioCreaEdit_@Model.pemid_Id" value="@Model.pemid_UsuarioCrea" />
+        <input type="hidden" name="pemid_FechaCrea" id="pemid_FechaCreaEdit_@Model.pemid_Id" value="@Model.pemid_FechaCrea"/>
+        @Html.HiddenFor(model => model.pemid_UsuarioModifica)
+        @Html.HiddenFor(model => model.pemid_FechaModifica)
+        @Html.HiddenFor(model => model.tbUsuario.usu_Nombres)
+        @Html.HiddenFor(model => model.tbUsuario.usu_Apellidos)
+        @Html.HiddenFor(model => model.tbUsuario1.usu_Nombres)
+        @Html.HiddenFor(model => model.tbUsuario1.usu_Apellidos)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.dfisc_Id, "Documento Fiscal", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @{string IdDrop = "dfisc_IdEdit_" + @Model.pemid_Id;}
+                @{ string Vie = "dfisc_IdList_";}
+                @Html.DropDownList("dfisc_Id", (IEnumerable<SelectListItem>)Context.Items[Vie], "Seleccione", new { @class = "form-control", id = @IdDrop })
+                <div id="ValidacionDocumentoFiscalEdit_@Model.pemid_Id">
+                    <p style="color:red">@Html.ValidationMessageFor(model => model.dfisc_Id)</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.pemid_RangoInicio, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @{string EditRangoInicial = "RangoInicial_" + @Model.pemid_Id;}
+                <input class="text-box single-line" type="text" id="@EditRangoInicial" value="@Model.pemid_RangoInicio" maxlength="19" onkeyup = "myFunction(@Model.pemid_Id)" onkeypress="return validar(event)" />
+                <div id="ValidacionRangoInicioEdit_@Model.pemid_Id" onkeyup="BorrarMensaje(@Model.pemid_Id)">
+                    <p style="color:red">@Html.ValidationMessageFor(model => model.pemid_RangoInicio)</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.pemid_RangoFinal, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @{string EditRangoFinal = "RangoFinal_" + @Model.pemid_Id;}
+                <input class="text-box single-line" type="text" id="@EditRangoFinal" value="@Model.pemid_RangoFinal" maxlength="19" onkeyup="RangoFinal(@Model.pemid_Id)" onkeypress="return validar(event)" />
+                <div id="ValidacionRangoFinalEdit_@Model.pemid_Id">
+                    <p style="color:red">@Html.ValidationMessageFor(model => model.pemid_RangoFinal)</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.pemid_NumeroActual, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @{string EditNumeroActual = "NumeroActual_" + @Model.pemid_Id;}
+                @Html.EditorFor(model => model.pemid_NumeroActual, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", id = @EditNumeroActual } })
+                <div id="ValidacionNumeroActualEdit_@Model.pemid_Id">
+                    <p style="color:red">@Html.ValidationMessageFor(model => model.pemid_NumeroActual)</p>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.pemid_FechaLimite, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @{string EditFechaLimite = "FechaLimite_" + @Model.pemid_Id;}
+                @Html.EditorFor(model => model.pemid_FechaLimite, "{0:MM/dd/yyyy}", new { htmlAttributes = new { @autocomplete = "off",id = @EditFechaLimite} })
+                <div id="ValidacionFechaLimiteEdit_@Model.pemid_Id">
+                    <p style="color:red">@Html.ValidationMessageFor(model => model.pemid_FechaLimite)</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+

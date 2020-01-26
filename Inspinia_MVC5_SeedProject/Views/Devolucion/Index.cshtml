@@ -1,4 +1,5 @@
-﻿@model IEnumerable<ERP_ZORZAL.Models.tbDevolucion>
+﻿@model IEnumerable<ERP_GMEDINA.Models.tbDevolucion>
+@using ERP_GMEDINA.Models
 
 @{
     ViewBag.Title = "Index";
@@ -8,6 +9,11 @@
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
         <h2>Devolución</h2>
+        <ol class="breadcrumb">
+            <li class="active">
+                <strong></strong>
+            </li>
+        </ol>
     </div>
 </div>
 
@@ -17,58 +23,105 @@
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h5>Lista de Devoluciones</h5>
-					<div class="ibox-tools">
-						@Html.ActionLink("Nuevo", "Create", null, new { @class = "btn btn-primary btn-xs"})
-					</div>
+                    <h5>Listado de Devolución</h5>
+                    <div class="ibox-tools">
+                        @Html.ActionLink("Devoluciones Anuladas", "_DevolucionesAnuladas", null, new { @class = "btn btn-primary btn-ms" })
+                        @Html.ActionLink("Registrar Devolución", "Create", null, new { @class = "btn btn-primary btn-ms" })
+                    </div>
                 </div>
                 <div class="ibox-content">
+                    <table class="table table table-striped  table-bordered" id="DataTable">
+                        <thead>
+                            <tr>
+                                <th>
+                                    Sucursal
+                                </th>
+                                <th>
+                                    Caja
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.fact_Id)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.tbFactura.clte_Nombres)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.dev_Fecha)
+                                </th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr data-Estado="@item.dev_Estado">
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.tbCaja.tbSucursal.suc_Descripcion)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.tbCaja.cja_Descripcion)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.tbFactura.fact_Codigo)
+                                    </td>
 
-<table class="table table-responsive" id="DataTable">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.cja_Id)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.dev_Fecha)
-            </th>
-            <th>
-                Codigo de Factura
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.cja_Id)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.dev_Fecha)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.tbFactura.fact_Codigo)
-                </td>
-                <td>
-                    @Html.ActionLink("Detalle", "Details", new { id = item.dev_Id }, new { @class = "btn btn-primary btn-sm" })
-                    @Html.ActionLink("Editar", "Edit", new { id = item.dev_Id }, new { @class = "btn btn-white btn-sm" })
-                    @*@Html.ActionLink("Delete", "Delete", new { id=item.dev_Id }, new { @class = "btn btn-white btn-sm"})*@
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
+                                    @{ if (item.tbFactura.tbCliente.clte_EsPersonaNatural == true)
+                                        {
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.tbFactura.clte_Nombres)
+                                            </td>
+                                        }
+                                        else
+                                        {
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.tbFactura.tbCliente.clte_NombreComercial)
+                                            </td>
+                                        }
+                                    }
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.dev_Fecha)
+                                        @{
+                                            string EstadoIndex = "txtEstado";}
+                                        @Html.HiddenFor(modelItem => item.dev_Estado, new { id = EstadoIndex })
+                                    </td>
 
+
+
+
+                                    @if (ViewBag.NotaCredito == "1")
+                                    {
+                                        <td>
+                                            @Html.ActionLink("Detalles", "Details", new { id = item.dev_Id }, new { @class = "btn btn-primary btn-xs" })
+
+                                            <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="No se puede Editar, porque ya se emitío una nota crédito">
+                                                <button class="btn btn-white btn-xs" style="pointer-events: none;" type="button" disabled>Editar</button>
+                                            </span>
+                                        </td>
+                                        //Aqui finaliza el If
+                                    }
+
+                                    else
+                                    {
+                                        <td>
+                                            @Html.ActionLink("Detalles", "Details", new { id = item.dev_Id }, new { @class = "btn btn-primary btn-xs" })
+
+                                            @Html.ActionLink("Editar", "Edit", new { id = item.dev_Id }, new { @class = "btn btn-white btn-xs" })
+                                        </td>
+                                    }
+
+
+
+
+                                </tr>
+                                            }
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
     </div>
- </div>
+</div>
 
-@*@Html.Partial("_CreateDevolucionDetalle")*@
-
-<script src="~/Scripts/jquery-3.3.1.js"></script>
+<script src="~/Scripts/jquery-3.4.1.js"></script>
 <script src="~/Scripts/app/DataTable.js"></script>
+

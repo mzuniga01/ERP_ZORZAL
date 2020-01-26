@@ -1,0 +1,355 @@
+﻿@model IEnumerable<ERP_GMEDINA.Models.tbSolicitudCredito>
+@using ERP_GMEDINA.Models
+@{
+    ViewBag.Title = "SC";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-sm-4">
+        <h2>Solicitud de Crédito</h2>
+
+    </div>
+</div>
+<style type="text/css">
+          /* Círculos de colores numerados */
+          span.red {
+              background: #FF0000;
+              border-radius: 0.8em;
+              -moz-border-radius: 0.8em;
+              -webkit-border-radius: 0.8em;
+              color: #ffffff;
+              display: inline-block;
+              font-weight: bold;
+              line-height: 1.6em;
+              margin-right: 15px;
+              text-align: center;
+              width: 1.6em;
+          }
+
+
+          span.green {
+              background: #5EA226;
+              border-radius: 0.8em;
+              -moz-border-radius: 0.8em;
+              -webkit-border-radius: 0.8em;
+              color: #ffffff;
+              display: inline-block;
+              font-weight: bold;
+              line-height: 1.6em;
+              margin-right: 15px;
+              text-align: center;
+              width: 1.6em;
+          }
+
+          span.amarillo {
+              background: #FAFA00;
+              border-radius: 0.8em;
+              -moz-border-radius: 0.8em;
+              -webkit-border-radius: 0.8em;
+              color: #ffffff;
+              display: inline-block;
+              font-weight: bold;
+              line-height: 1.6em;
+              margin-right: 15px;
+              text-align: center;
+              width: 1.6em;
+          }
+
+
+          /*-webkit-box-shadow: 7px 7px 5px 0px rgba(50, 50, 50, 0.75);
+    -moz-box-shadow:    7px 7px 5px 0px rgba(50, 50, 50, 0.75);
+    box-shadow:         7px 7px 5px 0px rgba(50, 50, 50, 0.75);*/
+</style>
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Listado Solicitud de Crédito</h5>
+                    <div class="ibox-tools">
+                        @Html.ActionLink("Solicitudes por autorizar", "IndexSolicitud", null, new { @class = "btn btn-primary btn-sm" })
+                        @Html.ActionLink("Registrar Solicitud Crédito", "Create", null, new { @class = "btn btn-primary btn-sm" })
+                    </div>
+                </div>
+
+
+                <div class="ibox-content">
+
+                    <table id="DataTable" class="table table-striped table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <th>
+                                   
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.cred_FechaSolicitud)
+                                </th>
+                                <th>
+                                    Identificación Cliente
+                                    @*@Html.DisplayNameFor(model => model.tbCliente.clte_RTN_Identidad_Pasaporte)*@
+                                </th>
+                                <th>
+                                    Nombre Cliente
+                                    @*@Html.DisplayNameFor(model => model.tbCliente.clte_RTN_Identidad_Pasaporte)*@
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.cred_FechaAprobacion)
+                                </th>
+
+
+                                <th>
+                                    @Html.DisplayNameFor(model => model.cred_MontoSolicitado)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.cred_MontoAprobado)
+                                </th>
+                                @*<th>
+                                        @Html.DisplayNameFor(model => model.cred_DiasSolicitado)
+                                    </th>*@
+                                <th>
+                                    @Html.DisplayNameFor(model => model.cred_DiasAprobado)
+                                </th>
+
+                                <th>
+                                    Estado
+                                    @*@Html.DisplayNameFor(model => model.tbEstadoSolicitudCredito.escre_Descripcion)*@
+                                </th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                //if (item.escre_Id == 1)
+                                //{
+                                    <tr>
+                                        @* colores *@
+                                        @{ if (Convert.ToInt32(item.escre_Id) == 1)
+                                            {
+                                                <td>
+                                                    <span class="amarillo" data-toggle="tooltip" title="Pendiente">&nbsp;</span>            
+                                                </td>
+                                            }
+                                            else if (Convert.ToInt32(item.escre_Id) == 2)
+                                                {
+                                                <td>
+                                                    <span class="green"  data-toggle="tooltip" title="Aprobado">&nbsp;</span>
+                                                </td>
+                                            }
+                                            else
+                                            {
+                                                <td>
+                                                    <span class="red" data-toggle="tooltip" title="Denegado">&nbsp;</span>  
+                 
+                                                </td>
+                                            }
+                                        }
+
+                                                @*colores*@
+
+
+<td>
+                                            @Html.DisplayFor(modelItem => item.cred_FechaSolicitud)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.tbCliente.clte_Identificacion)
+                                        </td>
+                                        @{ if (Convert.ToInt32(item.tbCliente.clte_EsPersonaNatural) == 1)
+                    {
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.tbCliente.clte_Nombres)
+                                                    @Html.DisplayFor(modelItem => item.tbCliente.clte_Apellidos)
+                                                </td>
+                                            }
+                                            else
+                                            {
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.tbCliente.clte_NombreComercial)
+                                                </td>
+                                            }
+                                        }
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.cred_FechaAprobacion)
+                                        </td>
+
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.cred_MontoSolicitado, new { htmlAttributes = new { @onkeypres = "MASK(this,this.value,'-##,###,##0.00',1)", @onchange = "MASK(this,this.value,'-##,###,##0.00',1)" } })
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.cred_MontoAprobado, new { htmlAttributes = new { @onkeypres = "MASK(this,this.value,'-##,###,##0.00',1)", @onchange = "MASK(this,this.value,'-##,###,##0.00',1)" } })
+                                        </td>
+                                        @*<td>
+                                                @Html.DisplayFor(modelItem => item.cred_DiasSolicitado)
+                                            </td>*@
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.cred_DiasAprobado)
+                                        </td>
+
+
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.tbEstadoSolicitudCredito.escre_Descripcion)
+                                        </td>
+                                        <td>
+                                            @if (item.escre_Id == 1)
+                                            {
+                                                @Html.ActionLink("Detalles", "Details", new { id = item.cred_Id }, new { @class = "btn btn-primary btn-xs" })
+                                                @Html.ActionLink("Editar", "Edit", new { id = item.cred_Id }, new { @class = "btn btn-white btn-xs" })
+                                                @*<button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#AprobarSolicitud_@item.cred_Id">Aprobar</button>*@
+                                                @*<button id="bottonAnular" name="bottonAnular" type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#Anular_@item.cred_Id">
+                                                        Anular
+                                                    </button>*@
+                                            }
+                                            else
+                                            {
+                                                @Html.ActionLink("Detalles", "Details", new { id = item.cred_Id }, new { @class = "btn btn-primary btn-xs" })
+                                            }
+                                        </td>
+                                    </tr>
+
+                                    //modal de aprobar
+                                    <div>
+                                        <div class="modal fade" id="AprobarSolicitud_@item.cred_Id" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                        <h4 class="modal-title" id="myModalLabel">Aprobar Solicitud de Crédito</h4>
+                                                    </div>
+                                                    <div class="modal-body" id="frmEditarMunicipios">
+
+                                                        @Html.Partial("_AprobarSolicitudCredito", new ERP_GMEDINA.Models.tbSolicitudCredito()
+                                                   {
+                                                       cred_Id = item.cred_Id,
+                                                       escre_Id = item.escre_Id,
+                                                       cred_DiasAprobado = item.cred_DiasAprobado,
+                                                       cred_DiasSolicitado = item.cred_DiasSolicitado,
+                                                       cred_MontoAprobado = item.cred_MontoAprobado,
+                                                       cred_MontoSolicitado = item.cred_MontoSolicitado,
+                                                       cred_UsuarioCrea = item.cred_UsuarioCrea,
+                                                       cred_FechaCrea = item.cred_FechaCrea,
+                                                       cred_FechaAprobacion = item.cred_FechaAprobacion,
+                                                       cred_FechaModifica = item.cred_FechaModifica,
+                                                       cred_UsuarioModifica = item.cred_UsuarioModifica
+                                                   })
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                            //---------------------------modal anular Anular_@item.cred_Id
+                                            <div class="modal fade" id="Anular_@item.cred_Id" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="exampleModalLabel">Denegar Solicitud Crédito</h5>
+                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            ¿Está seguro de Denegar esta Solicitud De Crédito?
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-primary" onclick="AnularSolictud();" data-dismiss="modal">Si</button>
+                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                                //-------------fin modal anular
+                                                //}
+
+
+
+                                            }
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<script src="~/Scripts/app/DataTable.js"></script>
+<script src="~/Scripts/app/SolicitudCredito.js"></script>
+
+<script>
+        //--------------------Milecimas y decimales-------------------
+        function MASK(form, n, mask, format) {
+            if (format == "undefined") format = false;
+            if (format || NUM(n)) {
+                dec = 0, point = 0;
+                x = mask.indexOf(".") + 1;
+                if (x) { dec = mask.length - x; }
+
+                if (dec) {
+                    n = NUM(n, dec) + "";
+                    x = n.indexOf(".") + 1;
+                    if (x) { point = n.length - x; } else { n += "."; }
+                } else {
+                    n = NUM(n, 0) + "";
+                }
+                for (var x = point; x < dec ; x++) {
+                    n += "0";
+                }
+                x = n.length, y = mask.length, XMASK = "";
+                while (x || y) {
+                    if (x) {
+                        while (y && "#0.".indexOf(mask.charAt(y - 1)) == -1) {
+                            if (n.charAt(x - 1) != "-")
+                                XMASK = mask.charAt(y - 1) + XMASK;
+                            y--;
+                        }
+                        XMASK = n.charAt(x - 1) + XMASK, x--;
+                    } else if (y && "L0".indexOf(mask.charAt(y - 1)) + 1) {
+                        XMASK = mask.charAt(y - 1) + XMASK;
+                    }
+                    if (y) { y-- }
+                }
+            } else {
+                XMASK = "";
+            }
+            if (form) {
+                form.value = XMASK;
+                if (NUM(n) < 0) {
+                    form.style.color = "#FF0000";
+                } else {
+                    form.style.color = "#000000";
+                }
+            }
+            return XMASK;
+        }
+
+        function NUM(s, dec) {
+            for (var s = s + "", num = "", x = 0 ; x < s.length ; x++) {
+                c = s.charAt(x);
+                if (".-+/*".indexOf(c) + 1 || c != " " && !isNaN(c)) { num += c; }
+            }
+            if (isNaN(num)) { num = eval(num); }
+            if (num == "") { num = 0; } else { num = parseFloat(num); }
+            if (dec != undefined) {
+                r = .5; if (num < 0) r = -r;
+                e = Math.pow(10, (dec > 0) ? dec : 0);
+                return parseInt(num * e + r) / e;
+            } else {
+                return num;
+            }
+        }
+</script>
+
+<script>
+    $(function ()
+{ $('[data-toggle="tooltip"]').tooltip() });
+</script>
+
+
+
+

@@ -1,0 +1,419 @@
+﻿@model ERP_GMEDINA.Models.tbCuponDescuento
+
+@{
+    ViewBag.Title = "Editar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-sm-4">
+        <h2>Cupón Descuento</h2>
+    </div>
+    <div class="col-sm-8">
+        <div class="title-action">
+            @Html.ActionLink("Regresar", "Index")
+        </div>
+    </div>
+</div>
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Editar Cupón Descuento</h5>
+                </div>
+                <div class="ibox-content">
+
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <div class="form-horizontal">
+
+                            @Html.ValidationSummary(true)
+                            @Html.HiddenFor(model => model.cdto_ID)
+                            @Html.Hidden("RedirectTo", Url.Action("Index", "CuponDescuento"))
+                            @*Auditoria*@
+                            @Html.HiddenFor(model => model.cdto_UsuarioCrea)
+                            @Html.HiddenFor(model => model.cdto_FechaCrea)
+                            @Html.HiddenFor(model => model.cdto_UsuarioModifica)
+                            @Html.HiddenFor(model => model.cdto_FechaModifica)
+                            @Html.HiddenFor(model => model.tbUsuario.usu_Nombres)
+                            @Html.HiddenFor(model => model.tbUsuario.usu_Apellidos)
+                            @Html.HiddenFor(model => model.tbUsuario1.usu_Nombres)
+                            @Html.HiddenFor(model => model.tbUsuario1.usu_Apellidos)
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.suc_Id, "Sucursal", new { @class = "control-label col-md-2" })
+                                <div class="col-md-4">
+                                    <input class="form-control" readonly value="@ViewBag.suc_Descripcion" />
+                                    <input class="form-control" readonly value="@ViewBag.suc_Id" id="suc_Id" name="suc_Id" type="hidden" />
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.cdto_ID, new { @class = "control-label col-md-2" })
+                                <div class="col-md-4">
+                                    @Html.EditorFor(model => model.cdto_ID, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                    @Html.ValidationMessageFor(model => model.cdto_ID)
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.cdto_PorcentajeDescuento, new { @class = "control-label col-md-2" })
+                                <div class="col-md-4">
+                                     @Html.EditorFor(model => model.cdto_PorcentajeDescuento, new { htmlAttributes = new { @type="number", @class = "form-control", @style = "text-align:right", @min = "0", @onkeypress = "if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;" } })
+                                    <p id="smsCantidad" style="color:red">@Html.ValidationMessageFor(model => model.cdto_PorcentajeDescuento)</p>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.cdto_MaximoMontoDescuento, new { @class = "control-label col-md-2" })
+                                <div class="col-md-4">
+                                    @Html.EditorFor(model => model.cdto_MaximoMontoDescuento, new { htmlAttributes = new { @type = "number", @class = "form-control", @style = "text-align:right", @min = "0" } })
+                                    <p id="msjMaximoMonto" style="color:red">@Html.ValidationMessageFor(model => model.cdto_MaximoMontoDescuento)</p>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.cdto_MontoDescuento, new { @class = "control-label col-md-2" })
+                                <div class="col-md-4">
+                                    @Html.EditorFor(model => model.cdto_MontoDescuento, new { htmlAttributes = new { @type = "number", @class = "form-control", @style = "text-align:right", @min = "0" } })
+                                    <p id="msjMonto" style="color:red">@Html.ValidationMessageFor(model => model.cdto_MontoDescuento)</p>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.cdto_CantidadCompraMinima, new { @class = "control-label col-md-2" })
+                                <div class="col-md-4">
+                                    @Html.EditorFor(model => model.cdto_CantidadCompraMinima, new { htmlAttributes = new {@type = "number", @class = "form-control", @style = "text-align:right", @min = "0"@*, @onchange = "MASK(this,this.value,'-##,###,##0.00',1)", @onkeypres = "MASK(this,this.value,'-##,###,##0.00',1)"*@ }
+                               })
+                                    <p id="smsCantidadMinima1" style="color:red">@Html.ValidationMessageFor(model => model.cdto_CantidadCompraMinima)</p>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.cdto_Redimido, new { @class = "control-label col-md-2" })
+                                <div class="col-md-4">
+                                    @if (Model.cdto_Redimido == false)
+                                    {
+                                        <label class="control-label">No</label>
+                                        @Html.ValidationMessageFor(model => model.cdto_Redimido)
+                                    }
+                                    else
+                                    {
+                                        <label class="control-label">Si</label>
+                                        @Html.ValidationMessageFor(model => model.cdto_Redimido)
+                                    }
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.cdto_FechaEmision, new { @class = "control-label col-md-2" })
+                                <div class="col-md-4">
+                                    @Html.EditorFor(model => model.cdto_FechaEmision, new { htmlAttributes = new { @readonly = "readonly" } })
+                                    @Html.ValidationMessageFor(model => model.cdto_FechaEmision)
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.cdto_FechaVencimiento, new { @class = "control-label col-md-2" })
+                                <div class="col-md-4">
+                                    @Html.EditorFor(model => model.cdto_FechaVencimiento, new { htmlAttributes = new { @readonly = "readonly" } })
+                                    @Html.ValidationMessageFor(model => model.cdto_FechaVencimiento)
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.cdto_FechaRedencion, new { @class = "control-label col-md-2" })
+                                <div class="col-md-4">
+                                    @Html.EditorFor(model => model.cdto_FechaRedencion, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                    @Html.ValidationMessageFor(model => model.cdto_FechaRedencion)
+                                </div>
+                            </div>
+
+
+                            @*-----Anular oculto-----*@
+                            <input type="hidden" id="cdto_Redimido" name="cdto_Redimido" value="false" />
+                            <input type="hidden" id="cdto_Anulado" name="cdto_Anulado" value="false" />
+                            <input type="hidden" id="cdto_EsImpreso" name="cdto_EsImpreso" value="false" />
+                            @*-----FIN Anular oculto-----*@
+
+
+                            @*---------------Botones---------------------*@
+                            <div class="form-group">
+                                <div class="col-md-12 text-center">
+                                    @if (Model.cdto_Anulado == false)
+                                    {
+                                        <input type="submit" value="Guardar" class="btn btn-primary" />
+                                        @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
+                                        <button id="bottonAnular" name="bottonAnular" type="button" class="btn btn-danger" data-toggle="modal" data-target="#Anular2">
+                                            @*boton Anular Cupon Descuento*@
+                                        Anular
+                                    </button>
+                                    }
+                                    else
+                                    {
+
+                                    }
+                                </div>
+                            </div>
+                            @*---------------FIN Botones---------------------*@
+                        </div>
+                        }
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <table class="table table-striped">
+                        <tr>
+                            <th>Acción</th>
+                            <th>Usuario</th>
+                            <th>Fecha</th>
+                        </tr>
+                        <tr>
+                            <td>Creado</td>
+                            <td>
+                                @Html.DisplayFor(model => model.tbUsuario1.usu_Nombres)
+                                @Html.DisplayFor(model => model.tbUsuario1.usu_Apellidos)
+                            </td>
+                            <td>@Html.DisplayFor(model => model.cdto_FechaCrea)</td>
+                        </tr>
+                        <tr>
+                            <td>Modificado</td>
+                            <td>
+                                @Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
+                                @Html.DisplayFor(model => model.tbUsuario.usu_Apellidos)
+                            </td>
+                            <td>@Html.DisplayFor(model => model.cdto_FechaModifica)</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+@* -------------------Modal Anular---------------- *@
+<div class="modal fade" id="Anular2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Anular Cupón Descuento</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                ¿Está seguro de Anular este Cupón Descuento?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" onclick="AnularCuponDescuento();" data-dismiss="modal">Si</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/Scripts/app/CuponDescuentoAnulado.js"></script>
+@* -------------------Fin Modal Anular---------------- *@
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+        //------------------------CantidadMinima > MontoDescuento------------------
+        $('#cdto_CantidadCompraMinima').blur(function () {
+            valido = document.getElementById('smsCantidadMinima1');
+            var monto1 = $('#cdto_MontoDescuento').val();
+            console.log(monto1)
+            var compraminima1 = $('#cdto_CantidadCompraMinima').val();
+            console.log(compraminima1)
+
+            if (parseFloat(monto1) >= parseFloat(compraminima1 || $('#cdto_CantidadCompraMinima').val() == " ")) {
+                $('#cdto_CantidadCompraMinima').val('').focus();
+                valido.innerText = "El valor debe ser Mayor al Monto Descuento";
+            } else
+                valido.innerText = "";
+        });
+        
+        //--------------------Digitar Datos--------------------------------
+        $(document).ready(function () {
+            $('#cdto_MaximoMontoDescuento').attr('readonly', 'readonly');
+            $('#cdto_MontoDescuento').attr('readonly', 'readonly');
+            $('#cdto_CantidadCompraMinima').attr('readonly', 'readonly');
+        });
+
+        $('#cdto_PorcentajeDescuento').focusout(function () {
+            var Porcentaje = $('#cdto_PorcentajeDescuento').val();
+
+            if (Porcentaje >= 1) {
+                $('#cdto_PorcentajeDescuento').removeAttr("readonly").val();
+                $('#cdto_MaximoMontoDescuento').removeAttr("readonly").val();
+                $('#cdto_MontoDescuento').attr('readonly', 'readonly').val('0.00').on("click", function () { $("#cdto_MontoDescuento").off("click"); });
+                $('#cdto_CantidadCompraMinima').attr('readonly', 'readonly').val('0.00');
+                $('#cdto_MaximoMontoDescuento').focusout(function () {
+                    $('#cdto_FechaEmision').focus();
+                });
+               
+            } else if (Porcentaje <= 0) {
+                $('#cdto_PorcentajeDescuento').val('0.00');
+                $('#cdto_MaximoMontoDescuento').attr('readonly', 'readonly').val('0.00');
+                $("#cdto_MontoDescuento").removeAttr("readonly").focus().val();
+                $('#cdto_CantidadCompraMinima').removeAttr("readonly").val();
+            } 
+        });
+
+        $("#cdto_PorcentajeDescuento").blur(function () {
+            valido = document.getElementById('smsCantidad');
+            var Porcen = $('#cdto_PorcentajeDescuento').val();
+            if (parseFloat(Porcen) < 0 || parseFloat(Porcen) > 100) {
+                $('#cdto_PorcentajeDescuento').val("");
+                $('#cdto_PorcentajeDescuento').focus();
+                valido.innerText = "El valor debe ser entre 0 a 100";
+            }
+            else {
+                valido.innerText = "";
+            }
+        });
+
+        $('#cdto_MaximoMontoDescuento').blur(function () {
+            valido1 = document.getElementById('msjMaximoMonto');
+            var monto = $('#cdto_MaximoMontoDescuento').val();
+            console.log(monto)
+            if (parseFloat(monto) <= 0 || $('#cdto_MaximoMontoDescuento').val() == "") {
+                $('#cdto_MaximoMontoDescuento').val('').focus();
+                valido1.innerText = "El valor debe ser Mayor a 0.";
+            } else
+                valido1.innerText = "";
+        });
+
+        $('#cdto_MontoDescuento').blur(function () {
+                valido1 = document.getElementById('msjMonto');
+                var monto = $('#cdto_MontoDescuento').val();
+                console.log(monto)
+                if (parseFloat(monto) <= 0 || $('#cdto_MontoDescuento').val() == "") {
+                    $('#cdto_MontoDescuento').val('').focus();
+                    valido1.innerText = "El valor debe ser Mayor a 0.";
+                } else
+                    valido1.innerText = "";
+            });
+        
+        $('#cdto_CantidadCompraMinima').blur(function () {
+            valido1 = document.getElementById('smsCantidadMinima1');
+            var monto = $('#cdto_CantidadCompraMinima').val();
+            console.log(monto)
+            if ($('#cdto_CantidadCompraMinima').val() == "") {
+                $('#cdto_CantidadCompraMinima').val('').focus();
+                valido1.innerText = "El valor debe ser Mayor al Monto Descuento.";
+            } else
+                valido1.innerText = "";
+        });
+        //--------------------FIN Digitar Datos--------------------------------
+
+        //--------------------------keyup----------------------
+        $('#cdto_PorcentajeDescuentoE').keydown(function () {
+            var value = $(this).val();
+            $('#cdto_PorcentajeDescuento').val(value);
+        });
+
+        $('#cdto_MaximoMontoDescuentoE').keydown(function () {
+            var value = $(this).val();
+            $('#cdto_MaximoMontoDescuento').val(value);
+        });
+
+        $('#cdto_MontoDescuentoE').keydown(function () {
+            var value = $(this).val();
+            $('#cdto_MontoDescuento').val(value);
+        });
+
+        $('#cdto_CantidadCompraMinimaE').keydown(function () {
+            var value = $(this).val();
+            $('#cdto_CantidadCompraMinima').val(value);
+        });
+
+        //---------------------------------Ctrl + G (GuardarRegistro)------------------------------
+        $(document).keydown(function (e) {
+            if ((e.key == 'g' || e.key == 'G') && (e.ctrlKey || e.metaKey)) {
+                e.preventDefault();
+                $("form").submit();
+                return false;
+            }
+            return true;
+        });
+
+        //--------------------Milecimas y decimales-------------------
+
+        function MASK(form, n, mask, format) {
+            if (format == "undefined") format = false;
+            if (format || NUM(n)) {
+                dec = 0, point = 0;
+                x = mask.indexOf(".") + 1;
+                if (x) { dec = mask.length - x; }
+
+                if (dec) {
+                    n = NUM(n, dec) + "";
+                    x = n.indexOf(".") + 1;
+                    if (x) { point = n.length - x; } else { n += "."; }
+                } else {
+                    n = NUM(n, 0) + "";
+                }
+                for (var x = point; x < dec ; x++) {
+                    n += "0";
+                }
+                x = n.length, y = mask.length, XMASK = "";
+                while (x || y) {
+                    if (x) {
+                        while (y && "#0.".indexOf(mask.charAt(y - 1)) == -1) {
+                            if (n.charAt(x - 1) != "-")
+                                XMASK = mask.charAt(y - 1) + XMASK;
+                            y--;
+                        }
+                        XMASK = n.charAt(x - 1) + XMASK, x--;
+                    } else if (y && "0".indexOf(mask.charAt(y - 1)) + 1) {
+                        XMASK = mask.charAt(y - 1) + XMASK;
+                    }
+                    if (y) { y-- }
+                }
+            } else {
+                XMASK = "";
+            }
+            if (form) {
+                form.value = XMASK;
+                if (NUM(n) < 0) {
+                    form.style.color = "#FF0000";
+                } else {
+                    form.style.color = "#000000";
+                }
+            }
+            return XMASK;
+        }
+
+        function NUM(s, dec) {
+            for (var s = s + "", num = "", x = 0 ; x < s.length ; x++) {
+                c = s.charAt(x);
+                if (".-+/*".indexOf(c) + 1 || c != " " && !isNaN(c)) { num += c; }
+            }
+            if (isNaN(num)) { num = eval(num); }
+            if (num == "") { num = 0; } else { num = parseFloat(num); }
+            if (dec != undefined) {
+                r = .5; if (num < 0) r = -r;
+                e = Math.pow(10, (dec > 0) ? dec : 0);
+                return parseInt(num * e + r) / e;
+            } else {
+                return num;
+            }
+        }
+
+        //------------------validar solo numeros---------------------------
+        onload = function () {
+            var ele = document.querySelectorAll('.validanumericos')[0];
+            ele.onkeypress = function (e) {
+                if (isNaN(this.value + String.fromCharCode(e.charCode)))
+                    return false;
+            }
+            ele.onpaste = function (e) {
+                e.preventDefault();
+            }
+        }
+</script>
+}

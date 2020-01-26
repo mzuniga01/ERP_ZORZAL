@@ -1,43 +1,20 @@
-﻿@model ERP_ZORZAL.Models.tbBanco
+﻿@model ERP_GMEDINA.Models.tbBanco
 
 @{
     ViewBag.Title = "Edit";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<style>
-    table {
-        font-family: arial, sans-serif;
-        border-collapse: collapse;
-        width: 50%;
-        margin-left:17%;
-    }
 
-    td, th {
-        border: 1px solid #dddddd;
-        text-align: left;
-        padding: 8px;
-    }
+<link href="~/Content/css/Auditoria.css" rel="stylesheet" />
 
-    tr:nth-child(even) {
-        background-color: #dddddd;
-    }
-</style>
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
         <h2>Banco</h2>
-      @*<ol class="breadcrumb">
-            <li>
-                @Html.ActionLink("List", "Index")
-            </li>
-            <li class="active">
-                <strong>Edit</strong>
-            </li>
-        </ol>*@
-    </div>
+     </div>
     <div class="col-sm-8">
         <div class="title-action">
-            <a href="@Url.Action("Index","Banco")">Regresar</a>
-			@*@Html.ActionLink("Regresar", "Index", null, new { @class = "btn btn-primary"})*@
+            <a href="@Url.Action("Index", "Banco")">Regresar</a>
+		
         </div>
     </div>
 </div>
@@ -54,77 +31,110 @@
                 </div>
                 <div class="ibox-content">
 
-				@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
 
-                    <div class="form-horizontal">
+                        <div class="form-horizontal">
 
-                        @Html.ValidationSummary(true)
-                        @Html.HiddenFor(model => model.ban_Id)
+                            @Html.ValidationSummary(true)
+                            @Html.HiddenFor(model => model.ban_Id)
+                            @*Auditoria*@
+                            @Html.HiddenFor(model => model.ban_UsuarioCrea)
+                            @Html.HiddenFor(model => model.ban_FechaCrea)
+                            @Html.HiddenFor(model => model.ban_UsuarioModifica)
+                            @Html.HiddenFor(model => model.ban_FechaModifica)
+                            @Html.HiddenFor(model => model.tbUsuario.usu_Nombres)
+                            @Html.HiddenFor(model => model.tbUsuario.usu_Apellidos)
+                            @Html.HiddenFor(model => model.tbUsuario1.usu_Nombres)
+                            @Html.HiddenFor(model => model.tbUsuario1.usu_Apellidos)
 
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.ban_Nombre, new { @class = "control-label col-md-2" })
-                            <div class="col-md-5">
-                                @Html.EditorFor(model => model.ban_Nombre)
-                                @Html.ValidationMessageFor(model => model.ban_Nombre)
+
+
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.ban_Id, new { @class = "control-label col-md-2" })
+                                <div class="col-md-5">
+                                    @Html.EditorFor(model => model.ban_Id, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                    @Html.ValidationMessageFor(model => model.ban_Id)
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.ban_NombreContacto, new { @class = "control-label col-md-2" })
-                            <div class="col-md-5">
-                                @Html.EditorFor(model => model.ban_NombreContacto)
-                                @Html.ValidationMessageFor(model => model.ban_NombreContacto)
+
+                            <div class="form-group">
+                                <label class="control-label col-md-2">Banco<span style="color:red"> *</span></label>
+                                <div class="col-md-5">
+                                    @Html.EditorFor(model => model.ban_Nombre, new { htmlAttributes = new { @autocomplete = "off", @style = "text-transform:uppercase;", onkeypress = "return validar(event)", @onkeyup = "this.value=Copy(this.value)" } })
+                                    <p style="color:red">@Html.ValidationMessageFor(model => model.ban_Nombre)</p>
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.ban_TelefonoContacto, new { @class = "control-label col-md-2" })
-                            <div class="col-md-5">
-                                @Html.EditorFor(model => model.ban_TelefonoContacto)
-                                @Html.ValidationMessageFor(model => model.ban_TelefonoContacto)
+                            <div class="form-group">
+                                <label class="control-label col-md-2">Nombre Contacto<span style="color:red"> *</span></label>
+                                <div class="col-md-5">
+                                    @Html.EditorFor(model => model.ban_NombreContacto, new { htmlAttributes = new { @autocomplete = "off", @style = "text-transform:uppercase;", onkeypress = "return validar(event)", @onkeyup = "this.value=Copy(this.value)" } })
+                                    <p style="color:red">@Html.ValidationMessageFor(model => model.ban_NombreContacto)</p>
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="form-group">
-                            <table>
-                                <tr>
-                                    <th></th>
-                                    <th>Usuario</th>
-                                    <th>Fecha</th>
-                                </tr>
-                                <tr>
-                                    <td>Creado</td>
-                                    <td>@Html.DisplayFor(model => model.tbUsuario.usu_NombreUsuario)</td>
-                                    <td>@Html.DisplayFor(model => model.ban_FechaCrea)</td>
-                                </tr>
-                                <tr>
-                                    <td>Modificado</td>
-                                    <td>@Html.DisplayFor(model => model.tbUsuario.usu_NombreUsuario)</td>
-                                    <td>@Html.DisplayFor(model => model.ban_FechaModifica)</td>
-                                </tr>
-                            </table>
-                        </div>
-   
-                        <div class="form-group">
+                            <div class="form-group">
+                                <label class="control-label col-md-2">Teléfono Contacto<span style="color:red"> *</span></label>
+                                <div class="col-md-5">
+                                    @Html.EditorFor(model => model.ban_TelefonoContacto, new { htmlAttributes = new { @autocomplete = "off", @Placeholder = "(Codigo Areá) Telefono", onkeypress = "return validartel(event)", @onkeyup = "this.value=Caracteres(this.value)" } })
+                                    <p style="color:red"> @Html.ValidationMessageFor(model => model.ban_TelefonoContacto)</p>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
                                 <div class="col-md-offset-2 col-md-10">
                                     <input type="submit" value="Guardar" class="btn btn-primary" />
                                     @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
                                 </div>
                             </div>
                         </div>
-                            }
-
-
-                        </div>
-                    </div>
+                    }
+                </div>
+            </div>
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Auditoría</h5>
+                </div>
+                <div class="ibox-content">
+                    <table class="table table-striped">
+                        <tr>
+                            <th>Acción</th>
+                            <th>Usuario</th>
+                            <th>Fecha</th>
+                        </tr>
+                        <tr>
+                            <td>Creado</td>
+                            <td>
+                                @Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
+                                @Html.DisplayFor(model => model.tbUsuario.usu_Apellidos)
+                            </td>
+                            <td>@Html.DisplayFor(model => model.ban_FechaCrea)</td>
+                        </tr>
+                        <tr>
+                            <td>Modificado</td>
+                            <td>
+                                @Html.DisplayFor(model => model.tbUsuario1.usu_Nombres)
+                                @Html.DisplayFor(model => model.tbUsuario1.usu_Apellidos)
+                            </td>
+                            <td>@Html.DisplayFor(model => model.ban_FechaModifica)</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
         </div>
     </div>
- </div>
+</div>
 
 
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }
+<script src="~/Scripts/jquery-3.4.1.js"></script>
+<script src="~/Scripts/app/Banco.js"></script>
+<script src="~/Scripts/app/CaracteresEspeciales.js"></script>
+<script src="~/Scripts/app/ComandoGuardar.js"></script>

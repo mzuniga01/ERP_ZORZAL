@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ERP_ZORZAL.Models.tbPedido>
+﻿@model IEnumerable<ERP_GMEDINA.Models.tbPedido>
 
 @{
     ViewBag.Title = "Pedidos";
@@ -8,11 +8,7 @@
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
         <h2>Pedidos</h2>
-        <ol class="breadcrumb">
-            <li class="active">
-                @*<strong>tbPedido</strong>*@
-            </li>
-        </ol>
+        
     </div>
 </div>
 
@@ -24,7 +20,12 @@
                 <div class="ibox-title">
                     <h5>Listado de Pedidos</h5>
 					<div class="ibox-tools">
-						@Html.ActionLink(" Nuevo", "Create", null, new { @class = "btn btn-primary"})
+                        <a class="btn btn-primary " href="@Url.Action("IndexPedido","Pedido")">Pedidos Por Facturar</a>
+						@Html.ActionLink("Registrar Pedido", "Create", null, new { @class = "btn btn-primary "})
+                        @*@using (Html.BeginForm("Reporte", "Pedido", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                        {
+                            <button id="Reporte" type="submit" class="btn btn-primary btn-sm">Reporte</button>
+                        }*@
 					</div>
                 </div>
                 <div class="ibox-content">
@@ -32,42 +33,33 @@
 <table id="DataTable" class="table table-striped table-bordered table-hover">
     <thead>
         <tr>
+
             <th>
-                Id Pedido
-                @*@Html.DisplayNameFor(model => model.ped_Id)*@
+                @Html.DisplayNameFor(model => model.ped_Id)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.tbEstadoPedido.esped_Descripcion)
             </th>
             <th>
-                Fecha Elaboración
-                @*@Html.DisplayNameFor(model => model.ped_FechaElaboracion)*@
+                @Html.DisplayNameFor(model => model.suc_Id)
             </th>
             <th>
-                Fecha Entrega
-                @*@Html.DisplayNameFor(model => model.ped_FechaEntrega)*@
-            </th>
-            @*<th>
-                    @Html.DisplayNameFor(model => model.ped_FechaCrea)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.ped_FechaModifica)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.tbUsuario.usu_NombreUsuario)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.tbUsuario1.usu_NombreUsuario)
-                </th>*@
-            <th>
-                Número Identificación
-                @*@Html.DisplayNameFor(model => model.tbCliente.clte_RTN_Identidad_Pasaporte)*@
+                @Html.DisplayNameFor(model => model.ped_FechaElaboracion)
             </th>
             <th>
-                Código Factura
-                @*@Html.DisplayNameFor(model => model.tbFactura.fact_Codigo)*@
+                @Html.DisplayNameFor(model => model.tbCliente.clte_Identificacion)
             </th>
             <th>
-                Código Municipio
-                @*@Html.DisplayNameFor(model => model.tbSucursal.mun_Codigo)*@
+                @Html.DisplayNameFor(model => model.tbCliente.clte_Nombres)
             </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ped_FechaEntrega)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.fact_Id)
+            </th>
+       
             <th>Acciones</th>
         </tr>
     </thead>
@@ -76,50 +68,91 @@
         {
             <tr>
                 <td>
-                    
                     @Html.DisplayFor(modelItem => item.ped_Id)
                 </td>
+                @if (item.ped_EsAnulado)
+                {
+                        <td>Anulado</td>
+                }
+                else if (item.fact_Id != 0)
+                {
+                    <td>Facturado</td>
+                }
+                else
+                {
+                    <td>
+                        @Html.DisplayFor(modelItem => item.tbEstadoPedido.esped_Descripcion)
+                    </td>
+                }
                 <td>
-                    
+                      @Html.DisplayFor(modelItem => item.tbSucursal.suc_Descripcion)
+                </td>
+                <td>
                     @Html.DisplayFor(modelItem => item.ped_FechaElaboracion)
                 </td>
                 <td>
-                    
+                    @Html.DisplayFor(modelItem => item.tbCliente.clte_Identificacion)
+                </td>
+
+                @{ if (Convert.ToInt32(item.tbCliente.clte_EsPersonaNatural) == 1)
+                    {
+                        <td>
+                            @Html.DisplayFor(modelItem => item.tbCliente.clte_Nombres) &nbsp;
+                             @Html.DisplayFor(modelItem => item.tbCliente.clte_Apellidos)
+                        </td>
+                    }
+                    else
+                    {
+                        <td>
+                            @Html.DisplayFor(modelItem => item.tbCliente.clte_NombreComercial)
+                        </td>
+                    }
+                }
+       
+                <td>
                     @Html.DisplayFor(modelItem => item.ped_FechaEntrega)
                 </td>
-                @*<td>
-                        @Html.DisplayFor(modelItem => item.ped_FechaCrea)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.ped_FechaModifica)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.tbUsuario.usu_NombreUsuario)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.tbUsuario1.usu_NombreUsuario)
-                    </td>*@
                 <td>
-                    
-                    @Html.DisplayFor(modelItem => item.tbCliente.clte_RTN_Identidad_Pasaporte)
-                </td>
-                <td>
-                    
                     @Html.DisplayFor(modelItem => item.tbFactura.fact_Codigo)
                 </td>
-                <td>
-                    
-                    @Html.DisplayFor(modelItem => item.tbSucursal.mun_Codigo)
-                </td>
-                <td>
-                    @Html.ActionLink("Detalles", "Details", new { id = item.ped_Id }, new { @class = "btn btn-primary btn-sm" })
-                    @Html.ActionLink("Editar", "Edit", new { id = item.ped_Id }, new { @class = "btn btn-white btn-sm" })
-                    @*@Html.ActionLink("Delete", "Delete", new { id=item.ped_Id }, new { @class = "btn btn-white btn-sm"})*@
-                </td>
+                @if (item.ped_EsAnulado)
+                {
+                    <td>
+                        @Html.ActionLink("Detalles", "Details", new { id = item.ped_Id }, new { @class = "btn btn-primary btn-xs " })
+
+                        <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="No se puede Editar, esta Anulado">
+                            <button class="btn btn-white btn-xs" style="pointer-events: none;" type="button" disabled>Editar</button>
+                        </span>
+
+                    </td>
+                }
+                else if (item.fact_Id != 0)
+                {
+                    <td>
+                        @Html.ActionLink("Detalles", "Details", new { id = item.ped_Id }, new { @class = "btn btn-primary btn-xs " })
+
+                        <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="No se puede Editar, esta Facturado">
+                            <button class="btn btn-white btn-xs" style="pointer-events: none;" type="button" disabled>Editar</button>
+                        </span>
+
+                    </td>
+                }
+                else
+                {
+                    <td>
+                        @Html.ActionLink("Detalles", "Details", new { id = item.ped_Id }, new { @class = "btn btn-primary btn-xs " })
+
+                        @Html.ActionLink("Editar", "Edit", new { id = item.ped_Id }, new { @class = "btn btn-white btn-xs" })
+                    </td>
+                }
+
+
+
+
+
             </tr>
         }
     </tbody>
-
 </table>
 
                 </div>
@@ -128,6 +161,10 @@
     </div>
  </div>
 
-
-<script src="~/Scripts/jquery-3.3.1.js"></script>
+<script src="~/Scripts/jquery-3.4.1.js"></script>
 <script src="~/Scripts/app/DataTable.js"></script>
+<script>
+    $(function () {
+     $('[data-toggle="tooltip"]').tooltip()
+    });
+</script>

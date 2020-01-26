@@ -1,4 +1,9 @@
-﻿<nav class="navbar-default navbar-static-side" role="navigation">
+﻿@using ERP_GMEDINA.Models
+@{
+    Helpers Login = new Helpers();
+}
+ 
+<nav class="navbar-default navbar-static-side" role="navigation">
     <div class="sidebar-collapse">
         <div class="logo-element">
             GM
@@ -18,165 +23,232 @@
             <li>
                 <a href="#"><i class="fa fa-shopping-bag fa-fw"></i><span class="nav-label">Ventas</span><span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level collapse">
-                    <li class="@Html.IsSelected(action: "Index")">
-                        <a href="@Url.Action("Index", "DocumentoFiscal")"><i class="fa fa-book"></i> <span class="nav-label">Documento Fiscal</span> </a>
-                    </li>
+                    @if (Login.GetUserRols("Factura/Index"))
+                    {
+                        <li class="@Html.IsSelected(action: "Index")">
+                            <a href="@Url.Action("Index", "Factura")"><i class="fa fa-wpforms"></i>Facturas<span class="nav-label"></span></a>
+                        </li>
+                    }
+                    @if (Login.GetUserRols("Pago/Index"))
+                    {
+                        <li class="@Html.IsSelected(action: "Index")">
+                            <a href="@Url.Action("Index", "Pago")"><i class="fa fa-money"></i>Pago<span class="nav-label"></span> </a>
+                        </li>
+                    }
+                    @if (Login.GetUserRols("SolicitudCredito/Index"))
+                    {
+                        <li class="@Html.IsSelected(action: "Index")">
+                            <a href="@Url.Action("Index", "SolicitudCredito")"><i class="fa fa-calendar-check-o"></i>Solicitud Créditos<span class="nav-label"></span> </a>
+                        </li>
+                    }
+                    @if (Login.GetUserRols("Cliente/Index"))
+                    {
+                        <li class="@Html.IsSelected(action: "Index")">
+                            <a href="@Url.Action("Index", "Cliente")"><i class="fa fa-users fa-fw"></i>Clientes<span class="nav-label"></span> </a>
+                        </li>
+                    }       
+                    @if (Login.GetUserRols("Pedido/Index"))
+                    {
+                        <li class="@Html.IsSelected(action: "Index")">
+                            <a href="@Url.Action("Index", "Pedido")"><i class="fa fa-ticket fa-fw"></i>Pedidos<span class="nav-label"></span> </a>
+                        </li>
+                    }
+                    @if (Login.GetUserRols("Devolucion/Index"))
+                    {
+                        <li class="@Html.IsSelected(action: "Index")">
+                            <a href="@Url.Action("Index", "Devolucion")"><i class="fa fa-arrow-circle-left"></i>Devolución<span class="nav-label"></span> </a>
+                        </li>
+                    }
+                    @if (Login.GetUserRols("ListaPrecios/Index"))
+                    {
+                        <li class="@Html.IsSelected(action: "Index")">
+                            <a href="@Url.Action("Index", "ListaPrecios")"><i class="fa fa-ticket fa-fw"></i>Lista Precios<span class="nav-label"></span> </a>
+                        </li>
+                    }
+                    @if (Login.GetUserRols("Exoneracion/Index"))
+                    {
+                        <li class="@Html.IsSelected(action: "Index")">
+                            <a href="@Url.Action("Index", "Exoneracion")"><i class="fa fa-user-plus"></i>Exoneración<span class="nav-label"></span> </a>
+                        </li>
+                    }
+                    @if (Login.GetUserRols("CuponDescuento/Index"))
+                    {
+                        <li class="@Html.IsSelected(action: "Index")">
+                            <a href="@Url.Action("Index", "CuponDescuento")"><i class="fa fa-ticket fa-fw"></i>Cupón Descuento<span class="nav-label"></span></a>
+                        </li>
+                    }
+                    @if (Login.GetUserRols("NotaCredito/Index"))
+                    {
+                        <li class="@Html.IsSelected(action: "Index")">
+                            <a href="@Url.Action("Index", "NotaCredito")"><i class="fa fa-file-text-o"></i>Nota Crédito<span class="nav-label"></span> </a>
+                        </li>
+                    }
 
-                    <li class="@Html.IsSelected(action: "Index")">
-                        <a href="@Url.Action("Index", "SolicitudEfectivo")"><i class="fa fa-credit-card-alt"></i> <span class="nav-label">Solicitud Efectivo</span> </a>
-                    </li>
+               
 
-                    <li class="@Html.IsSelected(action: "Index")">
-                        <a href="@Url.Action("Index", "ArqueoCaja")"><i class="fa fa-money"></i> <span class="nav-label">Arqueo Caja</span> </a>
-                    </li>
-
-                    <li class="@Html.IsSelected(action: "Index")">
-                        <a href="@Url.Action("Index", "Exoneracion")"><i class="fa fa-user-plus"></i> <span class="nav-label">Exoneración</span> </a>
-                    </li>
-
-                    <li class="@Html.IsSelected(action: "Index")">
-                        <a href="@Url.Action("Index", "Devolucion")"><i class="fa fa-arrow-circle-left"></i> <span class="nav-label">Devolución</span> </a>
-                    </li>
-
-                    <li class="@Html.IsSelected(action: "Index")">
-                        <a href="@Url.Action("Index", "Pago")"><i class="fa fa-money"></i> <span class="nav-label">Pago</span> </a>
-                    </li>
-                    <li class="@Html.IsSelected(action: "Index")">
-                        <a href="@Url.Action("Index", "CuponDescuento")"><i class="fa fa-ticket fa-fw"></i> <span class="nav-label">Cupón Descuento</span></a>
-                    </li>
-
-                    <li class="@Html.IsSelected(action: "Index")">
-                        <a href="@Url.Action("Index", "Cliente")"><i class="fa fa-users fa-fw"></i> <span class="nav-label">Clientes</span> </a>
-                                         
-                    <li class="@Html.IsSelected(action: "Index")">
-                        <a href="@Url.Action("Index", "Factura")"><i class="fa fa-wpforms"></i> <span class="nav-label">Facturas</span> </a>
-                    </li>
-                    <li class="@Html.IsSelected(action: "Index")">
-                        <a href="@Url.Action("Index", "SolicitudCredito")"><i class="fa fa-calendar-check-o"></i> <span class="nav-label">Solicitud Créditos</span> </a>
-                    </li>
-                    <li class="@Html.IsSelected(action: "Index")">
-                        <a href="@Url.Action("Index", "EstadoSolicitudCredito")"><i class="fa fa-clipboard"></i> <span class="nav-label">Estado Solicitud Credito</span> </a>
-                    </li>
-                    <li class="@Html.IsSelected(action: "Index")">
-                        <a href="@Url.Action("Index", "NotaCredito")"><i class="fa fa-file-text-o"></i> <span class="nav-label">Nota Credito</span> </a>
-                    </li>
-                    <li class="@Html.IsSelected(action: "Index")">
-                        <a href="@Url.Action("Index", "TipoIdentificacion")"><i class="fa fa-ticket fa-fw"></i> <span class="nav-label">Tipo Identificacion</span> </a>
-                    </li>
-                    <li class="@Html.IsSelected(action: "Index")">
-                        <a href="@Url.Action("Index", "Pedido")"><i class="fa fa-ticket fa-fw"></i> <span class="nav-label">Pedidos</span> </a>
-                    </li>
-                    <li class="@Html.IsSelected(action: "Index")">
-                        <a href="@Url.Action("Index", "ListaPrecio")"><i class="fa fa-ticket fa-fw"></i> <span class="nav-label">Lista Precios</span> </a>
-                    </li>
-                </ul>
-            </li>
-
-            <li>
-                <a href="#"><i class="fa fa-tag"></i><span class="nav-label">Inventario</span><span class="fa arrow"></span></a>
-                <ul class="nav nav-second-level collapse">
-                    <li class="@Html.IsSelected(action: "Index")">
-                        <a href="@Url.Action("Index", "Entrada")"><i class="fa fa-users fa-fw"></i>Entradas<span class="nav-label"></span> </a>
-                     </li>
-
-                    <li class="@Html.IsSelected(action: "Index")">
-                        <a href="@Url.Action("Index_Salida", "Salida")"><i class="fa fa-users fa-fw"></i>Salidas<span class="nav-label"></span> </a>
-                    </li>
-
-                    <li class="@Html.IsSelected(action: "Index")">
-                        <a href="@Url.Action("Index_Bodega", "Bodega")"><i class="fa fa-users fa-fw"></i>Bodegas<span class="nav-label"></span> </a>
-                    </li>
-                    @*<li class="@Html.IsSelected(action: "Index")">
-                        <a href="@Url.Action("Index", "Cajas")"><i class="fa fa-users fa-fw"></i>Cajas<span class="nav-label"></span> </a>
-                    </li>*@
-                    <li class="@Html.IsSelected(action: "Index")">
-                        <a href="@Url.Action("Index", "EstadoMovimiento")"><i class="fa fa-users fa-fw"></i>Estado Movimiento<span class="nav-label"></span> </a>
-                    </li>
-                    <li class="@Html.IsSelected(action: "Index")">
-                        <a href="@Url.Action("Index", "InventarioFisico")"><i class="fa fa-users fa-fw"></i>Inventario Fisico<span class="nav-label"></span> </a>
-                    </li>
-                    <li class="@Html.IsSelected(action: "Index")">
-                        <a href="@Url.Action("Index", "Producto")"><i class="fa fa-users fa-fw"></i>Producto <span class="nav-label"></span> </a>
-                    </li>
-                    <li class="@Html.IsSelected(action: "Index")">
-                        <a href="@Url.Action("Index", "Proveedor")"><i class="fa fa-users fa-fw"></i>Proveedor <span class="nav-label"></span> </a>
-                    </li>
                 </ul>
             </li>
             
+
+            <li>
+                <a href="#"><i class="fa fa-archive"></i><span class="nav-label">Caja</span><span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level collapse">
+                    @if (Login.GetUserRols("MovimientoCaja/Index"))
+                    {
+                        <li class="@Html.IsSelected(action: "Index")">
+                            <a href="@Url.Action("IndexApertura", "MovimientoCaja")"><i class="fa fa-money"></i>Aperturar Caja<span class="nav-label"></span> </a>
+                        </li>
+                    }
+                    @if (Login.GetUserRols("MovimientoCaja/Index"))
+                    {
+                        <li class="@Html.IsSelected(action: "Index")">
+                            <a href="@Url.Action("Index", "MovimientoCaja")"><i class="fa fa-money"></i>Arqueo Caja<span class="nav-label"></span> </a>
+                        </li>
+                    }  
+                    @if (Login.GetUserRols("SolicitudEfectivo/Index"))
+                    {
+                        <li class="@Html.IsSelected(action: "Index")">
+                            <a href="@Url.Action("Index", "SolicitudEfectivo")"><i class="fa fa-credit-card-alt"></i>Solicitud Efectivo <span class="nav-label"></span> </a>
+                        </li>
+                    }
+                    @if (Login.GetUserRols("DenominacionArqueo/Index"))
+                    {
+                        <li class="@Html.IsSelected(action: "Index")">
+                            <a href="@Url.Action("Index", "DenominacionArqueo")"><i class="fa fa-usd"></i>Denominación Arqueo <span class="nav-label"></span> </a>
+                        </li>
+                    }
+                    @if (Login.GetUserRols("PagosArqueo/Index"))
+                    {
+                        <li class="@Html.IsSelected(action: "Index")">
+                            <a href="@Url.Action("Index", "PagosArqueo")"><i class="fa fa-cc-mastercard"></i>Pagos Arqueo <span class="nav-label"></span> </a>
+                        </li>
+                    }
+                   
+                </ul>
+            </li>
+
             <li>
                 <a href="#"><i class="fa fa-folder-open"></i><span class="nav-label">Catálagos</span><span class="fa arrow"></span></a>
-                <ul class="nav nav-second-level collapse">
-
-                    <li class="@Html.IsSelected(action: "Index")">
-                        <a href="@Url.Action("Index", "Banco")"><i class="fa fa-university fa-fw"></i> <span class="nav-label">Bancos</span> </a>
-                    </li>
-
-                    <li class="@Html.IsSelected(action: "Index")">
-                        <a href="@Url.Action("Index", "Departamento")"><i class="fa fa-map"></i><span class="nav-label">Departamento</span> </a>
-                    </li>
-                    <li class="@Html.IsSelected(action: "Index")">
-                        <a href="@Url.Action("Index", "Municipio")"><i class="fa fa-map-o"></i><span class="nav-label">Municipio</span> </a>
-                    </li>
-                    <li class="@Html.IsSelected(action: "Index")">
-                        <a href="@Url.Action("index_Tent", "TiposEntrada")"><i class="fa fa-cc-visa fa-fw"></i><span class="nav-label">Tipos Entrada</span> </a>
-                    </li>
-                    <li class="@Html.IsSelected(action: "Index")">
-                        <a href="@Url.Action("Index", "TiposSalida")"><i class="fa fa-cc-visa fa-fw"></i><span class="nav-label">Tipos Salidas</span> </a>
-                    </li>
-                    @*<li class="@Html.IsSelected(action: "Index")">
-                        <a href="@Url.Action("Index", "Index")"><i class="fa fa-cc-visa fa-fw"></i><span class="nav-label">Unidades De Medida</span> </a>
-                    </li>*@
-                    <li class="@Html.IsSelected(action: "Index")">
-                        <a href="@Url.Action("Index", "Objeto")"><i class="fa fa-cc-visa fa-fw"></i><span class="nav-label">Objeto</span> </a>
-                    </li>
-                    @*<li class="@Html.IsSelected(action: "Index")">
-                        <a href="@Url.Action("Index", "Index")"><i class="fa fa-cc-visa fa-fw"></i><span class="nav-label">Estado Inventario Fisico</span> </a>
-                    </li>*@
-                    <li class="@Html.IsSelected(action: "Index")">
-                        <a href="@Url.Action("Index", "ActividadEconomica")"><i class="fa fa-university fa-fw"></i> <span class="nav-label">Actividad Ecónomica</span> </a>
-                    </li>
-                    <li class="@Html.IsSelected(action: "Index")">
-                        <a href="@Url.Action("Index", "Moneda")"><i class="fa fa-money"></i> <span class="nav-label">Moneda</span> </a>
-                    </li>
+                <ul class="nav nav-second-level collapse">  
+                    @if (Login.GetUserRols("Banco/Index"))
+                    {
+                        <li class="@Html.IsSelected(action: "Index")">
+                            <a href="@Url.Action("Index", "Banco")"><i class="fa fa-university fa-fw"></i>Bancos<span class="nav-label"></span> </a>
+                        </li>
+                    }      
+                    @if (Login.GetUserRols("Moneda/Index"))
+                    {
+                        <li class="@Html.IsSelected(action: "Index")">
+                            <a href="@Url.Action("Index", "Moneda")"><i class="fa fa-money"></i>Moneda<span class="nav-label"></span> </a>
+                        </li>
+                    }          
+                    @if (Login.GetUserRols("Denominacion/Index"))
+                    {
+                        <li class="@Html.IsSelected(action: "Index")">
+                            <a href="@Url.Action("Index", "Denominacion")"><i class="fa fa-map"></i>Denominación<span class="nav-label"></span> </a>
+                        </li>
+                    }
+                    @if (Login.GetUserRols("ActividadEconomica/Index"))
+                    {
+                        <li class="@Html.IsSelected(action: "Index")">
+                            <a href="@Url.Action("Index", "ActividadEconomica")"><i class="fa fa-university fa-fw"></i>Actividad Ecónomica<span class="nav-label"></span> </a>
+                        </li>
+                    }
+                    @if (Login.GetUserRols("TipoIdentificacion/Index"))
+                    {
+                        <li class="@Html.IsSelected(action: "Index")">
+                            <a href="@Url.Action("Index", "TipoIdentificacion")"><i class="fa fa-ticket fa-fw"></i>Tipo Identificación<span class="nav-label"></span> </a>
+                        </li>
+                    }
+                    @if (Login.GetUserRols("TipoPago/Index"))
+                    {
+                        <li class="@Html.IsSelected(action: "Index")">
+                            <a href="@Url.Action("Index", "TipoPago")"><i class="fa fa-cc-visa fa-fw"></i>Tipos de Pago<span class="nav-label"></span> </a>
+                        </li>
+                    }
+                    @if (Login.GetUserRols("EstadoFactura/Index"))
+                    {
+                        <li class="@Html.IsSelected(action: "Index")">
+                            <a href="@Url.Action("Index", "EstadoFactura")"><i class="fa fa-sticky-note"></i>Estado Factura<span class="nav-label"></span> </a>
+                        </li>
+                    }
+                    @if (Login.GetUserRols("EstadoSolicitudCredito/Index"))
+                    {
+                        <li class="@Html.IsSelected(action: "Index")">
+                            <a href="@Url.Action("Index", "EstadoSolicitudCredito")"><i class="fa fa-area-chart"></i>Estado Solicitud Crédito<span class="nav-label"></span> </a>
+                        </li>
+                    }
+                    @if (Login.GetUserRols("EstadoPedido/Index"))
+                    {
+                        <li class="@Html.IsSelected(action: "Index")">
+                            <a href="@Url.Action("Index", "EstadoPedido")"><i class="fa fa-clipboard"></i>Estado Pedido<span class="nav-label"></span> </a>
+                        </li>
+                    }
+                    @if (Login.GetUserRols("CuentaBanco/Index"))
+                    {
+                        <li class="@Html.IsSelected(action: "Index")">
+                            <a href="@Url.Action("Index", "CuentaBanco")"><i class="fa fa-bandcamp"></i>Cuentas Bancarias<span class="nav-label"></span> </a>
+                        </li>
+                    }
+                    @if (Login.GetUserRols("DocumentoFiscal/Index"))
+                    {
+                        <li class="@Html.IsSelected(action: "Index")">
+                            <a href="@Url.Action("Index", "DocumentoFiscal")"><i class="fa fa-book"></i>Documento Fiscal <span class="nav-label"></span> </a>
+                        </li>
+                    }
                 </ul>
             </li>
 
             <li>
                 <a href="#"><i class="fa fa-cogs fa-fw"></i><span class="nav-label">Configuración</span><span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level collapse">
-                    <li class="@Html.IsSelected(action: "Index")">
-                        <a href="@Url.Action("Index", "Sucursal")"><i class="fa fa-ticket fa-fw"></i> <span class="nav-label">Sucursal</span> </a>
-                    </li>
-
-                    <li class="@Html.IsSelected(action: "Index")">
-                        <a href="@Url.Action("Index", "Caja")"><i class="fa fa-columns"></i> <span class="nav-label">Caja</span> </a>
-                    </li>
-
-                    <li class="@Html.IsSelected(action: "Index")">
-                        <a href="@Url.Action("Index", "PuntoEmision")"><i class="fa fa-bookmark"></i> <span class="nav-label">Punto Emision</span> </a>
-
-                    <li class="@Html.IsSelected(action: "Index")">
-                        <a href="@Url.Action("Index", "CuentaBanco")"><i class="fa fa-money"></i> <span class="nav-label">Cuentas Banco</span> </a>
-                    </li>
+                   @if (Login.GetUserRols("Sucursal/Index"))
+                   {
+                        <li class="@Html.IsSelected(action: "Index")">
+                            <a href="@Url.Action("Index", "Sucursal")"><i class="fa fa-ticket fa-fw"></i>Sucursal<span class="nav-label"></span> </a>
+                        </li>
+                   }
+                   @if (Login.GetUserRols("Caja/Index"))
+                   {
+                        <li class="@Html.IsSelected(action: "Index")">
+                            <a href="@Url.Action("Index", "Caja")"><i class="fa fa-columns"></i>Caja<span class="nav-label"></span> </a>
+                        </li>
+                   }
+                   @if (Login.GetUserRols("PuntoEmision/Index"))
+                   {
+                        <li class="@Html.IsSelected(action: "Index")">
+                            <a href="@Url.Action("Index", "PuntoEmision")"><i class="fa fa-bookmark"></i>Punto Emisión<span class="nav-label"></span> </a>
+                        </li>
+                   }
                 </ul>
             </li>
-
+            @if (Login.GetUserRols("/"))
+            {
+                <li>
+                    <a href="@Url.Action("Index", "Reportes")"><i class="fa fa-dashboard"></i> <span class="nav-label">Reportes</span></a>
+                </li>
+            }
             <li>
                 <a href="#"><i class="fa fa-lock"></i><span class="nav-label">Seguridad</span><span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level collapse">
-                    <li class="@Html.IsSelected(action: "Index")">
-                        <a href="@Url.Action("Index", "Usuario")"><i class="fa fa-users fa-fw"></i>Usuario <span class="nav-label"></span> </a>
-
-                    <li class="@Html.IsSelected(action: "Index")">
-                        <a href="@Url.Action("Index", "AccesoRol")"><i class="fa fa-ticket fa-fw"></i> Acceso Rol<span class="nav-label"></span> </a>
-                    </li>
-                    <li class="@Html.IsSelected(action: "Index")">
-                        <a href="@Url.Action("Index", "Roles")"><i class="fa fa-ticket fa-fw"></i>Roles<span class="nav-label"></span> </a>
-                    </li>
-                    @*<li class="@Html.IsSelected(action: "Index")">
-                        <a href="@Url.Action("Index", "RolesUsuario")"><i class="fa fa-ticket fa-fw"></i>Roles Usuario<span class="nav-label"></span> </a>
-                    </li>*@
+                    @if (Login.GetUserRols("Usuario/Index"))
+                    {
+                        <li class="@Html.IsSelected(action: "Index")">
+                            <a href="@Url.Action("Index", "Usuario")"><i class="fa fa-users fa-fw"></i>Usuario <span class="nav-label"></span> </a>
+                        </li>
+                    }
+                    @if (Login.GetUserRols("AccesoRol/Index"))
+                    {
+                        <li class="@Html.IsSelected(action: "Index")">
+                            <a href="@Url.Action("Index", "AccesoRol")"><i class="fa fa-ticket fa-fw"></i> Acceso Rol<span class="nav-label"></span> </a>
+                        </li>
+                    }
+                    @if (Login.GetUserRols("Roles/Index"))
+                    {
+                        <li class="@Html.IsSelected(action: "Index")">
+                            <a href="@Url.Action("Index", "Roles")"><i class="fa fa-ticket fa-fw"></i>Roles<span class="nav-label"></span> </a>
+                        </li>
+                    }
                 </ul>
             </li>
 

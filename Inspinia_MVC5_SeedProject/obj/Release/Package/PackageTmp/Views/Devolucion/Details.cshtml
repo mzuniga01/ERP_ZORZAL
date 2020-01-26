@@ -1,0 +1,251 @@
+﻿@model ERP_GMEDINA.Models.tbDevolucion
+@using ERP_GMEDINA.Models
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@{
+    var test = new ERP_GMEDINA.Models.tbNotaCredito();
+}
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-sm-4">
+        <h2>Devolución de Producto</h2>
+    </div>
+    <div class="col-sm-8">
+        <div class="title-action">
+            @Html.ActionLink("Regresar", "Index")
+        </div>
+    </div>
+</div>
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Detalle Devolución</h5>
+                   
+                </div>
+                <div class="ibox-content">
+                    <dl class="dl-horizontal">
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.tbCaja.tbSucursal.suc_Descripcion)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.tbCaja.tbSucursal.suc_Descripcion)
+                        </dd>
+
+                        <br />
+                        <dt>
+                            Caja
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.tbCaja.cja_Descripcion)
+                        </dd>
+
+                        <br />
+                        <dt>
+                            Factura
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.tbFactura.fact_Codigo)
+                            @Html.HiddenFor(model => model.dev_Id)
+                        </dd>
+
+                        <br />
+                        <dt>
+                            @Html.DisplayNameFor(model => model.tbFactura.clte_Identificacion)
+                            @Html.HiddenFor(model => model.dev_Id)
+
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.tbFactura.clte_Identificacion)
+                        </dd>
+
+                        <br />
+                        <dt>
+                            @Html.DisplayNameFor(model => model.tbFactura.clte_Nombres)
+                        </dt>
+                        @{ if (Convert.ToInt32(Model.tbFactura.tbCliente.clte_EsPersonaNatural) == 1)
+                            {
+                                <dd>
+                                    @Html.DisplayFor(model => model.tbFactura.clte_Nombres)
+                                </dd>
+                            }
+                            else
+                            {
+                                <dd>
+                                    @Html.DisplayFor(model => model.tbFactura.tbCliente.clte_NombreComercial)
+                                </dd>
+                            }
+                        }
+                        <br/>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.dev_Fecha)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.dev_Fecha)
+                        </dd>
+                        <br />
+
+                        <dd>
+                            @Html.DisplayFor(model => test.tbDevolucion.dev_Id)
+                            @*<input id="Dev_Monto" type="text" />*@
+                        </dd>
+                        @{
+                            if (Model.dev_Id == test.dev_Id)
+                            {
+                                <dt>
+                                   Código Nota Credito
+                                </dt>
+                                <dd>
+                                    @Html.DisplayFor(model => test.nocre_Codigo)
+                                </dd>
+                            }
+                            if (Model.dev_Estado == true)
+                            {
+                             <dt>
+                              Estado
+                            </dt>
+                            <dd>
+                                Anulado
+                            </dd>
+                            }
+                        }
+                            @Html.Hidden("Redireccionar", Url.Action("Index", "Devolucion"))
+
+                            @Html.Hidden("RedirectTo", Url.Action("CreateNotaCredito", "Devolucion", new { id = Model.dev_Id }))
+
+                        @if (ViewBag.NotaCredito == "1")
+                        {
+                            <dt>
+                                Código Nota Crédito
+                                @*@Html.DisplayNameFor(model => model.nocre_Codigo)*@
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.nocre_Codigo)
+                            </dd>
+                            <br />
+                            @Html.Partial("_IndexDetalleDevolucion", Model.tbDevolucionDetalle)
+
+                            //Aqui finaliza el If
+                        }
+                        else
+                        {
+                            <div class="form-group">
+                                @Html.Partial("_IndexDetalleDevolucion", Model.tbDevolucionDetalle)
+
+
+                                <div class="col-md-offset col-md-11">
+
+                                    @Html.ActionLink("Editar", "Edit", new { id = Model.dev_Id }, new { @class = "btn btn-primary  btn-ms" })
+
+                                    @*<button id="bottonNotaCredito" name="bottonNotaCredito" type="button" class="btn btn-primary btn-ms" data-toggle="modal" data-target="#ModalNotaCredito">
+                                        Emitir Nota de Credito
+                                    </button>*@
+                                    <button id="bottonAnular" name="bottonAnular" type="button" class="btn btn-danger" data-toggle="modal" data-target="#Anular">Anular</button>
+
+                                </div>
+                            </div>
+                            //Aqui finaliza el Else
+                        }
+   
+                        
+                      
+</dl>
+
+                   
+                </div>
+            </div>
+            <div class="ibox-content">
+                <table class="table table-striped">
+                    <tr>
+                        <th></th>
+                        <th>Usuario</th>
+                        <th>Fecha</th>
+                    </tr>
+                    <tr>
+                        <td>Creado</td>
+                        <td>
+                            @Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
+                            @Html.DisplayFor(model => model.tbUsuario.usu_Apellidos)
+                        </td>
+                        <td>@Html.DisplayFor(model => model.dev_FechaCrea)</td>
+                    </tr>
+                    <tr>
+                        <td>Modificado</td>
+                        <td>
+                            @Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
+                            @Html.DisplayFor(model => model.tbUsuario.usu_Apellidos)
+                        </td>
+                        <td>@Html.DisplayFor(model => model.dev_FechaModifica)</td>
+                    </tr>
+                </table>
+            </div>
+
+        </div>
+    </div>
+ </div>
+
+@* -------------------Modal Anular----------------*@
+<div class="modal fade" id="Anular" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Anular Devolución</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                ¿Está seguro de Anular esta Devolución?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" onclick="AnularDevolucion();" data-dismiss="modal">Si</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="ModalNotaCredito" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="exampleModalLabel">Emitir Nota Credito</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <h3>
+                    <strong>
+                        ¿Esta seguro que desea crear una Nota de Credito? <br /><br />
+                        Recuerde que no podra volver hacerlo, esta acción es irreversible.
+                    </strong>
+                </h3>
+            </div>
+            <div class="modal-footer">
+                @Html.ActionLink("Si", "EmitirNotaCredito", null, new { @class = "btn btn-primary btn-sm" })
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/Scripts/app/EmitirNotaCredito.js"></script>
+<script src="~/Scripts/app/AnularDevolucion.js"></script>
+@*<script src="~/Scripts/app/TableDetalleDevolucion.js"></script>*@
+
+
+
+
+
+

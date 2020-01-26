@@ -1,0 +1,821 @@
+﻿@model ERP_GMEDINA.Models.tbFactura
+@using ERP_GMEDINA.Models
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    .validation-error {
+        color: red;
+        font-size: small;
+    }
+
+    .modal-lg {
+        max-width: 100% !important;
+    }
+
+    .required:after {
+        content: "*";
+        color: red;
+        padding-left: 5px;
+    }
+</style>
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-sm-4">
+        <h2>Factura</h2>
+    </div>
+    <div class="col-sm-8">
+        <div class="title-action">
+            <a href="@Url.Action("Index","Factura")">Regresar</a>
+        </div>
+    </div>
+</div>
+<div class="wrapper wrapper-content">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="alert alert-danger text-center text-uppercase" id="alertaCaja" style="display:none;">...Por favor realizar una apertura de caja...</div>
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Registrar Factura</h5>
+                </div>
+                <div class="ibox-content">
+                    @using (Html.BeginForm("Create", "Factura", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.Hidden("RedirectTo", Url.Action("Index", "Factura"))
+                        <div class="form-horizontal">
+                            @*@Html.ValidationSummary(true)*@
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.suc_Id, new { @class = "control-label required col-md-2" })
+                                <div class="col-md-4">
+                                    <input class="form-control" readonly value="@ViewBag.suc_Descripcion" />
+                                    <input class="form-control" readonly value="@ViewBag.suc_Id" id="suc_Id" name="suc_Id" type="hidden" />
+                                    <span class="validation-error">  @Html.ValidationMessageFor(model => model.suc_Id)</span>
+                                </div>
+                                @Html.LabelFor(model => model.cja_Id, new { @class = "control-label required col-md-2" })
+                                <div class="col-md-4">
+                                    <input class="form-control" id="cja_Descripcion" readonly />
+                                    @Html.EditorFor(model => model.cja_Id, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", @type = "hidden" } })
+                                    <span class="validation-error">@Html.ValidationMessageFor(model => model.cja_Id)</span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.pemi_NumeroCAI, new { @class = "control-label required col-md-2" })
+                                <div class="col-md-4">
+                                    @Html.EditorFor(model => model.pemi_NumeroCAI, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                    <span class="validation-error">@Html.ValidationMessageFor(model => model.pemi_NumeroCAI)</span>
+                                </div>
+                                @Html.LabelFor(model => model.fact_Codigo, new { @class = "control-label required col-md-2" })
+                                <div class="col-md-4">
+                                    @Html.EditorFor(model => model.fact_Codigo, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                    <span class="validation-error">@Html.ValidationMessageFor(model => model.fact_Codigo)</span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.fact_Fecha, new { @class = "control-label required col-md-2" })
+                                <div class="col-md-4">
+                                    @Html.EditorFor(model => model.fact_Fecha, "{0:MM/dd/yyyy}", new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", @id = "fechafactura" } })
+                                    <span class="validation-error">@Html.ValidationMessageFor(model => model.fact_Fecha)</span>
+                                </div>
+                                <label class="control-label col-md-2">Consumidor Final</label>
+                                <div class="col-md-4">
+                                    <input id="consumidorFinal" type="checkbox" class="check-box" data-backdrop="static" data-keyboard="false" />
+                                </div>
+                            </div>
+
+                            <div id="DatosCliente" name="DatosCliente" class="form-group">
+                                @Html.LabelFor(model => model.clte_Identificacion, new { @class = "control-label col-md-2", id = "label_identificacion" })
+                                <div class="col-md-3">
+                                    <input name="clte_Identificacion" id="cliente_Identificacionxx" type="text" class="form-control" value="@ViewBag.Identificacion" readonly />
+                                    <span class="validation-error" id="err_cliente">@Html.ValidationMessageFor(model => model.clte_Identificacion)</span>
+                                </div>
+                                <div class="col-md-1" style="width: 12.499999995%; padding:0">
+                                    <div id="ocultar">
+                                        <button id="btnAgregarCliente" type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#ModalAgregarCliente"><span class="glyphicon glyphicon-search"></span></button>
+                                        <a id="CrearCliente" class="btn btn-primary btn-sm" href="@Url.Action("_CreateCliente", "Factura")">
+                                            <span class="glyphicon glyphicon-plus"></span>
+                                        </a>
+                                    </div>
+                                </div>
+                                @Html.LabelFor(model => model.clte_Nombres, new { @class = "control-label col-md-2", style = "width: 12.499999995%" })
+                                <div class="col-md-4">
+                                    <input name="clte_Nombres" id="cliente_Nombresxx" type="text" class="form-control" value="@ViewBag.Nombres" readonly />
+                                    <span class="validation-error">@Html.ValidationMessageFor(model => model.clte_Nombres)</span>
+                                </div>
+                            </div>
+
+                            <div class="form-group" id="Completo" name="Completo">
+                                <div id="Alcredito" name="Alcredito">
+                                    @Html.LabelFor(model => model.fact_AlCredito, new { @class = "control-label col-md-2" })
+                                    <div class="col-md-4">
+                                        @Html.CheckBoxFor(model => model.fact_AlCredito)
+                                        <span class="validation-error">@Html.ValidationMessageFor(model => model.fact_AlCredito)</span>
+                                    </div>
+                                </div>
+                                <div id="TerceraEdad" name="TerceraEdad">
+                                    <label class="control-label col-md-2">Descuento Tercera Edad</label>
+                                    <div class="col-md-4">
+                                        <input id="MostrarTerceraEdad" type="checkbox" class="check-box" data-backdrop="static" data-keyboard="false" data-toggle="modal" data-target="#DescTerceraEdad" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="form-horizontal" name="Cred1" id="Cred1">
+                                    @Html.LabelFor(model => model.fact_DiasCredito, new { @class = "control-label col-md-2" })
+                                    <div class="col-md-4">
+                                        @Html.EditorFor(model => model.fact_DiasCredito, new { htmlAttributes = new { onKeyPress = "return soloNumeros(event)", onKeyUp = "pierdeFoco(this)", @autocomplete = "off" } })
+                                        <span id="DiasError" class="validation-error">@Html.ValidationMessageFor(model => model.fact_DiasCredito)</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div id="divfact_AutorizarDescuento">
+                                    <label class="control-label col-md-2">Autorizar Descuento</label>
+                                    <div class="col-md-4">
+                                        <input id="fact_AutorizarDescuento" type="checkbox" class="check-box" data-backdrop="static" data-keyboard="false" data-toggle="modal" data-target="#AutorizarDescuentoModal" />
+                                    </div>
+                                </div>
+                                <div class="form-horizontal" name="Cred2" id="Cred2">
+                                    @Html.LabelFor(model => model.fact_PorcentajeDescuento, new { @class = "control-label col-md-2" })
+                                    <div class="col-md-4">
+                                        @Html.EditorFor(model => model.fact_PorcentajeDescuento, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", } })
+                                    </div>
+                                    <span class="validation-error">@Html.ValidationMessageFor(model => model.fact_PorcentajeDescuento)</span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.esfac_Id, new { @class = "control-label col-md-2" })
+                                <div class="col-md-4">
+                                    @Html.DropDownList("esfac_Id", null, new { @class = "form-control", @readonly = "readonly" })
+                                    <span class="validation-error">@Html.ValidationMessageFor(model => model.esfac_Id)</span>
+                                </div>
+                                @Html.LabelFor(model => model.fact_Vendedor, new { @class = "control-label col-md-2" })
+                                <div class="col-md-4">
+                                    @Html.EditorFor(model => model.fact_Vendedor, new { htmlAttributes = new { @autocomplete = "off", @onkeyup = "format(this)", @onkeypress = "return soloLetras(event)" } })
+                                    <span class="validation-error">@Html.ValidationMessageFor(model => model.fact_Vendedor)</span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-2">Total</label>
+                                <div class="col-md-4">
+                                    <input id="TotalProductoEncabezado" type="text" value="" class="form-control" readonly />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-4">
+                                    <input id="clte_Id" name="clte_Id" type="hidden" class="form-control" value="@ViewBag.Iden" />
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-md-4">
+                                    <input id="ped_Id" name="ped_Id" type="hidden" class="form-control" />
+                                    <input id="fact_Id" name="fact_Id" type="hidden" class="form-control" value="@ViewBag.fact_Id" />
+                                    <input id="usu_Id" name="usu_Id" type="hidden" class="form-control" value="@ViewBag.usu_Id" />
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-md-12">
+                                    @Html.Partial("_CreateFacturaDetalle", new tbFacturaDetalle())
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-lg-offset-5 col-md-10">
+                                    <input type="submit" value="Guardar" class="btn btn-primary btn-sm" id="guardar" />
+                                    @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white btn-sm" })
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div>
+    <div class="modal fade" id="ModalAgregarCliente" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">Agregar Cliente</h4>
+                </div>
+                <div class="modal-body" id="frmAgregarCliente">
+                    @Html.Partial("_IndexCliente", (List<tbCliente>)ViewBag.Cliente)
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div>
+    <div class="modal fade" id="AutorizarDescuentoModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="CloseAutorizar">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">Porcentaje de Descuento</h4>
+                </div>
+                <div class="modal-body" id="frmAutorizarDescuento">
+                    <div class="ibox-content">
+                        <div class="form-horizontal">
+                            <form>
+                                <div class="form-group">
+                                    <label class="control-label col-md-4">Usuario</label>
+                                    <div class="col-md-6">
+                                        <input id="Username" type="text" name="Username" class="form-control" autocomplete="off" , onkeypress="return correo(event)">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-4">Contraseña</label>
+                                    <div class="col-md-6">
+                                        <input id="txtPassword" name="txtPassword" class="form-control" type="password" placeholder="Password" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-4">Porcentaje de Descuento</label>
+                                    <div class="col-md-6">
+                                        <input id="PorcentajeDescuento" type="text" class="form-control" onKeyPress="return soloNumeros(event)" , onKeyUp="pierdeFoco(this)" autocomplete="off" />
+                                    </div>
+                                </div>
+                                <div><p id="mensajerror" style="color:red"></p></div>
+                                <div class="modal-footer">
+                                    <button class="btn btn-primary btn-sm" type="button" id="Autorizar" onclick="ValidarAutorizacion()">Guardar</button>
+                                    <button type="button" class="btn btn-white btn-sm" data-dismiss="modal" onclick="uncheck3()">Cancelar</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div>
+    <div class="modal fade" id="DescTerceraEdad" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="uncheck2()">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">Registrar Tercera Edad</h4>
+                </div>
+                <div class="modal-body" id="frmTerceraEdad">
+                    <div class="ibox-content">
+                        <div class="form-horizontal">
+                            <form>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.fact_IdentidadTE, new { @class = "control-label col-md-3" })
+                                    <div class="col-md-7">
+                                        @Html.EditorFor(model => model.fact_IdentidadTE, new { htmlAttributes = new { @autocomplete = "off", onKeyPress = "return soloNumeros(event)" } })
+                                        <div id="validationfact_IdentidadTECreate">
+                                            <span class="validation-error">@Html.ValidationMessageFor(model => model.fact_IdentidadTE)</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.fact_NombresTE, new { @class = "control-label col-md-3" })
+                                    <div class="col-md-7">
+                                        @Html.EditorFor(model => model.fact_NombresTE, new { htmlAttributes = new { @autocomplete = "off", @onkeyup = "format(this)", @style = "text-transform:capitalize;", @onkeypress = "return soloLetras(event)" } })
+                                        <div id="validationNombreTECreate">
+                                            <span class="validation-error">@Html.ValidationMessageFor(model => model.fact_NombresTE)</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.fact_FechaNacimientoTE, new { @class = "control-label col-md-3" })
+                                    <div class="col-md-7">
+                                        @Html.EditorFor(model => model.fact_FechaNacimientoTE, "{0:MM/dd/yyyy}", new { htmlAttributes = new { @class = "", @id = "fact_FechaNacimientoTE" } })
+                                        <div id="validationFechaNacimientoTECreate">
+                                            <span class="validation-error">@Html.ValidationMessageFor(model => model.fact_FechaNacimientoTE)</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button class="btn btn-primary btn-sm" type="button" id="AgregarTerceraEdad">Guardar</button>
+                                    <button type="button" class="btn btn-white btn-sm" data-dismiss="modal" onclick="uncheck2()">Cancelar</button>
+                                </div>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div>
+    <div class="modal fade" id="ConsuFinal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">Datos Consumidor Final</h4>
+                </div>
+                <div class="modal-body" id="frmConsumidor">
+                    <div class="ibox-content">
+                        @Html.Partial("_CreateConsumidorFinal", new DatosConsumidorFinal())
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<script src="~/Scripts/DataTables/jquery.dataTables.js"></script>
+<script src="~/Scripts/app/Datepicker.js"></script>
+<script src="~/Scripts/app/Factura.js"></script>
+<script src="~/Scripts/app/FacturaDetalle.js"></script>
+<script src="~/Scripts/app/ValidarPedido.js"></script>
+<script src="~/Scripts/app/FacturaPedido.js"></script>
+<script src="~/Scripts/app/CaracteresEspeciales.js"></script>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+        $(function () {
+            $('#tblDetalleFactura').DataTable(
+        {
+            "searching": true,
+            "lengthChange": true,
+
+            "oLanguage": {
+                "oPaginate": {
+                    "sNext": "Siguiente",
+                    "sPrevious": "Anterior",
+                },
+                "sProcessing": "Procesando...",
+                "sLengthMenu": "Mostrar _MENU_ registros",
+                "sZeroRecords": "No se encontraron resultados",
+                "sEmptyTable": "No hay registros",
+                "sInfoEmpty": "Mostrando 0 de 0 Entradas",
+                "sSearch": "Buscar",
+                "sInfo": "Mostrando _START_ a _END_ Entradas",
+                "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
+            }
+        });
+        })
+
+
+
+
+
+
+        //Buscar Empleados
+        $("#fact_Vendedor").autocomplete({
+            source: "/Factura/GetEmpleados",
+            minLength: 3
+        });
+        function validartel(e) {
+            tecla = (document.all) ? e.keyCode : e.which;
+            tecla = String.fromCharCode(tecla)
+            return /^[ 0-9\s]*$/i.test(tecla);
+        }
+        $('#guardar').click(function () {
+            var Identificacion = $('#cliente_Identificacionxx').val();
+            var diascredito = $('#fact_DiasCredito').val();
+
+            if (Identificacion == "") {
+                valido = document.getElementById('err_cliente');
+                valido.innerText = "Seleccione un cliente";
+                return false;
+            }
+            else if ($('#fact_AlCredito').is(':checked') && diascredito <= 0) {
+                valido = document.getElementById('DiasError');
+                valido.innerText = "Los dias de credito no deben de ser menores o iguales a 0.";
+                return false;
+            }
+            else if ($('#tblDetalleFactura >tbody >tr').length > 1) {
+                $('#alerta').show();
+                return false;
+            }
+            else {
+                return true;
+            }
+        });
+    </script>
+
+}
+
+<script>
+    document.getElementById("esfac_Id").disabled = true;
+    function myFunction() {
+        var checkBox = document.getElementById("MostrarTerceraEdad");
+        if (checkBox.checked == true) {
+            $('#DescTerceraEdad').modal('show');
+        }
+    }
+    function uncheck2() {
+        document.getElementById("MostrarTerceraEdad").checked = false;
+    }
+    function myFunction() {
+        var checkBox = document.getElementById("fact_AutorizarDescuento");
+        if (checkBox.checked == true) {
+            $('#AutorizarDescuentoModal').modal('show');
+        }
+    }
+    $('#CloseAutorizar').click(function () {
+        document.getElementById("fact_AutorizarDescuento").checked = false;
+        $('#Cred2').hide();
+        $('#fact_PorcentajeDescuento').val(0);
+    });
+
+    function uncheck3() {
+        document.getElementById("fact_AutorizarDescuento").checked = false;
+    }
+
+    $("#fact_IdentidadTE")[0].maxLength = 13;
+
+</script>
+
+<script>
+    $('#prod_CodigoBarras').change(function () {
+       
+    })
+
+
+    $("#prod_CodigoBarras").on("keypress keyup blur", function (event) {
+        var Value = $(this).val();
+        if (Value == '') {
+            $('#prod_Codigo').val('');
+            $('#tbProducto_prod_Descripcion').val('');
+            $('#factd_Impuesto').val(0.00);
+            $('#factd_PrecioUnitario').val(0.00);
+            $('#factd_Cantidad').val(''),
+            $("#factd_PrecioUnitario").val(0.00),
+            $("#SubtotalProducto").val(0.00),
+            $("#TotalProducto").val(0.00)
+            $("#Impuesto").val('')
+        }
+    });
+
+    var contador = 0;
+    $(document).keypress(function (e) {
+        var cantfisica_nueva = $('#factd_Cantidad').val();
+        var CodBarra = $('#prod_CodigoBarras').val();
+        var prodescripion = $('#tbProducto_prod_Descripcion').val();
+        var IDInput = e.target.id;
+        if (e.which == 13) {
+            //|| IDInput == 'factd_Cantidad'
+            if (IDInput == 'prod_CodigoBarras') {
+               
+                var total1 = $('#TotalProducto').val();
+
+                
+                SeleccionProducto().done(function (data) {
+                    $.each(data, function (key, val) {
+                        console.log(val);
+                    console.log(val.CODIGOPRODUCTO);
+                    if (val.EXISTE) {
+                        document.getElementById("factd_Cantidad").focus();
+                    }
+                    else {
+                        alert('No hay productos en existencia')
+                    }
+                    })
+                })
+                    //$('#alerta').hide();
+                    //if (CodBarra != "" && prodescripion != "") {
+                    //    document.getElementById("factd_Cantidad").focus();
+                    //}
+                    //else { }
+
+                return false;
+            }
+            else {
+                if (IDInput == 'factd_Cantidad') {
+                    addtable(cantfisica_nueva)
+
+                }
+                return false;
+            }
+        }
+    });
+
+    function SeleccionProducto() {
+       
+        var CodBarra = $('#prod_CodigoBarras').val();
+        var prodescripion = $('#tbProducto_prod_Descripcion').val();
+        //if (prodescripion != '') {
+        //    $("#factd_PorcentajeDescuento").val(0.00)
+        //    $('#factd_MontoDescuento').val(0.00);
+        //}
+        var Cantidad = $('#factd_Cantidad').val();
+        var IDSucursal = $('#suc_Id').val();
+        var IDCliente = $('#clte_Id').val();
+        return $.ajax({
+            type: 'POST',
+            url: '/Factura/BuscarCodigoBarras',
+            data: JSON.stringify({ IDSucursal: IDSucursal, CodBarra: CodBarra, IDCliente: IDCliente }),
+            contentType: 'application/json;',
+            dataType: 'json',
+            success: function (data) {
+                if (data.length > 0) {
+                    $.each(data, function (key, val) {
+                        if (val.EXISTE) {
+                            data_producto = val.CODIGOPRODUCTO;
+                            data_descripcion = val.DESCRIPCIONPRODUCTO;
+                            data_impuesto = val.IMPUESTOPRODUCTO;
+                            data_precio = val.PRECIOUNITARIO;
+                            $('#prod_Codigo').val(data_producto);
+                            $('#tbProducto_prod_Descripcion').val(data_descripcion);
+                            $('#factd_Impuesto').val(data_impuesto);
+                            $('#factd_PrecioUnitario').val(data_precio);
+                            $('#factd_Cantidad').val(1);
+                            ////Codigo Prueba///
+                            //ajax para el controlador
+                            
+                            $("#ModalAgregarProducto").on('hidden.bs.modal', function () {
+                                document.getElementById("prod_CodigoBarras").focus();
+                            });
+
+
+                        }
+                        else {
+                        }
+
+                    })
+
+                }
+                return false;
+            }
+        })
+    }
+
+   
+    //$("#ModalAgregarProducto").on('show.bs.modal', function () {
+    //    var prod_Descripcion = $('#tbProducto_prod_Descripcion').val();
+    //    if (prod_Descripcion != '') {
+    //        $("#factd_PorcentajeDescuento").val(0.00)
+    //        $('#factd_MontoDescuento').val(0.00);
+    //    }
+    //});
+
+    function addtable(cantfisica_nueva, monto1, total1) {
+        var IDSucursal = $('#suc_Id').val();
+        var IDCliente = $('#clte_Id').val();
+        var table = $('#tblDetalleFactura').DataTable();
+        var FacturaDetalle = GetFacturaDetalle();
+        $.ajax({
+            url: "/Factura/SaveFacturaDetalle",
+            method: "POST",
+            dataType: 'json',
+            contentType: "application/json; charset=utf-8",
+            data: JSON.stringify({ FacturaDetalleC: FacturaDetalle, data_producto: data_producto })
+        })
+            .done(function (datos) {
+                if (datos == data_producto) {
+                    $("#tblDetalleFactura td").each(function () {
+                        var prueba = $(this).text()
+                        if (prueba == data_producto) {
+                            var idcontador = $(this).closest('tr').data('id');
+                            var cantfisica_anterior = $(this).closest("tr").find("td:eq(2)").text();
+                            var total1 = $('#TotalProducto').val();
+                            var PorcentajeDescuento = $('#factd_PorcentajeDescuento').val();
+                            //Subtotal
+                            var CantidadSum = $(this).parents("tr").find("td")[2].innerHTML;
+                            var PrecioSum = $(this).parents("tr").find("td")[3].innerHTML;
+                            var SubtotalProductoSum = CantidadSum * PrecioSum;
+                            //Impuesto
+                            var Cantidad = CantidadSum
+                            var Precio = PrecioSum
+                            var impuesto = parseFloat(document.getElementById("factd_Impuesto").value.replace(',', '.'));
+                            var impuestotal = parseFloat(document.getElementById("isv").innerHTML);
+                            var porcentaje = parseFloat(impuesto / 100);
+                            var impuestos = (Cantidad * Precio) * porcentaje;
+                            var Total = parseInt(total1) + parseInt(SubtotalProductoSum) + impuestos;
+                            var sumacantidades = parseInt(cantfisica_nueva) + parseInt(cantfisica_anterior);
+                            $(this).closest('tr').remove();
+                            table.row($(this).parents('tr')).remove().draw();
+                            table.row.add([
+                                                                data_producto,
+                                                                data_descripcion,
+                                                                sumacantidades,
+                                                                data_precio,
+                                                                data_impuesto,
+                                                                PorcentajeDescuento,
+                                                                Total,                                                               
+                                                                '<button id = "removeFacturaDetalle" class= "btn btn-danger btn-xs eliminar" type = "button">-</button>'
+
+                            ]).draw(false);
+                            //copiar = "<tr data-id=" + idcontador + ">";
+                            //copiar += "<td id = 'prod_CodigoCreate'>" + data_producto + "</td>";
+                            //copiar += "<td id = 'tbProducto_prod_DescripcionCreate'>" + data_descripcion + "</td>";
+                            //copiar += "<td id = 'factd_CantidadCreate' align='right'>" + sumacantidades + "</td>";
+                            //copiar += "<td id = 'Precio_UnitarioCreate' align='right'>" + data_precio + "</td>";
+                            //copiar += "<td id = 'ImpuestoCreate' align='right'>" + data_impuesto + "</td>";
+                            //copiar += "<td id = 'factd_MontoDescuentoCreate' align='right'>" + PorcentajeDescuento + "</td>";
+                            //copiar += "<td id = 'TotalProductoCreate' align='right'>" + Total + "</td>";
+                            //copiar += "<td>" + '<button id="removeFacturaDetalle" class="btn btn-danger btn-xs eliminar" type="button">-</button>' + "</td>";
+                            //copiar += "</tr>";
+                            //$('#tblDetalleFactura').append(copiar);
+                            //Descuento
+                            var Descuento = $('#factd_PorcentajeDescuento').val();
+                            var TotalDescuento = parseFloat(document.getElementById("TotalDescuento").innerHTML);
+
+                            if (document.getElementById("TotalDescuento").innerHTML == '') {
+                                totalProducto = $('#factd_MontoDescuento').val();
+                                document.getElementById("TotalDescuento").innerHTML = parseFloat(totalProducto);
+                            }
+                            else {
+                                document.getElementById("TotalDescuento").innerHTML = parseFloat(TotalDescuento) + parseFloat(Descuento);
+                            }
+
+                            //Subtotal
+                            var totalProducto = $('#SubtotalProducto').val();
+                            var subtotal = parseFloat(document.getElementById("Subtotal").innerHTML);
+
+                            if (document.getElementById("Subtotal").innerHTML == '') {
+                                totalProducto = $('#SubtotalProducto').val();
+                                document.getElementById("Subtotal").innerHTML = parseFloat(totalProducto);
+                            }
+                            else {
+                                document.getElementById("Subtotal").innerHTML = parseFloat(subtotal) + parseFloat(totalProducto);
+                            }
+                            //Impuesto
+                            var Cantidad = sumacantidades
+                            var Precio = data_precio
+                            var impuesto = parseFloat(document.getElementById("factd_Impuesto").value.replace(',', '.'));
+                            var impuestotal = parseFloat(document.getElementById("isv").innerHTML);
+                            var porcentaje = parseFloat(impuesto / 100);
+                            var impuestos = (Cantidad * Precio) * porcentaje;
+                            if (document.getElementById("isv").innerHTML == '') {
+                                impuesto = document.getElementById("factd_Impuesto").value;
+                                document.getElementById("isv").innerHTML = parseFloat(impuestos);
+                            }
+                            else {
+                                document.getElementById("isv").innerHTML = parseFloat(impuestos);
+                            }
+
+                            //Grantotal
+                            if (document.getElementById("total").innerHTML == '') {
+                                var TotalEncabezado = document.getElementById("total").innerHTML = parseFloat(totalProducto) + parseFloat(impuestos) - parseFloat(Descuento);
+                                $("#TotalProductoEncabezado").val(TotalEncabezado);
+                            }
+                            else {
+                                var TotalEncabezado = document.getElementById("total").innerHTML = parseFloat(subtotal) + parseFloat(totalProducto) + parseFloat(impuestos) - parseFloat(TotalDescuento) - parseFloat(Descuento);
+                                $("#TotalProductoEncabezado").val(TotalEncabezado);
+                            }
+                        }
+                    });
+                } else {
+
+                    var Cantidad = $('#factd_Cantidad').val();
+                    Precio = $("#factd_PrecioUnitario").val(),
+                    Impuesto = $("#factd_Impuesto").val(),
+                    result = "";
+                    result1 = "";
+                    if (Cantidad && Precio > 0) {
+                        result += Cantidad * Precio;
+                    }
+                    $("#SubtotalProducto").val(result);
+                    Subtotal = $("#SubtotalProducto").val(),
+                    PorcentajeImpuesto = ((parseFloat(Impuesto) / 100) * Subtotal);
+                    result1 += PorcentajeImpuesto;
+                    $("#Impuesto").val(result1);
+                    var Descuento = $("#factd_PorcentajeDescuento").val();
+                    var Subtotal = $("#SubtotalProducto").val();
+                    var impuesto = $("#factd_Impuesto").val();
+                    if (Descuento == '') {
+                        Descuento = 0
+                    }
+                    var PorcentajeDescuento = (parseFloat(Descuento) / 100);
+                    var PorcentajeImpuesto = (parseFloat(impuesto) / 100);
+                    var DescuentoTotal = (parseFloat(Subtotal) * parseFloat(PorcentajeDescuento));
+                    $("#factd_MontoDescuento").val(DescuentoTotal);
+                    var impuestotal = (Subtotal * PorcentajeImpuesto);
+                    result = "";
+
+                    if (PorcentajeDescuento && Cantidad == '') {
+                        result += (parseFloat(Subtotal) + parseFloat(impuestotal));
+                    }
+                    else if (DescuentoTotal && Cantidad == 0) {
+                        result += (parseFloat(Subtotal) + parseFloat(impuestotal));
+                    }
+                    else {
+                        result += (parseFloat(Subtotal) - parseFloat(DescuentoTotal) + parseFloat(impuestotal));
+                    }
+                    if (Descuento == '') {
+                        $("#factd_PorcentajeDescuento").val(0);
+                    }
+                    if (Cantidad == '') {
+                        $("#factd_MontoDescuento").val('');
+                    }
+                    else {
+                        $("#factd_MontoDescuento").val(DescuentoTotal);
+                    }
+                    if (Descuento && Cantidad == '') {
+                        $("#TotalProducto").val('');
+                    }
+                    if (result == "" || isNaN($("#TotalProducto").val())) {
+                        $("#TotalProducto").val(0);
+                    }
+                    else {
+                        $("#TotalProducto").val(result);
+                    }
+                    var CodigoProducto = $('#prod_Codigo').val();
+                    var PorcentajeDescuento = $('#factd_PorcentajeDescuento').val();
+                    var MontoDescuento = $('#factd_MontoDescuento').val();
+                    var DescripcionProducto = $('#tbProducto_prod_Descripcion').val();
+                    var CantidadProducto = $('#factd_Cantidad').val();
+                    var Subtotal = $('#SubtotalProducto').val();
+                    var PrecioUnitario = $('#factd_PrecioUnitario').val();
+                    var Impuesto = $('#factd_Impuesto').val();
+                    var Total = $('#TotalProducto').val();
+                    //Prueba
+                    //contador = contador + 1;
+                    //copiar = "<tr data-id=" + contador + ">";
+                    //copiar += "<td id = 'prod_CodigoCreate'>" + data_producto + "</td>";
+                    //copiar += "<td id = 'tbProducto_prod_DescripcionCreate'>" + data_descripcion + "</td>";
+                    //copiar += "<td id = 'factd_CantidadCreate' align='right'>" + Cantidad + "</td>";
+                    //copiar += "<td id = 'Precio_UnitarioCreate' align='right'>" + data_precio + "</td>";
+                    //copiar += "<td id = 'ImpuestoCreate' align='right'>" + data_impuesto + "</td>";
+                    //copiar += "<td id = 'factd_MontoDescuentoCreate' align='right'>" + PorcentajeDescuento + "</td>";
+                    //copiar += "<td id = 'TotalProductoCreate' align='right'>" + result + "</td>";
+                    //copiar += "<td>" + '<button id="removeFacturaDetalle" class="btn btn-danger btn-xs eliminar" type="button">-</button>' + "</td>";
+                    //copiar += "</tr>";
+                    //$('#tblDetalleFactura').append(copiar);
+                    table.row.add([
+                        data_producto,
+                        data_descripcion,
+                        Cantidad,
+                        data_precio,
+                        data_impuesto,
+                        PorcentajeDescuento,
+                        Total,
+                        '<button id = "removeFacturaDetalle" class= "btn btn-danger btn-xs eliminar" type = "button">-</button>'
+
+                    ]).draw(false);
+                    //Descuento
+                    var Descuento = $('#factd_PorcentajeDescuento').val();
+                    var TotalDescuento = parseFloat(document.getElementById("TotalDescuento").innerHTML);
+
+                    if (document.getElementById("TotalDescuento").innerHTML == '') {
+                        totalProducto = $('#factd_PorcentajeDescuento').val();
+                        document.getElementById("TotalDescuento").innerHTML = parseFloat(totalProducto);
+                    }
+                    else {
+                        document.getElementById("TotalDescuento").innerHTML = parseFloat(TotalDescuento) + parseFloat(Descuento);
+                    }
+
+                    //Subtotal
+                    var totalProducto = $('#SubtotalProducto').val();
+                    var subtotal = parseFloat(document.getElementById("Subtotal").innerHTML);
+
+                    if (document.getElementById("Subtotal").innerHTML == '') {
+                        totalProducto = $('#SubtotalProducto').val();
+                        document.getElementById("Subtotal").innerHTML = parseFloat(totalProducto);
+                    }
+                    else {
+                        document.getElementById("Subtotal").innerHTML = parseFloat(subtotal) + parseFloat(totalProducto);
+                    }
+                    ///Impuesto
+                    var Cantidad = CantidadProducto
+                    var Precio = PrecioUnitario
+                    var impuesto = parseFloat(document.getElementById("factd_Impuesto").value.replace(',', '.'));
+                    var impuestotal = parseFloat(document.getElementById("isv").innerHTML);
+                    var porcentaje = parseFloat(impuesto / 100);
+                    var impuestos = (Cantidad * Precio) * porcentaje;
+
+                    if (document.getElementById("isv").innerHTML == '') {
+                        impuesto = document.getElementById("factd_Impuesto").value;
+                        document.getElementById("isv").innerHTML = parseFloat(impuestos);
+                    }
+                    else {
+                        document.getElementById("isv").innerHTML = parseFloat(impuestotal) + parseFloat(impuestos);
+                    }
+
+                    //Grantotal
+                    if (document.getElementById("total").innerHTML == '') {
+                        var TotalEncabezado = document.getElementById("total").innerHTML = parseFloat(totalProducto) + parseFloat(impuestos) - parseFloat(Descuento);
+                        $("#TotalProductoEncabezado").val(TotalEncabezado);
+                    }
+                    else {
+                        var TotalEncabezado = document.getElementById("total").innerHTML = parseFloat(subtotal) + parseFloat(totalProducto) + parseFloat(impuestotal) + parseFloat(impuestos) - parseFloat(TotalDescuento) - parseFloat(Descuento);
+                        $("#TotalProductoEncabezado").val(TotalEncabezado);
+                    }
+
+
+                }
+            })
+        .done(function (data) {
+            $('#ErrorCodigoProductoCreate').text('');
+            $('#ErrorMontoDescuentoCreate').text('');
+            $('#ErrorCantidadCreate').text('');
+            $('#ErrorImpuestoCreate').text('');
+
+        })
+
+    }   
+    
+</script>

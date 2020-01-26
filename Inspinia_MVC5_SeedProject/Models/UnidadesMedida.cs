@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
 
-namespace ERP_ZORZAL.Models
+namespace ERP_GMEDINA.Models
 {
     [MetadataType(typeof(UnidadesMedidaMetaData))]
 

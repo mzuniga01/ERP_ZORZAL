@@ -1,0 +1,43 @@
+﻿@model IEnumerable<ERP_GMEDINA.Models.tbProducto>
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="col-md-12">
+                    <input id="search" type="text" class="form-control" placeholder="Ingresar producto" />
+                    <br />
+                </div>
+                <table id="tbProductoFactura" class="table table table-striped table-bordered" width="100%">
+                    <thead>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.prod_Codigo)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.prod_Descripcion)
+                            </th>
+                            <th>
+                                <label class="control-label">Código de Barra</label>
+                            </th>
+                            <th>Acción</th>
+                        </tr>
+                    </thead>
+                    @foreach (var item in Model)
+                    {
+                        <tbody id="ProductoTbody1">
+                            <tr>
+                                <td>@Html.DisplayFor(modelItem => item.prod_Codigo)</td>
+                                <td>@Html.DisplayFor(modelItem => item.prod_Descripcion)</td>
+                                <td>@Html.DisplayFor(modelItem => item.prod_CodigoBarras)</td>
+                                <td><button class='btn btn-primary btn-xs' id='seleccionarProducto' data-dismiss='modal'>Seleccionar</button></td>
+                            </tr>
+                        </tbody>
+                    }
+                    </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+

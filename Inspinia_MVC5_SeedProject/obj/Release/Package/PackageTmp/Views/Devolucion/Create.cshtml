@@ -1,0 +1,275 @@
+﻿@model ERP_GMEDINA.Models.tbDevolucion
+@using ERP_GMEDINA.Models
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    .AsteriscoRojo:after {
+        content: "*";
+        color: red;
+    }
+</style>
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-sm-4">
+        <h2>Devolución de Producto</h2>
+
+    </div>
+    <div class="col-sm-8">
+        <div class="title-action">
+            @Html.ActionLink("Regresar", "Index")
+        </div>
+    </div>
+</div>
+
+
+<div class="wrapper wrapper-content">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Registrar Devolución</h5>
+                </div>
+                <div class="ibox-content">
+                     @using (Html.BeginForm("create","Devolucion", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                   {
+                        @Html.AntiForgeryToken()
+
+                       
+                        <div class="form-horizontal">
+
+                            @Html.ValidationSummary(true)
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.tbCaja.tbSucursal.suc_Descripcion, "Sucursal", new { @class = "control-label col-md-2 " })
+                                <div class="col-md-3">
+                                    <input class="form-control" readonly value="@ViewBag.suc_Descripcion" name="suc_Descripcion" id="suc_Descripcion" />
+                                    <input class="form-control" readonly value="@ViewBag.suc_Id" id="suc_Id" name="suc_Id" type="hidden" />
+                                    <input id="usu_Id" name="usu_Id" type="hidden" class="form-control" value="@ViewBag.usu_Id" />
+                                   <div id="validationSucursalCreate">
+                                        <p id="SmSuc_Descripcion" style="color:red">@Html.ValidationMessageFor(model => model.tbCaja.tbSucursal.suc_Descripcion)</p>
+                                    </div>
+                                    
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.cja_Id, new { @class = "control-label required col-md-2" })
+                                    <div class="col-md-4">
+                                        <input class="form-control" id="cja_Descripcion" readonly />
+                                        @Html.EditorFor(model => model.cja_Id, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", @type = "hidden" } })
+                                        <span class="validation-error">@Html.ValidationMessageFor(model => model.cja_Id)</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-2">¿Es Consumidor Final?</label>
+                                <div class="col-md-4">
+                                    <input id="consumidorFinal" type="checkbox" class="check-box" />
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.tbFactura.clte_Identificacion, "RTN Cliente", new { @class = "control-label col-md-2 AsteriscoRojo" })
+                                <div class="col-md-3">
+                                    @Html.EditorFor(model => model.tbFactura.clte_Identificacion, new { htmlAttributes = new { @class = "form-control" ,  @onkeypress = "return soloNumeros(event)" } })
+                                    <div id="validationRTNClienteCreate">
+                                        <p id="Smsclte_Identificacion" style="color:red">@Html.ValidationMessageFor(model => model.tbFactura.clte_Identificacion)</p>
+                                    </div>
+                                      
+
+                                </div>
+
+                                <div class="col-md-1">
+                                    <button type="button" id="btnCliente" class="btn btn-primary" data-toggle="modal" data-target="#ModalAgregarCliente"><span class="glyphicon glyphicon-search"></span></button>
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.tbFactura.clte_Nombres, "Cliente", new { @class = "control-label col-md-1 AsteriscoRojo" })
+                                    <div class="col-md-3">
+                                        @Html.EditorFor(model => model.tbFactura.clte_Nombres, new
+                               {
+                                   htmlAttributes = new
+                                   {
+                                       @class = "form-control" , @readonly = "readonly" }
+                               })
+                                        @Html.ValidationMessageFor(model => model.tbFactura.clte_Nombres)
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.tbFactura.fact_Codigo, "Factura", new { @class = "control-label col-md-2 AsteriscoRojo" })
+                                <div class="col-md-3">
+                                    @Html.EditorFor(model => model.tbFactura.fact_Codigo, new { htmlAttributes = new { @class = "form-control", @onkeypress = "return Numeros(event)" } })
+                                    @Html.ValidationMessageFor(model => model.tbFactura.clte_Identificacion)
+                                    <input type="hidden" class="form-control" id="fact_Id" name="fact_Id" />
+                                    <input type="hidden" class="form-control" id="dev_Estado" name="dev_Estado" value="false" />
+                                </div>
+
+                                <div class="col-md-1">
+                                    <button type="button" id="Factura" class="btn btn-primary" data-toggle="modal" data-target="#ModalAgregarFactura"><span class="glyphicon glyphicon-search"></span></button>
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.dev_Fecha, new { @class = "control-label col-md-1" })
+                                    <div class="col-md-3">
+                                        @Html.EditorFor(model => model.dev_Fecha, "{0:MM-dd-yyyy}", new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", @id = "fechaDevolucion" } })
+                                        @Html.ValidationMessageFor(model => model.dev_Fecha)
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                @Html.Hidden("RedirectTo", Url.Action("CreateNotaCredito", "Devolucion"))
+                                @Html.Partial("_CreateDevolucionDetalle", new tbDevolucionDetalle())
+
+                              
+
+                            </div>
+                        </div>
+
+                        <div class="ibox-content">
+
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="ibox float-e-margins">
+                                        <div class="ibox-content">
+                                            <div class="form-group">
+                                                <div class="col-md-12 text">
+                                                    <input type="submit" value="Guardar" id="Guardar" class="btn btn-primary btn-ms" />
+                                                    @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white btn-sm" }) 
+                                                </div>
+                                            </div>
+                                            <br />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<!-- Modal de Clientes-->
+<div>
+    <div class="modal fade" id="ModalAgregarCliente" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">Agregar Cliente</h4>
+                </div>
+                <div class="modal-body" id="frmEditarMunicipios">
+                    @Html.Partial("_IndexCliente", (List<tbCliente>)ViewBag.Cliente)
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal de Facturas -->
+<div>
+    <div class="modal fade" id="ModalAgregarFactura" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">Agregar Factura</h4>
+                </div>
+                <div class="modal-body" id="frmEditarMunicipios">
+                    <table id="DevFactura" class="table table table-striped  table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Código Factura</th>
+                                <th>Fecha</th>
+                                <th>Codigo Identificacion </th>
+                                <th>Nombres</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody id="BodyFactura"></tbody>
+
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/Scripts/app/EmitirNotaCredito.js"></script>
+<script src="~/Scripts/app/Datepicker.js"></script>
+<script src="~/Scripts/app/ProductoDevolucion.js"></script>
+<script src="~/Scripts/app/DevolucionDetalle.js"></script>
+<script src="~/Scripts/app/FacturaDevolucion.js"></script>
+<script src="~/Scripts/app/ClienteDevolucion.js"></script>
+<script>
+ $(document).ready(function () {
+     var x = document.getElementById("Factura").disabled;
+     if (x == true) {
+         document.getElementById("Factura").title = "Primero debe seleccionar un cliente";
+         document.getElementById("tbFactura_fact_Codigo").title = "Primero debe seleccionar un cliente";
+     }
+     else {
+     }
+ });
+ </script>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script>
+        ///Solo numeros y guiones
+        function Numeros(e) {
+            tecla = (document.all) ? e.keyCode : e.which;
+            tecla = String.fromCharCode(tecla)
+            return /^[0-9\-]+$/.test(tecla);
+        }
+
+        ///Validaciones 
+        $('#Guardar').click(function () {
+            validacion = document.getElementById('Smsclte_Identificacion');
+            var RTNCliente = $('#tbFactura_clte_Identificacion').val();
+            //var CantDevolucion = $('#devd_CantidadProducto').val();
+            //var CodProducto = $('#prod_Codigo').val();
+
+            if (RTNCliente == "") {
+                console.log("if")
+                validacion.innerText = "Campo Identificacion Cliente requerido";
+            }
+            else {
+                console.log("else")
+                validacion.innerText = "";
+            }
+        });
+
+    </script>
+}
+<script>
+    $(document).ready(function () {
+        $('#DevFactura').DataTable(
+        {
+            "searching": false,
+            "lengthChange": false,
+
+            "oLanguage": {
+                "oPaginate": {
+                    "sNext": "Siguiente",
+                    "sPrevious": "Anterior",
+                },
+                "sEmptyTable": "No hay registros",
+                "sInfoEmpty": "Mostrando 0 de 0 Entradas",
+                "sSearch": "Buscar",
+                "sInfo": "Mostrando _START_ a _END_ Entradas",
+
+            }
+        });
+    });
+</script>
+
+

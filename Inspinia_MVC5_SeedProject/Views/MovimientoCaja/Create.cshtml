@@ -1,0 +1,422 @@
+﻿@model ERP_GMEDINA.Models.tbMovimientoCaja
+@{
+    var tbSolicitudEfectivo = new ERP_GMEDINA.Models.tbSolicitudEfectivo();
+    var tbTipoPago = new ERP_GMEDINA.Models.tbTipoPago();
+}
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    .validation-error {
+        color: red;
+        font-size: small;
+    }
+</style>
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-sm-4">
+        <h2>Arqueo Caja</h2>
+
+    </div>
+    <div class="col-sm-8">
+        <div class="title-action">
+            <a href="@Url.Action("Index","MovimientoCaja")">Regresar</a>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Registrar Arqueo Caja</h5>
+                </div>
+                <div class="ibox-content">
+
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <div class="form-horizontal">
+                            @Html.ValidationSummary(true)
+
+                            @Html.HiddenFor(model => model.mocja_FechaApertura)
+                            @Html.HiddenFor(model => model.mocja_FechaCrea)
+                            @Html.HiddenFor(model => model.mocja_UsuarioCrea)
+
+
+
+                            <div class="form-horizontal">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.cja_Id, "Caja", new { @class = "control-label col-md-2" })
+                                    <div class="col-md-3">
+                                        @Html.HiddenFor(model => model.cja_Id, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                        @Html.EditorFor(model => model.tbCaja.cja_Descripcion, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                        <span class="validation-error">@Html.ValidationMessageFor(model => model.cja_Id)</span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-2">Cajero</label>
+                                        <div class="col-md-3">
+                                            <input class="form-control" readonly value="@ViewBag.Cajero" />
+                                            <input id="usu_Id" name="usu_Id" type="hidden" class="form-control" value="@ViewBag.usu_Id" />
+                                            <p id="MensajeErrorDenominacion" style="color:red"> @Html.ValidationMessageFor(model => model.usu_Id)</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.mocja_UsuarioApertura, "Usuario Apertura", new { @class = "control-label col-md-2" })
+                                    <div class="col-md-3">
+                                        <input type="hidden" id="mocja_UsuarioApertura" name="mocja_UsuarioApertura" />
+                                        <input class="form-control" readonly type="text" id="UsuarioApertura" name="UsuarioApertura"/>
+                                        <p id="MensajeErrorDenominacion" style="color:red"> @Html.ValidationMessageFor(model => model.mocja_UsuarioApertura)</p>
+                                    </div>
+                                    <div class="form-group ">
+                                        <label class="control-label col-md-2">Fecha Apertura</label>
+                                        <div class="col-md-3">
+                                            <input class="form-control" value="@ViewBag.FechaApertura" readonly id="mocja_FechaApertura" name="mocja_FechaApertura"/>
+                                            <p id="MensajeErrorDenominacion" style="color:red"> @Html.ValidationMessageFor(model => model.mocja_FechaApertura)</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-2">Usuario Arquea</label>
+                                    <div class="col-md-3">
+                                        <input class="form-control" readonly value="@ViewBag.UsuarioArquea" />
+                                        <p id="MensajeErrorDenominacion" style="color:red"> @Html.ValidationMessageFor(model => model.mocja_UsuarioArquea)</p>
+                                    </div>
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.mocja_FechaArqueo, new { @class = "control-label col-md-2" })
+                                        <div class="col-md-3">
+                                            @Html.EditorFor(model => model.mocja_FechaArqueo, "{0:MM/dd/yyyy}", new { htmlAttributes = new { @class = "form-control", @id = "fechaarqueo", @readonly = "readonly" } })
+                                            <span class="validation-error">@Html.ValidationMessageFor(model => model.mocja_FechaArqueo)</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group ">
+                                    <label class="control-label col-md-2">Usuario Aceptación</label>
+                                    <div class="col-md-3">
+                                        <input class="form-control" readonly id="mocja_UsuarioAceptacion"/>
+                                        <p id="MensajeErrorDenominacion" style="color:red"> @Html.ValidationMessageFor(model => model.mocja_UsuarioAceptacion)</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="tabs-container">
+                                            <ul class="nav nav-tabs">
+                                                <li class="active"><a data-toggle="tab" href="#tab-1">Control Efectivo</a></li>
+                                                <li class=""><a data-toggle="tab" href="#tab-2">Control de Pagos</a></li>
+                                            </ul>
+                                            <div class="tab-content">
+                                                <div id="tab-1" class="tab-pane active">
+                                                    <div class="panel-body">
+                                                        <div class="form-group">
+                                                            <label class="control-label col-md-2">Efectivo Inicial</label>
+                                                            <div class="col-md-3">
+                                                                <input class="form-control" id="EfectivoInicial" readonly value="@ViewBag.EfectivoInicial" type="text" />
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label class="control-label col-md-2">Efectivo Recibido</label>
+                                                                <div class="col-md-3">
+                                                                    <input type="text" value="" class="form-control" id="EfectivoRecibido" readonly />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <label class="control-label col-md-2">Efectivo Pagos</label>
+                                                            <div class="col-md-3">
+                                                                <input type="text" class="form-control" id="EfectivoPagos" value="@ViewBag.PagoEfectivo" readonly />
+                                                            </div>
+                                                            <div class="form-group ">
+                                                                <label class="control-label col-md-2">Efectivo Entregado</label>
+                                                                <div class="col-md-3">
+                                                                    <input type="text" class="form-control" id="EfectivoEntregado" value="@ViewBag.EfectivoEntregado" readonly />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="control-label col-md-2">Total</label>
+                                                            <div class="col-md-3">
+                                                                <input type="text" class="form-control" id="TotalEfectivo" readonly />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div id="tab-2" class="tab-pane">
+                                                    <div class="panel-body">
+                                                        <div class="form-group">
+                                                            <label class="control-label col-md-2">Pagos Efectivo</label>
+                                                            <div class="col-md-3">
+                                                                <input type="text" class="form-control" value="@ViewBag.PagoEfectivo" readonly />
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label class="control-label col-md-2">Pagos TC o TD</label>
+                                                                <div class="col-md-3">
+                                                                    <input type="text" class="form-control" value="@ViewBag.PagoTC" readonly />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+
+                                                        <div class="form-group">
+                                                            <label class="control-label col-md-2">Pagos Cheque</label>
+                                                            <div class="col-md-3">
+                                                                <input type="text" class="form-control" value="@ViewBag.PagoCheque" readonly />
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label class="control-label col-md-2">Pagos Nota de Credito</label>
+                                                                <div class="col-md-3">
+                                                                    <input type="text"  class="form-control" value="@ViewBag.PagoNotaCredito" readonly />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="control-label col-md-2">Pagos Depósito</label>
+                                                            <div class="col-md-3">
+                                                                <input type="text" class="form-control" value="@ViewBag.PagoDeposito" readonly />
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label class="control-label col-md-2">Pagos Transferencia ACH</label>
+                                                                <div class="col-md-3">
+                                                                    <input type="text" class="form-control" value="@ViewBag.PagoTranferencia" readonly />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="control-label col-md-2">Pagos Cupón</label>
+                                                            <div class="col-md-3">
+                                                                <input type="text" class="form-control" value="@ViewBag.PagoCuponDesc" readonly />
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label class="control-label col-md-2">Total Pagos</label>
+                                                                <div class="col-md-3">
+                                                                    <input type="text" value="@ViewBag.TotalPagos" class="form-control" readonly />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+
+                        </div>
+
+
+
+                        <div class="form-group m-t-xl">
+                            <div class="table table-responsive">
+                                <table class="table table-bordered" id="tbdenominacion">
+
+                                    <thead>
+
+                                        <tr>
+                                            <th class="success">Moneda</th>
+                                            <th class="success">Tipo Denominacion</th>
+                                            <th class="success">Denominacion</th>
+                                            <th class="success">Valor Denominacion</th>
+                                            <th class="success">Cantidad</th>
+                                            <th class="success">Sub Total</th>
+                                        </tr>
+
+
+                                    </thead>
+                                    <tbody></tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <th class="success">Total</th>
+                                            <td>
+                                                <p id="Grantotal" style="text-align:left"></p>
+                                            </td>
+
+                                            @*<td></td>*@
+                                        </tr>
+                                    </tfoot>
+                                </table>
+
+                            </div>
+
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-offset-5 col-md-10">
+                                <input type="submit" value="Guardar" class="btn btn-primary" />
+                                @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
+                            </div>
+                        </div>
+
+                    }
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script>
+
+        $(document).ready(function () {
+            $.ajax({
+                type: 'GET',
+                url: '/MovimientoCaja/Denominaciones',
+                datatype: 'JSON',
+                data: {},
+                success: function (data) {
+
+                    console.log(data);
+
+                    $('#tbdenominacion tbody').empty();
+                    $.each(data, function (i, item) {
+                        var rows = "<tr data-id=" + item.deno_Id + ">" +
+                                        "<td hidden>" + item.deno_Id + "</td>" +
+                                        "<td>" + item.mnda_Abreviatura + "</td>" +
+                                        "<td>" + item.TipoDenominacion + "</td>" +
+                                         "<td>" + item.deno_Descripcion + "</td>" +
+                                         "<td>" + item.deno_valor + "</td>" +
+                                        // "<td>" + item.mnda_Nombre + "</td>" +
+                        "<td>" + '<input type="text" id="cantidad" name="name" onKeyPress="return soloNumeros(event)" onKeyUp="pierdeFoco(this)" autocomplete="off" class="form-control" ize="3">' + "</td>" +
+                                          "<td class='sumTotal'>" + 0 + "</td>" +
+
+
+                                        "</tr>";
+
+                        $('#tbdenominacion tbody').append(rows);
+                    });
+
+                },
+                error: function (data) { alert(data.responseText); }
+            });
+        });
+
+        function soloNumeros(e) {
+            var key = window.Event ? e.which : e.keyCode;
+            return ((key >= 48 && key <= 57) || (key == 8))
+        }
+
+        function pierdeFoco(e) {
+            var valor = e.value.replace(/^0*/, '');
+            e.value = valor;
+
+
+        }
+
+
+
+
+
+
+        //---------------------------------------Subtotal-----------------------------------------------
+
+
+
+
+
+        $(document).on("keyup", "#tbdenominacion tbody tr td input#cantidad", function () {
+            var row = $(this).closest("tr");
+            var Cantidad = $(this).val();
+            var deno_valor = $(this).parents("tr").find("td")[4].innerHTML;
+            var sub = parseFloat(Cantidad * deno_valor);
+            var suma = 0;
+            var data = [];
+            SubTotal = 0;
+
+            $(this).parents("tr").find("td")[6].innerHTML = sub;
+            if (sub != 0 || sub=="") {
+                SubTotal += sub;
+
+                //Calculo Total
+
+                $("td.sumTotal").each(function () {
+                    data.push(parseFloat($(this).text()));
+                });
+                var suma = data.reduce(function (a, b) { return a + b; }, 0);
+
+
+               // $("#Grantotal").val(suma);
+                var TotalFinal = document.getElementById("Grantotal").innerHTML = parseFloat(suma);
+                console.log(data);
+                console.log(suma);
+                //---------------------------------------------
+              }
+            });
+
+    </script>
+
+
+
+    <script>
+        $('#guardar').click(function () {
+            var idmovimiento
+            var Detail = [];
+            var monedas = $('#mnda_Id').val();
+            if (monedas <= 0) {
+                valido = document.getElementById('mone');
+                valido.innerText = "El Campo Moneda es Requerido";
+                return false;
+            }
+            else if (monedas > 0) {
+                $('#example1 > tbody  > tr').each(function () {
+                    idItem = $(this).data('id');
+                    var soledCantidadSolicitada = $(this).find("td:eq(2)").find("input").val();
+                    if (soledCantidadSolicitada != '' && soledCantidadSolicitada != 0) {
+                        console.log('idItem', idItem);
+                        console.log('soledCantidadSolicitada', soledCantidadSolicitada);
+                        var item = {
+                            deno_Id: idItem,
+                            soled_CantidadSolicitada: parseInt(soledCantidadSolicitada),
+                        }
+                        Detail.push(item);
+                    }
+                });
+                console.log(Detail);
+                $.ajax({
+                    url: "/SolicitudEfectivo/InsertDetalleSolicitudDetalle",
+                    method: 'POST',
+                    dataType: "json",
+                    contentType: "application/json; charset=utf-8",
+                    data: JSON.stringify({ procesoData: Detail }),
+                })
+                .done(function (data) {
+                    if (data == 'Error') {
+                        alert('No Enviado');
+                    }
+                    else {
+                        console.log(procesoData);
+                        console.log(cantisoli);
+                    }
+
+                });
+            }
+        });
+    </script>
+
+
+
+}
+
+
+
+<script src="~/Scripts/jquery-3.4.1.js"></script>
+<script src="~/Scripts/app/Datepicker.js"></script>
+<script src="~/Scripts/app/ArqueoCaja.js"></script>

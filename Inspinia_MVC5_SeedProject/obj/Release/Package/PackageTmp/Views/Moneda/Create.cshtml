@@ -1,0 +1,82 @@
+﻿@model ERP_GMEDINA.Models.tbMoneda
+
+@{
+    ViewBag.Title = "Moneda";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    .AsteriscoRojo:after {
+        content: "*";
+        color: red;
+    }
+</style>
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-sm-4">
+        <h2>Moneda</h2>
+    </div>
+    <div class="col-sm-8">
+        <div class="title-action">
+            <a href="@Url.Action("Index","Moneda")">Regresar</a>
+        </div>
+    </div>
+</div>
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Registrar Moneda</h5>
+                </div>
+                <div class="ibox-content">
+
+				@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            <label class="control-label col-md-2 AsteriscoRojo">Abreviatura</label>
+
+
+            <div class="col-md-5">
+                @Html.EditorFor(model => model.mnda_Abreviatura, new { htmlAttributes = new { @autocomplete = "off", @style = "text-transform:uppercase;", onkeypress = "return validar(event)", @maxlenght= 3 } })
+                <p style="color:red"> @Html.ValidationMessageFor(model => model.mnda_Abreviatura)
+</div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2 AsteriscoRojo">Nombre</label>
+
+            <div class="col-md-5">
+                @Html.EditorFor(model => model.mnda_Nombre, new { htmlAttributes = new { @autocomplete = "off", @style = "text-transform:uppercase;", onkeypress = "return validar(event)" } })
+                <p style="color:red">@Html.ValidationMessageFor(model => model.mnda_Nombre)
+</div>
+        </div>
+
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Guardar" class="btn btn-primary" />
+				@Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white"})
+            </div>
+        </div>
+    </div>
+}
+
+                </div>
+            </div>
+        </div>
+    </div>
+ </div>
+
+ 
+<script src="~/Scripts/app/CaracteresEspeciales.js"></script>
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<script src="~/Scripts/app/Monedas.js"></script>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

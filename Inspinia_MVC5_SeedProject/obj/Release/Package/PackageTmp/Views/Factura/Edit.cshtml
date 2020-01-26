@@ -1,0 +1,567 @@
+﻿@model ERP_GMEDINA.Models.tbFactura
+@using ERP_GMEDINA.Models
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    .validation-error {
+        color: red;
+        font-size: small;
+    }
+
+    .modal-lg {
+        max-width: 100% !important;
+    }
+
+    .required:after {
+        content: "*";
+        color: red;
+        padding-left: 5px;
+    }
+
+    @@media (min-width: 1200px) {
+        .modal-xlg {
+            width: 85%;
+        }
+    }
+</style>
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-sm-4">
+        <h2>Factura</h2>
+    </div>
+    <div class="col-sm-8">
+        <div class="title-action">
+            <a href="@Url.Action("Index","Factura")">Regresar</a>
+        </div>
+    </div>
+</div>
+
+<div class="wrapper wrapper-content">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Editar Factura</h5>
+                </div>
+                <div class="ibox-content">
+
+                    @using (Html.BeginForm("Edit", "Factura", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <div class="form-horizontal">
+
+                            @Html.ValidationSummary(true)
+                            @Html.HiddenFor(model => model.fact_Id)
+                            @Html.Hidden("RedirectTo", Url.Action("Index", "Factura"))
+                            @**Auditoria*@
+                            @Html.HiddenFor(model => model.fact_UsuarioCrea)
+                            @Html.HiddenFor(model => model.fact_FechaCrea)
+                            @Html.HiddenFor(model => model.fact_UsuarioModifica)
+                            @Html.HiddenFor(model => model.fact_FechaModifica)
+                            @Html.HiddenFor(model => model.tbUsuario.usu_Nombres)
+                            @Html.HiddenFor(model => model.tbUsuario.usu_Apellidos)
+                            @Html.HiddenFor(model => model.tbUsuario1.usu_Nombres)
+                            @Html.HiddenFor(model => model.tbUsuario1.usu_Apellidos)
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.suc_Id, new { @class = " required control-label col-md-2" })
+                                <div class="col-md-4">
+                                    @Html.EditorFor(model => model.tbCaja.tbSucursal.suc_Descripcion, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                    <input class="form-control" readonly value="@ViewBag.suc_Id" id="suc_Id" name="suc_Id" type="hidden" />
+                                    <span class="validation-error">@Html.ValidationMessageFor(model => model.suc_Id)</span>
+                                </div>
+                                @Html.LabelFor(model => model.cja_Id, new { @class = "required control-label col-md-2" })
+                                <div class="col-md-4">
+                                    @Html.EditorFor(model => model.tbCaja.cja_Descripcion, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                    <span class="validation-error">@Html.ValidationMessageFor(model => model.cja_Id)</span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.pemi_NumeroCAI, new { @class = "control-label required col-md-2" })
+                                <div class="col-md-4">
+                                    @Html.EditorFor(model => model.pemi_NumeroCAI, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                    <span class="validation-error">@Html.ValidationMessageFor(model => model.pemi_NumeroCAI)</span>
+                                </div>
+                                @Html.LabelFor(model => model.fact_Codigo, new { @class = "control-label required col-md-2" })
+                                <div class="col-md-4">
+                                    @Html.EditorFor(model => model.fact_Codigo, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                    <span class="validation-error">@Html.ValidationMessageFor(model => model.fact_Codigo)</span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.fact_Fecha, new { @class = "required control-label col-md-2" })
+                                <div class="col-md-4">
+                                    @Html.EditorFor(model => model.fact_Fecha, "{0:yyyy-MM-dd}", new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", @id = "fechafacturaEdit" } })
+                                    <span class="validation-error">@Html.ValidationMessageFor(model => model.fact_Fecha)</span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.clte_Identificacion, new { @class = "control-label col-md-2", id = "label_identificacion" })
+                                <div class="col-md-4">
+                                    @Html.EditorFor(model => model.clte_Identificacion, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                    <span class="validation-error">@Html.ValidationMessageFor(model => model.clte_Identificacion)</span>
+                                </div>
+                                @Html.LabelFor(model => model.clte_Nombres, new { @class = "control-label col-md-2" })
+                                <div class="col-md-4">
+                                    @Html.EditorFor(model => model.clte_Nombres, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                    <span class="validation-error">@Html.ValidationMessageFor(model => model.clte_Nombres)</span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-lg-offset-2 col-md-4">
+                                    <input id="tpi_Id" type="hidden" class="form-control" hid />
+                                </div>
+                                <div class="col-lg-offset-2 col-md-4">
+                                    <input id="clte_Fecha" type="hidden" class="form-control" hidden />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.fact_AlCredito, new { @class = "control-label col-md-2" })
+                                <div class="col-md-4">
+                                    @Html.EditorFor(model => model.fact_AlCredito)
+                                    <span class="validation-error">@Html.ValidationMessageFor(model => model.fact_AlCredito)</span>
+                                </div>
+                                <div class="form-horizontal" name="Credito" id="Credito">
+                                    @Html.LabelFor(model => model.fact_DiasCredito, new { @class = "control-label col-md-2" })
+                                    <div class="col-md-4">
+                                        @Html.EditorFor(model => model.fact_DiasCredito)
+                                        <span class="validation-error"> @Html.ValidationMessageFor(model => model.fact_DiasCredito)</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-2">Autorizar Descuento</label>
+                                <div class="col-md-4">
+                                    <input id="fact_AutorizarDescuento" type="checkbox" class="checkbox" />
+                                </div>
+                                @Html.LabelFor(model => model.fact_Vendedor, new { @class = "control-label col-md-2" })
+                                <div class="col-md-4">
+                                    @Html.EditorFor(model => model.fact_Vendedor)
+                                    <span class="validation-error">@Html.ValidationMessageFor(model => model.fact_Vendedor)</span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="form-horizontal" name="Credito2" id="Credito2">
+                                    @Html.LabelFor(model => model.fact_PorcentajeDescuento, new { @class = "control-label col-md-2" })
+                                    <div class="col-md-4">
+                                        @Html.EditorFor(model => model.fact_PorcentajeDescuento)
+                                        <span class="validation-error"> @Html.ValidationMessageFor(model => model.fact_PorcentajeDescuento)</span>
+                                    </div>
+                                </div>
+                                @Html.LabelFor(model => model.esfac_Id, new { @class = "control-label col-md-2" })
+                                <div class="col-md-4">
+                                    @Html.DropDownList("esfac_Id", null, new { @class = "form-control" })
+                                    <span class="validation-error"> @Html.ValidationMessageFor(model => model.esfac_Id)</span>
+                                </div>
+
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-4">
+                                    @Html.HiddenFor(model => model.clte_Id)
+                                    @Html.ValidationMessageFor(model => model.clte_Id)
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-4">
+                                    <input id="IDCliente" name="clte_Id" type="hidden" class="form-control" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-4">
+                                    @Html.HiddenFor(model => model.fact_EsAnulada)
+                                    @Html.ValidationMessageFor(model => model.fact_EsAnulada)
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="ibox float-e-margins">
+                                      @Html.Partial("_CreateFacturaDetalleModal", new tbFacturaDetalle())
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <div class="form-group">
+                                        <div class="col-md-12 text-center">
+                                            <input id="btnSave" type="submit" value="Guardar" class="btn btn-primary btn-sm" />
+                                            <button id="bottonAnular" name="bottonAnular" type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#exampleModal">
+                                                Anular
+                                            </button>
+                                            @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white btn-sm" })
+                                        </div>
+                                    </div>
+                                    <br />
+                                </div>
+                            </div>
+
+                        </div>
+                    }
+                    <div class="ibox-content">
+                        <table class="table table-striped">
+                            <tr>
+                                <th>Acción</th>
+                                <th>Usuario</th>
+                                <th>Fecha</th>
+                            </tr>
+                            <tr>
+                                <td>Creado</td>
+                                <td>
+                                    @Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
+                                    @Html.DisplayFor(model => model.tbUsuario.usu_Apellidos)
+                                </td>
+                                <td>@Html.DisplayFor(model => model.fact_FechaCrea)</td>
+                            </tr>
+                            <tr>
+                                <td>Modificado</td>
+                                <td>
+                                    @Html.DisplayFor(model => model.tbUsuario1.usu_Nombres)
+                                    @Html.DisplayFor(model => model.tbUsuario1.usu_Apellidos)
+                                </td>
+                                <td>@Html.DisplayFor(model => model.fact_FechaModifica)</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Anular factura</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>¿Está seguro de anular esta factura?</p>
+                <textarea rows="4" cols="50" placeholder="Ingrese la razon de Anular" id="razonAnular" name="razonAnular" onkeypress="return soloLetras(event)"></textarea>
+                <p id="Mensaje" style="color:red"></p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary btn-sm" type="button" id="Anular">Guardar</button>
+                <button type="button" class="btn btn-white btn-sm" data-dismiss="modal">Cancelar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<script src="~/Scripts/app/FacturaDetalleEdit.js"></script>
+<script src="~/Scripts/app/Datepicker.js"></script>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+        //Buscar Empleados
+        $("#fact_Vendedor").autocomplete({
+            source: "/Factura/GetEmpleados",
+            minLength: 3
+        });
+    </script>
+}
+
+<script>
+
+    $("#prod_CodigoBarras").on("keypress keyup blur", function (event) {
+        var Value = $(this).val();
+        if (Value == '') {
+            $('#prod_Codigo').val('');
+            $('#tbProducto_prod_Descripcion').val('');
+            $('#factd_Impuesto').val(0.00);
+            $('#factd_PrecioUnitario').val(0.00);
+            $('#factd_Cantidad').val(''),
+            $("#factd_PrecioUnitario").val(0.00),
+            $("#SubtotalProducto").val(0.00),
+            $("#TotalProducto").val(0.00)
+            $("#Impuesto").val('')
+        }
+    });
+
+    var contador = 0;
+    $(document).keypress(function (e) {
+        var IDInput = e.target.id;
+        if (e.which == 13) {
+            if (IDInput == 'prod_CodigoBarras' || IDInput=='factd_Cantidad') {
+                var cantfisica_nueva = $('#factd_Cantidad').val();
+                var total1 = $('#TotalProducto').val();
+                SeleccionProducto(cantfisica_nueva, total1)
+
+
+                return false;
+            }
+            else
+                return false;
+        }
+    });
+
+
+    function SeleccionProducto(cantfisica_nueva, monto1, total1) {
+        var CodBarra = $('#prod_CodigoBarras').val();
+        var Cantidad = $('#factd_Cantidad').val();
+        var IDSucursal = $('#suc_Id').val();
+        var IDCliente = $('#clte_Id').val();
+        $.ajax({
+            type: 'POST',
+            url: '/Factura/BuscarCodigoBarras',
+            data: JSON.stringify({ IDSucursal: IDSucursal, CodBarra: CodBarra, IDCliente: IDCliente }),
+            contentType: 'application/json;',
+            dataType: 'json',
+        }).done(function (data) {
+            if (data.length > 0) {
+                $.each(data, function (key, val) {
+                    if (val.EXISTE) {
+                        data_producto = val.CODIGOPRODUCTO;
+                        data_descripcion = val.DESCRIPCIONPRODUCTO;
+                        data_impuesto = val.IMPUESTOPRODUCTO;
+                        data_precio = val.PRECIOUNITARIO;
+                        $('#prod_Codigo').val(data_producto);
+                        $('#tbProducto_prod_Descripcion').val(data_descripcion);
+                        $('#factd_Impuesto').val(data_impuesto);
+                        $('#factd_PrecioUnitario').val(data_precio);
+                        $('#factd_Cantidad').val(1);
+                        ////Codigo Prueba///
+
+                        //ajax para el controlador
+                        var FacturaDetalle = GetFacturaDetalle();
+                        $.ajax({
+                            url: "/Factura/SaveFacturaDetalleEdit",
+                            method: "POST",
+                            dataType: 'json',
+                            contentType: "application/json; charset=utf-8",
+                            data: JSON.stringify({ FacturaDetalleEdit: FacturaDetalle, data_producto: data_producto })
+                        })
+                            .done(function (datos) {
+                                if (datos == data_producto) {
+                                    $("#tblDetalleFactura td").each(function () {
+                                        var prueba = $(this).text()
+                                        if (prueba == data_producto) {
+                                            var idcontador = $(this).closest('tr').data('id');
+                                            var cantfisica_anterior = $(this).closest("tr").find("td:eq(2)").text();
+                                            var total1 = $('#TotalProducto').val();
+                                            var PorcentajeDescuento = $('#factd_PorcentajeDescuento').val();
+                                            //Subtotal
+                                            var CantidadSum = $(this).parents("tr").find("td")[2].innerHTML;
+                                            var PrecioSum = $(this).parents("tr").find("td")[3].innerHTML;
+                                            var SubtotalProductoSum = CantidadSum * PrecioSum;
+                                            //Impuesto
+                                            var Cantidad = CantidadSum
+                                            var Precio = PrecioSum
+                                            var impuesto = parseFloat(document.getElementById("factd_Impuesto").value.replace(',', '.'));
+                                            var impuestotal = parseFloat(document.getElementById("isv").innerHTML);
+                                            var porcentaje = parseFloat(impuesto / 100);
+                                            var impuestos = (Cantidad * Precio) * porcentaje;
+                                            var Total = parseInt(total1) + parseInt(SubtotalProductoSum) + impuestos;
+                                            var sumacantidades = parseInt(cantfisica_nueva) + parseInt(cantfisica_anterior);
+                                            $(this).closest('tr').remove();
+                                            copiar = "<tr data-id=" + idcontador + ">";
+                                            copiar += "<td id = 'prod_CodigoCreate'>" + data_producto + "</td>";
+                                            copiar += "<td id = 'tbProducto_prod_DescripcionCreate'>" + data_descripcion + "</td>";
+                                            copiar += "<td id = 'factd_CantidadCreate' align='right'>" + sumacantidades + "</td>";
+                                            copiar += "<td id = 'Precio_UnitarioCreate' align='right'>" + data_precio + "</td>";
+                                            copiar += "<td id = 'ImpuestoCreate' align='right'>" + data_impuesto + "</td>";
+                                            copiar += "<td id = 'factd_MontoDescuentoCreate' align='right'>" + PorcentajeDescuento + "</td>";
+                                            copiar += "<td id = 'TotalProductoCreate' align='right'>" + Total + "</td>";
+                                            copiar += "<td>" + '<button id="removeFacturaDetalle" class="btn btn-danger btn-xs eliminar" type="button">-</button>' + "</td>";
+                                            copiar += "</tr>";
+                                            $('#tblDetalleFactura').append(copiar);
+                                            //Descuento
+                                            var Descuento = $('#factd_PorcentajeDescuento').val();
+                                            var TotalDescuento = parseFloat(document.getElementById("TotalDescuento").innerHTML);
+
+                                            if (document.getElementById("TotalDescuento").innerHTML == '') {
+                                                totalProducto = $('#factd_MontoDescuento').val();
+                                                document.getElementById("TotalDescuento").innerHTML = parseFloat(totalProducto);
+                                            }
+                                            else {
+                                                document.getElementById("TotalDescuento").innerHTML = parseFloat(TotalDescuento) + parseFloat(Descuento);
+                                            }
+
+                                            //Subtotal
+                                            var totalProducto = $('#SubtotalProducto').val();
+                                            var subtotal = parseFloat(document.getElementById("Subtotal").innerHTML);
+
+                                            if (document.getElementById("Subtotal").innerHTML == '') {
+                                                totalProducto = $('#SubtotalProducto').val();
+                                                document.getElementById("Subtotal").innerHTML = parseFloat(totalProducto);
+                                            }
+                                            else {
+                                                document.getElementById("Subtotal").innerHTML = parseFloat(subtotal) + parseFloat(totalProducto);
+                                            }
+                                            //Impuesto
+                                            var Cantidad = sumacantidades
+                                            var Precio = data_precio
+                                            var impuesto = parseFloat(document.getElementById("factd_Impuesto").value.replace(',', '.'));
+                                            var impuestotal = parseFloat(document.getElementById("isv").innerHTML);
+                                            var porcentaje = parseFloat(impuesto / 100);
+                                            var impuestos = (Cantidad * Precio) * porcentaje;
+                                            if (document.getElementById("isv").innerHTML == '') {
+                                                impuesto = document.getElementById("factd_Impuesto").value;
+                                                document.getElementById("isv").innerHTML = parseFloat(impuestos);
+                                            }
+                                            else {
+                                                document.getElementById("isv").innerHTML = parseFloat(impuestos);
+                                            }
+
+                                            //Grantotal
+                                            if (document.getElementById("total").innerHTML == '') {
+                                                var TotalEncabezado = document.getElementById("total").innerHTML = parseFloat(totalProducto) + parseFloat(impuestos) - parseFloat(Descuento);
+                                                $("#TotalProductoEncabezado").val(TotalEncabezado);
+                                            }
+                                            else {
+                                                var TotalEncabezado = document.getElementById("total").innerHTML = parseFloat(subtotal) + parseFloat(totalProducto) + parseFloat(impuestos) - parseFloat(TotalDescuento) - parseFloat(Descuento);
+                                                $("#TotalProductoEncabezado").val(TotalEncabezado);
+                                            }
+                                        }
+                                    });
+                                } else {
+
+                                    var Cantidad = $('#factd_Cantidad').val();
+                                    Precio = $("#factd_PrecioUnitario").val(),
+                                    Impuesto = $("#factd_Impuesto").val(),
+                                    result = "";
+                                    result1 = "";
+                                    if (Cantidad && Precio > 0) {
+                                        result += Cantidad * Precio;
+                                    }
+                                           $("#SubtotalProducto").val(result);
+                                    Subtotal = $("#SubtotalProducto").val(),
+                                    PorcentajeImpuesto = ((parseFloat(Impuesto) / 100) * Subtotal);
+                                    result1 += PorcentajeImpuesto;
+                                    $("#Impuesto").val(result1);
+                                    var Descuento = $("#factd_PorcentajeDescuento").val();
+                                    var Subtotal = $("#SubtotalProducto").val();
+                                    var impuesto = $("#factd_Impuesto").val();
+                                    if (Descuento == '') {
+                                        Descuento = 0
+                                    }
+                                    var PorcentajeDescuento = (parseFloat(Descuento) / 100);
+                                    var PorcentajeImpuesto = (parseFloat(impuesto) / 100);
+                                    var DescuentoTotal = (parseFloat(Subtotal) * parseFloat(PorcentajeDescuento));
+                                    $("#factd_MontoDescuento").val(DescuentoTotal);
+                                    var impuestotal = (Subtotal * PorcentajeImpuesto);
+                                    result = "";
+
+                                    if (PorcentajeDescuento && Cantidad == '') {
+                                        result += (parseFloat(Subtotal) + parseFloat(impuestotal));
+                                    }
+                                    else if (DescuentoTotal && Cantidad == 0) {
+                                        result += (parseFloat(Subtotal) + parseFloat(impuestotal));
+                                    }
+                                    else {
+                                        result += (parseFloat(Subtotal) - parseFloat(DescuentoTotal) + parseFloat(impuestotal));
+                                    }
+                                    if (Descuento == '') {
+                                        $("#factd_PorcentajeDescuento").val(0);
+                                    }
+                                    if (Cantidad == '') {
+                                        $("#factd_MontoDescuento").val('');
+                                    }
+                                    else {
+                                        $("#factd_MontoDescuento").val(DescuentoTotal);
+                                    }
+                                    if (Descuento && Cantidad == '') {
+                                        $("#TotalProducto").val('');
+                                    }
+
+                                    $("#TotalProducto").val(result);
+                                    var CodigoProducto = $('#prod_Codigo').val();
+                                    var PorcentajeDescuento = $('#factd_PorcentajeDescuento').val();
+                                    var MontoDescuento = $('#factd_MontoDescuento').val();
+                                    var DescripcionProducto = $('#tbProducto_prod_Descripcion').val();
+                                    var CantidadProducto = $('#factd_Cantidad').val();
+                                    var Subtotal = $('#SubtotalProducto').val();
+                                    var PrecioUnitario = $('#factd_PrecioUnitario').val();
+                                    var Impuesto = $('#factd_Impuesto').val();
+                                    var Total = $('#TotalProducto').val();
+                                    //Prueba
+                                    contador = contador + 1;
+                                    copiar = "<tr data-id=" + contador + ">";
+                                    copiar += "<td id = 'prod_CodigoCreate'>" + data_producto + "</td>";
+                                    copiar += "<td id = 'tbProducto_prod_DescripcionCreate'>" + data_descripcion + "</td>";
+                                    copiar += "<td id = 'factd_CantidadCreate' align='right'>" + Cantidad + "</td>";
+                                    copiar += "<td id = 'Precio_UnitarioCreate' align='right'>" + data_precio + "</td>";
+                                    copiar += "<td id = 'ImpuestoCreate' align='right'>" + data_impuesto + "</td>";
+                                    copiar += "<td id = 'factd_MontoDescuentoCreate' align='right'>" + PorcentajeDescuento + "</td>";
+                                    copiar += "<td id = 'TotalProductoCreate' align='right'>" + result + "</td>";
+                                    copiar += "<td>" + '<button id="removeFacturaDetalle" class="btn btn-danger btn-xs eliminar" type="button">-</button>' + "</td>";
+                                    copiar += "</tr>";
+                                    $('#tblDetalleFactura').append(copiar);
+                                    //Descuento
+                                    var Descuento = $('#factd_PorcentajeDescuento').val();
+                                    var TotalDescuento = parseFloat(document.getElementById("TotalDescuento").innerHTML);
+
+                                    if (document.getElementById("TotalDescuento").innerHTML == '') {
+                                        totalProducto = $('#factd_PorcentajeDescuento').val();
+                                        document.getElementById("TotalDescuento").innerHTML = parseFloat(totalProducto);
+                                    }
+                                    else {
+                                        document.getElementById("TotalDescuento").innerHTML = parseFloat(TotalDescuento) + parseFloat(Descuento);
+                                    }
+
+                                    //Subtotal
+                                    var totalProducto = $('#SubtotalProducto').val();
+                                    var subtotal = parseFloat(document.getElementById("Subtotal").innerHTML);
+
+                                    if (document.getElementById("Subtotal").innerHTML == '') {
+                                        totalProducto = $('#SubtotalProducto').val();
+                                        document.getElementById("Subtotal").innerHTML = parseFloat(totalProducto);
+                                    }
+                                    else {
+                                        document.getElementById("Subtotal").innerHTML = parseFloat(subtotal) + parseFloat(totalProducto);
+                                    }
+                                    ///Impuesto
+                                    var Cantidad = CantidadProducto
+                                    var Precio = PrecioUnitario
+                                    var impuesto = parseFloat(document.getElementById("factd_Impuesto").value.replace(',', '.'));
+                                    var impuestotal = parseFloat(document.getElementById("isv").innerHTML);
+                                    var porcentaje = parseFloat(impuesto / 100);
+                                    var impuestos = (Cantidad * Precio) * porcentaje;
+
+                                    if (document.getElementById("isv").innerHTML == '') {
+                                        impuesto = document.getElementById("factd_Impuesto").value;
+                                        document.getElementById("isv").innerHTML = parseFloat(impuestos);
+                                    }
+                                    else {
+                                        document.getElementById("isv").innerHTML = parseFloat(impuestotal) + parseFloat(impuestos);
+                                    }
+
+                                    //Grantotal
+                                    if (document.getElementById("total").innerHTML == '') {
+                                        var TotalEncabezado = document.getElementById("total").innerHTML = parseFloat(totalProducto) + parseFloat(impuestos) - parseFloat(Descuento);
+                                        $("#TotalProductoEncabezado").val(TotalEncabezado);
+                                    }
+                                    else {
+                                        var TotalEncabezado = document.getElementById("total").innerHTML = parseFloat(subtotal) + parseFloat(totalProducto) + parseFloat(impuestotal) + parseFloat(impuestos) - parseFloat(TotalDescuento) - parseFloat(Descuento);
+                                        $("#TotalProductoEncabezado").val(TotalEncabezado);
+                                    }
+
+
+                                }
+                            })
+                        .done(function (data) {
+                            $('#ErrorCodigoProductoCreate').text('');
+                            $('#ErrorMontoDescuentoCreate').text('');
+                            $('#ErrorCantidadCreate').text('');
+                            $('#ErrorImpuestoCreate').text('');
+
+                        })
+                    }
+                    else {
+                    }
+
+                })
+
+            }
+
+        });
+
+        return false;
+    }
+</script>
+
+
+

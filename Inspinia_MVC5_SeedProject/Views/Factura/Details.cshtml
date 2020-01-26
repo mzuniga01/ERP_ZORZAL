@@ -1,4 +1,5 @@
-﻿@model ERP_ZORZAL.Models.tbFactura
+﻿@model ERP_GMEDINA.Models.tbFactura
+@using ERP_GMEDINA.Models
 
 @{
     ViewBag.Title = "Details";
@@ -7,15 +8,12 @@
 
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
-        <h2>Details</h2>
-        <ol class="breadcrumb">
-            <li>
-                @Html.ActionLink("List", "Index")
-            </li>
-            <li class="active">
-                <strong>Details</strong>
-            </li>
-        </ol>
+        <h2>Detalle Factura</h2>
+    </div>
+    <div class="col-sm-8">
+        <div class="title-action">
+            <a href="@Url.Action("Index", "Factura")">Regresar</a>
+        </div>
     </div>
 </div>
 
@@ -27,177 +25,364 @@
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h5>Details tbFactura</h5>
+                    <h5>Detalle Factura</h5>
                 </div>
                 <div class="ibox-content">
+                    @Html.HiddenFor(model => model.fact_Id)
+                    @**Auditoria*@
+                    @Html.HiddenFor(model => model.fact_UsuarioCrea)
+                    @Html.HiddenFor(model => model.fact_FechaCrea)
+                    @Html.HiddenFor(model => model.fact_UsuarioModifica)
+                    @Html.HiddenFor(model => model.fact_FechaModifica)
+                    @Html.HiddenFor(model => model.tbUsuario.usu_Nombres)
+                    @Html.HiddenFor(model => model.tbUsuario.usu_Apellidos)
+                    @Html.HiddenFor(model => model.tbUsuario1.usu_Nombres)
+                    @Html.HiddenFor(model => model.tbUsuario1.usu_Apellidos)
+                    <dl class="dl-horizontal">
+                        <dt>
+                            @Html.DisplayNameFor(model => model.pemi_NumeroCAI)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.pemi_NumeroCAI)
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.fact_Codigo)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.fact_Codigo)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.fact_Fecha)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.fact_Fecha)
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.suc_Id)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.tbSucursal.suc_Descripcion)
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.cja_Id)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.tbCaja.cja_Descripcion)
+                        </dd>
+                        <dt>
+                            Cajero
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.tbCaja.tbUsuario1.usu_Nombres)
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.fact_AlCredito)
+                        </dt>
 
 
-				    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.fact_Codigo)
-        </dt>
+                        @if (Model.fact_AlCredito)
+                        {
+                            <dd>Si</dd>
+                        }
+                        else
+                        {
+                            <dd>No</dd>
+                        }
+                        <dt>
+                            @Html.DisplayNameFor(model => model.fact_DiasCredito)
+                        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.fact_Codigo)
-        </dd>
+                        <dd>
+                            @Html.DisplayFor(model => model.fact_DiasCredito)
+                        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.fact_Fecha)
-        </dt>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.fact_PorcentajeDescuento)
+                        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.fact_Fecha)
-        </dd>
+                        <dd>
+                            @Html.DisplayFor(model => model.fact_PorcentajeDescuento)
+                        </dd>
+                        @{
+                            if (Model.fact_EsAnulada == true)
+                            {
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.esfac_Id)
+                                </dt>
+                                <dd>
+                                    Anulada
+                                </dd>
+                            }
+                            else
+                            {
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.esfac_Id)
+                                </dt>
+                                <dd>
+                                    @Html.DisplayFor(model => model.tbEstadoFactura.esfac_Descripcion)
+                                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.esfac_Id)
-        </dt>
+                            }
+                        }
+                        @{
+                            if (Model.fact_EsAnulada == true)
+                            {
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.fact_RazonAnulado)
+                                </dt>
+                                <dd>
+                                    @Html.DisplayFor(model => model.fact_RazonAnulado)
+                                </dd>
+                            }
+                            else
+                            {
 
-        <dd>
-            @Html.DisplayFor(model => model.esfac_Id)
-        </dd>
+                            }
+                        }
+                        <dt>
+                            @Html.DisplayNameFor(model => model.clte_Identificacion)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.clte_Identificacion)
+                        </dd>
+                        <dt>
+                            Cliente
+                        </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.cja_Id)
-        </dt>
+                        @{ if (Convert.ToInt32(Model.tbCliente.clte_EsPersonaNatural) == 1)
+                            {
+                                <dd>
+                                    @Html.DisplayFor(model => model.clte_Nombres)
+                                </dd>
+                            }
+                            else
+                            {
+                                <dd>
+                                    @Html.DisplayFor(model => model.tbCliente.clte_NombreComercial)
+                                </dd>
+                            }
+                        }
 
-        <dd>
-            @Html.DisplayFor(model => model.cja_Id)
-        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.fact_Vendedor)
+                        </dt>
+                        @if (Model.fact_Vendedor == null)
+                        {
+                            <dd>Ninguno</dd>
+                        }
+                        else
+                        {
+                            <dd>
+                                @Html.DisplayFor(model => model.fact_Vendedor)
+                            </dd>
+                        }
 
-        <dt>
-            @Html.DisplayNameFor(model => model.suc_Id)
-        </dt>
+                        @{ if (Model.fact_PorcentajeDescuento == 1)
+                            {
+                                <dt>
+                                    Usuario Autoriza
+                                </dt>
+                                <dd>
+                                    @Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
+                                </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.suc_Id)
-        </dd>
+                            }
+                            else
+                            {
 
-        <dt>
-            @Html.DisplayNameFor(model => model.clte_Id)
-        </dt>
+                            }
 
-        <dd>
-            @Html.DisplayFor(model => model.clte_Id)
-        </dd>
+                        }
 
-        <dt>
-            @Html.DisplayNameFor(model => model.pemi_NumeroCAI)
-        </dt>
+                    </dl>
 
-        <dd>
-            @Html.DisplayFor(model => model.pemi_NumeroCAI)
-        </dd>
+                    <table id="tblDetalleFactura" class="table table-striped table-bordered table-hover dataTables-example">
+                        <thead>
+                            <tr>
+                                <th>Producto</th>
+                                <th>Descripción Producto</th>
+                                <th>Cantidad</th>
+                                <th>Valor Unit</th>
+                                <th>% Impuesto</th>
+                                <th>Monto Descuento</th>
+                                <th>Total</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                        <tfoot>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td>Descuento</td>
+                                <td><p id="TotalDescuento" style="text-align:left"></p></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td>ISV</td>
+                                <td><p id="isv" style="text-align:left"></p></td>                                
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td>Sub-Total</td>
+                                <td><p id="Subtotal" style="text-align:left"></p></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td>Total a Pagar</td>
+                                <td><p id="total" style="text-align:left"></p></td>
+                            </tr>
+                    </table>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.fact_AlCredito)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.fact_AlCredito)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.fact_DiasCredito)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.fact_DiasCredito)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.fact_PorcentajeDescuento)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.fact_PorcentajeDescuento)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.fact_AutorizarDescuento)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.fact_AutorizarDescuento)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.fact_Vendedor)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.fact_Vendedor)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.clte_RTN_Identidad_Pasaporte)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.clte_RTN_Identidad_Pasaporte)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.clte_Nombres)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.clte_Nombres)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.fact_UsuarioCrea)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.fact_UsuarioCrea)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.fact__FechaCrea)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.fact__FechaCrea)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.fact__UsuarioModifica)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.fact__UsuarioModifica)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.fact_FechaModifica)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.fact_FechaModifica)
-        </dd>
-
-    </dl>
-
-
-	    @Html.ActionLink("Edit", "Edit", new { id = Model.fact_Id }, new { @class = "btn btn-primary"})
-    @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-white"})
-
+                    @if (Model.fact_EsAnulada == true)
+                    {
+                        <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="No se puede Editar, esta Anulado">
+                            <button class="btn btn-primary" style="pointer-events: none;" type="button" disabled>Editar</button>
+                        </span>
+                        @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
+                    }
+                    else if (Model.esfac_Id == 2)
+                    {
+                        <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="No se puede Editar, factura Impresa">
+                            <button class="btn btn-primary" style="pointer-events: none;" type="button" disabled>Editar</button>
+                        </span>
+                        @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
+                    }
+                    else
+                    {
+                        @Html.ActionLink("Editar", "Edit", new { id = Model.fact_Id }, new { @class = "btn btn-primary btn-sm" })
+                        @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white btn-sm" })
+                    }
                 </div>
+            </div>
+            <div class="ibox-content">
+                <table class="table table-striped">
+                    <tr>
+                        <th>Acción</th>
+                        <th>Usuario</th>
+                        <th>Fecha</th>
+                    </tr>
+                    <tr>
+                        <td>Creado</td>
+                        <td>
+                            @Html.DisplayFor(model => model.tbUsuario1.usu_Nombres)
+                            @Html.DisplayFor(model => model.tbUsuario1.usu_Apellidos)
+                        </td>
+                        <td>@Html.DisplayFor(model => model.fact_FechaCrea)</td>
+                    </tr>
+                    <tr>
+                        <td>Modificado</td>
+                        <td>
+                            @Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
+                            @Html.DisplayFor(model => model.tbUsuario.usu_Apellidos)
+                        </td>
+                        <td>@Html.DisplayFor(model => model.fact_FechaModifica)</td>
+                    </tr>
+                </table>
             </div>
         </div>
     </div>
- </div>
+</div>
+<script src="~/Scripts/jquery-3.4.1.js"></script>
+<script>
+    $(document).ready(function () {
+        GetDetalle()
+        $('#tblDetalleFactura').DataTable({
+            "searching": false,
+            "lengthChange": false,
+            "responsive": true,
+            "oLanguage": {
+                "oPaginate": {
+                    "sNext": "Siguiente",
+                    "sPrevious": "Anterior",
+                },
+                "sZeroRecords": "No se encontraron resultados",
+                "sEmptyTable": "No hay registros",
+                "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
+                "sInfoEmpty": "Mostrando 0 de 0 Entradas",
+                "sSearch": "Buscar",
+                "sLengthMenu": "Mostrar _MENU_ registros por página",
+                "sInfo": "Mostrando _START_ a _END_ Entradas"
+            }
+        });
+    });
 
+    function GetDetalle() {
+        var factID = $("#fact_Id").val();
+        $.ajax({
+            url: "/Factura/GetFacturaDetalle",
+            method: "POST",
+            dataType: 'json',
+            contentType: "application/json; charset=utf-8",
+            data: JSON.stringify({ factID: factID }),
+        })
+          .done(function (data) {
+              $.each(data, function (key, val) {
+                  Descuento = (val.factd_MontoDescuento);
+                  Subtotal = (val.factd_Cantidad * val.factd_PrecioUnitario - Descuento);
+                  ImpuestoTotal = (Subtotal * (val.factd_Impuesto / 100));
+                  Total = (Subtotal + ImpuestoTotal);
+                  $(this).closest('tr').remove();
+                  var table = $('#tblDetalleFactura').DataTable();
+                  table.row($(this).parents('tr')).remove().draw();
+                  table.row.add([
+                        val.prod_Codigo,
+                        val.prod_Descripcion,
+                        val.factd_Cantidad.toFixed(2),
+                        val.factd_PrecioUnitario.toFixed(2),
+                        val.factd_Impuesto.toFixed(2),
+                        val.factd_MontoDescuento.toFixed(2),
+                        Total.toFixed(2),
+                  ]).draw(false);
+                  total_col1 = 0
+                  SubtotalD = 0;
+                  SubtotalDD = 0;
+                  GranImpuesto = 0;
+                  GranTotal = 0;
+                  $("#tblDetalleFactura tbody tr").each(function (index) {
+                      DescuentoDD = $(this).children("td:eq(5)").html();
+                      Cantidad = $(this).children("td:eq(2)").html();
+                      ImpuestoD = $(this).children("td:eq(4)").html();
+                      ValorUnitario = $(this).children("td:eq(3)").html();
+                      PorcentajeImpuesto = parseFloat(ImpuestoD / 100);
+                      if (ValorUnitario != '') {
+                          total_col1 += parseFloat($(this).find('td').eq(5).text());
+                          ValorUnitario = parseFloat(ValorUnitario);
+                          SubtotalD += (Cantidad * ValorUnitario);
+                          SubtotalDD += (Cantidad * ValorUnitario - DescuentoDD);
+                          GranImpuesto += ((Cantidad * ValorUnitario - DescuentoDD) * PorcentajeImpuesto);
+                          GranTotal = SubtotalDD + GranImpuesto;
+                      }
+                  });
+                  document.getElementById("TotalDescuento").innerHTML = parseFloat(total_col1).toFixed(2);
+                  document.getElementById("isv").innerHTML = parseFloat(GranImpuesto).toFixed(2);
+                  document.getElementById("Subtotal").innerHTML = parseFloat(SubtotalD).toFixed(2);
+                  document.getElementById("total").innerHTML = parseFloat(GranTotal).toFixed(2);
+              });
 
-
-
-
-
-
-
-
-
-
+          })
+    }
+</script>
 
 

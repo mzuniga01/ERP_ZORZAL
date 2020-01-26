@@ -1,0 +1,70 @@
+﻿@model IEnumerable<ERP_GMEDINA.Models.UDP_Vent_tbCuponDescuentoSelect_Result>
+@using ERP_GMEDINA.Models
+
+@{
+//tbEmpleado empleado = new tbEmpleado();
+}
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="form-horizontal">
+                    <input id="searchCD" type="text" placeholder="Buscar Cupon Descuento" class="form-control" />
+
+                    <table id="spCupon" class="table table-striped table-bordered">
+                        <thead>
+                            <tr>
+                                <th>
+                                    Fecha Vencimiento
+                                </th>
+                                <th>
+                                    % Descuento
+                                </th>
+                                <th>
+                                    Monto Descuento
+                                </th>
+                                <th>
+                                    Monto Maximo Descuento
+                                </th>
+                                <th>
+                                    Cantidad Compra Mínima
+                                </th>
+                                <th>
+                                    Redimido 
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody id="BodyCD">
+                            @foreach (var item in Model)
+                            {
+                                <tr data-idcd="@item.cdto_ID" data-fechavence="@item.cdto_FechaVencimiento" data-porcentajedesc="@item.cdto_PorcentajeDescuento" data-motodesc="@item.cdto_MontoDescuento" data-maxmontodesc="@item.cdto_MaximoMontoDescuento" data-cantcompramin="@item.cdto_CantidadCompraMinima" data-redimido="@item.cdto_Redimido">
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.cdto_FechaVencimiento)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.cdto_PorcentajeDescuento)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.cdto_MontoDescuento)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.cdto_MaximoMontoDescuento)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.cdto_CantidadCompraMinima)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.cdto_Redimido)
+                                    </td>
+                                    <td>
+                                        <button class="btn btn-primary btn-xs" value="@item.cdto_ID" onclick="Seleccionar(@item.cdto_ID)">Seleccionar</button>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

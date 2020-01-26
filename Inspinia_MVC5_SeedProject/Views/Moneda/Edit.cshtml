@@ -1,117 +1,164 @@
-﻿@model ERP_ZORZAL.Models.tbMoneda
+﻿@model ERP_GMEDINA.Models.tbMoneda
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "Moneda";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+
+<link href="~/Content/css/Auditoria.css" rel="stylesheet" />
+
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
-        <h2>Moneda</h2>
-        @*<ol class="breadcrumb">
-            <li>
-                @Html.ActionLink("List", "Index")
-            </li>
-            <li class="active">
-                <strong>Edit</strong>
-            </li>
-        </ol>*@
+        <h2>Moneda</h2>      
     </div>
     <div class="col-sm-8">
         <div class="title-action">
-            <a href="@Url.Action("Index","Moneda")">Regresar</a>
-			
+            <a href="@Url.Action("Index","Moneda")">Regresar</a>		
         </div>
     </div>
 </div>
-
-
-
 
 <div class="wrapper wrapper-content animated fadeInRight">
     <div class="row">
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h5>Editar Moneda</h5>
+                    <h5>Editar Moneda </h5>
                 </div>
                 <div class="ibox-content">
 
 				@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
+                {
+                    @Html.AntiForgeryToken()
+                    @*Auditoria*@
+                    @Html.HiddenFor(model => model.mnda_UsuarioCrea)
+                    @Html.HiddenFor(model => model.mnda_FechaCrea)
+                    @Html.HiddenFor(model => model.mnda_UsuarioModifica)
+                    @Html.HiddenFor(model => model.mnda_FechaModifica)
+                    @Html.HiddenFor(model => model.tbUsuario.usu_Nombres)
+                    @Html.HiddenFor(model => model.tbUsuario.usu_Apellidos)
+                    @Html.HiddenFor(model => model.tbUsuario1.usu_Nombres)
+                    @Html.HiddenFor(model => model.tbUsuario1.usu_Apellidos)
 
-        @Html.ValidationSummary(true)
-        @Html.HiddenFor(model => model.mnda_Id)
+                    <div class="form-horizontal">
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        @Html.HiddenFor(model => model.mnda_Id)
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.mnda_Abreviatura, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.mnda_Abreviatura)
-                @Html.ValidationMessageFor(model => model.mnda_Abreviatura)
-            </div>
-        </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-2">Número Moneda</label>
+                                <div class="col-md-5">
+                                    @Html.EditorFor(model => model.mnda_Id, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                    <p style="color:red">@Html.ValidationMessageFor(model => model.mnda_Id)</p>
+                                </div>
+                            </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.mnda_Nombre, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.mnda_Nombre)
-                @Html.ValidationMessageFor(model => model.mnda_Nombre)
-            </div>
-        </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-2 AsteriscoRojo">Abreviatura</label>
+                            
 
-        @*<div class="form-group">
-            @Html.LabelFor(model => model.mnda_UsuarioCrea, "mnda_UsuarioCrea", new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("mnda_UsuarioCrea", String.Empty)
-                @Html.ValidationMessageFor(model => model.mnda_UsuarioCrea)
-            </div>
-        </div>
+                                <div class="col-md-5">
+                                    @Html.EditorFor(model => model.mnda_Abreviatura, new { htmlAttributes = new { @autocomplete = "off", @style = "text-transform:uppercase;", onkeypress = "return validar(event)" } })
+                                    <p style="color:red">@Html.ValidationMessageFor(model => model.mnda_Abreviatura)</p>
+                                </div>
+                            </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.mnda_FechaCrea, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.mnda_FechaCrea)
-                @Html.ValidationMessageFor(model => model.mnda_FechaCrea)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.mnda_UsuarioModifica, "mnda_UsuarioModifica", new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("mnda_UsuarioModifica", String.Empty)
-                @Html.ValidationMessageFor(model => model.mnda_UsuarioModifica)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.mnda_FechaModifica, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.mnda_FechaModifica)
-                @Html.ValidationMessageFor(model => model.mnda_FechaModifica)
-            </div>
-        </div>*@
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Guardar" class="btn btn-primary" />
-				@Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white"})
-            </div>
-        </div>
-    </div>
-}
+                            <div class="form-group">
+                                <label class="control-label col-md-2 AsteriscoRojo">Nombre</label>
+                                @*<label class="control-label col-md-2">Nombre</label>*@
+                                <div class="col-md-5">
+                                    @Html.EditorFor(model => model.mnda_Nombre, new { htmlAttributes = new { @autocomplete = "off", @style = "text-transform:uppercase;", onkeypress = "return validar(event)" } })
+                                    <p style="color:red">@Html.ValidationMessageFor(model => model.mnda_Nombre)</p>
+</div>
+                            </div>
+                            <br />
 
 
+                            <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="Guardar" class="btn btn-primary" />
+                            @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
+                            </div>
+
+                            </div>
+                        </div>
+
+
+
+                }
                 </div>
             </div>
+
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Auditoría</h5>
+                </div>
+                <div class="ibox-content">
+                    <table class="table table table-striped  table-bordered">
+                        <tr>
+                            <th>Acción</th>
+                            <th>Usuario</th>
+                            <th>Fecha</th>
+                        </tr>
+                        <tr>
+                            <td>Creado</td>
+                            <td>
+                                @Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
+                                @Html.DisplayFor(model => model.tbUsuario.usu_Apellidos)
+                            </td>
+                            <td>@Html.DisplayFor(model => model.mnda_FechaCrea)</td>
+                        </tr>
+                        <tr>
+                            <td>Modificado</td>
+                            <td>
+                                @Html.DisplayFor(model => model.tbUsuario1.usu_Nombres)
+                                @Html.DisplayFor(model => model.tbUsuario1.usu_Apellidos)
+                            </td>
+                            <td>@Html.DisplayFor(model => model.mnda_FechaModifica)</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
         </div>
     </div>
  </div>
 
+<script src="~/Scripts/app/CaracteresEspeciales.js"></script>
+<script src="~/Scripts/jquery-3.4.1.js"></script>
 
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+<script>
+    $(document).ready(function () {
+
+
+        //VALIDAR SOLO LETRAS
+        $('#mnda_Abreviatura').on('input', function (e) {
+            if (!/^[ a-z-áéíóúüñ]*$/i.test(this.value)) {
+                this.value = this.value.replace(/[^ a-z-áéíóúüñ]+/ig, "");
+            }
+        });
+        $('#mnda_Abreviatura').on('input', function (e) {
+            if (!/^[ a-z-áéíóúüñ]*$/i.test(this.value)) {
+                this.value = this.value.replace(/[^ a-z-áéíóúüñ]+/ig, "");
+            }
+        });
+
+
+        //VALIDAR SOLO LETRAS
+        $('#mnda_Nombre').on('input', function (e) {
+            if (!/^[ a-z-áéíóúüñ]*$/i.test(this.value)) {
+                this.value = this.value.replace(/[^ a-z-áéíóúüñ]+/ig, "");
+            }
+        });
+        $('#mnda_Nombre').on('input', function (e) {
+            if (!/^[ a-z-áéíóúüñ]*$/i.test(this.value)) {
+                this.value = this.value.replace(/[^ a-z-áéíóúüñ]+/ig, "");
+            }
+        });
+
+    });
+</script>
 }

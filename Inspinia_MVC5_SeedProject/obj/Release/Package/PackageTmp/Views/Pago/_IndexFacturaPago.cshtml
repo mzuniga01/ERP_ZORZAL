@@ -1,0 +1,99 @@
+﻿@model IEnumerable<ERP_GMEDINA.Models.V_Vent_FacturaPago>
+
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <input id="searchFacturaPago" type="text" class="form-control" placeholder="Buscar Factura" />
+                            <br />
+                        </div>
+                    </div>
+                
+                </div>
+                <div class="ibox-content">
+
+                    <table id="V_FacturaPago" class="table table table-striped  table-bordered">
+                        <thead>
+                            <tr>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.fact_Id)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.fact_Codigo)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.MontoFactura)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.TotalPagado)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.SaldoFactura)
+                                </th>
+                                <th></th>
+                            </tr>
+                            </thead>
+                        <tbody id="FacturaPagoTbody">
+                            @foreach (var item in Model)
+                            {
+                                <tr data-id="@item.fact_Id" data-codigo="@item.fact_Codigo" data-monto="@item.MontoFactura" data-pago="@item.TotalPagado" data-saldo="@item.SaldoFactura">
+
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.fact_Id)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.fact_Codigo)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.MontoFactura)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.TotalPagado)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.SaldoFactura)
+                                    </td>
+                                    
+                                    <td>
+                                        <button id="seleccionar" class="btn btn-primary btn-xs">Agregar</button>
+                                    </td>
+                                   
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+ </div>
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#V_FacturaPago').DataTable(
+        {
+            "searching": false,
+            "lengthChange": false,
+
+            "oLanguage": {
+                "oPaginate": {
+                    "sNext": "Siguiente",
+                    "sPrevious": "Anterior",
+                },
+                "sEmptyTable": "No hay registros",
+                "sInfoEmpty": "Mostrando 0 de 0 Entradas",
+                "sSearch": "Buscar",
+                "sInfo": "Mostrando _START_ a _END_ Entradas",
+
+            }
+        });
+    });
+</script>
+
+
+

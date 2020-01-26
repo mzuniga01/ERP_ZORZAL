@@ -1,0 +1,96 @@
+﻿@model IEnumerable<ERP_GMEDINA.Models.UDP_Vent_listExoneracion_Select>
+@{
+    var test = new ERP_GMEDINA.Models.UDP_Vent_listExoneracion_Select();
+}
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <input id="searchCliente" type="text" class="form-control" placeholder="Ingresar Cliente" />
+                            <br />
+                        </div>
+                    </div>
+                    <table id="tbCliente" class="table table table-striped  table-bordered">
+                        <thead>
+                            <tr>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Id)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.RTN_Identificacion)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Nombre)
+                                </th>
+
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody id="BodyCliente">
+                           
+                                @foreach (var item in Model)
+                                {
+                                    if(item.persona_natural == false)
+                                    {
+
+                                    
+                                    var name = (!item.persona_natural) ? item.persona_comercial : item.Nombre + ' ' + @item.apellido;
+
+                                    <tr data-id="@item.Id" data-rtn="@item.RTN_Identificacion" data-name="@name">
+
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Id)
+                                        </td>
+
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.RTN_Identificacion)
+                                        </td>
+
+                                       <td>
+                                          @name
+                                       </td>
+                                        <td>
+                                            <button id="seleccionar" class="btn btn-primary btn-xs">Agregar</button>
+                                        </td>
+                                    </tr>
+                                    }
+                                    else
+                                    {
+
+                                    }
+                                     }
+                        </tbody>
+                    </table>
+            </div>
+        </div>
+    </div>
+ </div>
+<script src="~/Scripts/jquery-3.4.1.js"></script>
+<script src="~/Scripts/app/ClienteExoneracion.js"></script>
+<script src="~/Scripts/app/DataTable.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#tbCliente').DataTable(
+        {
+            "searching": false,
+            "lengthChange": false,
+
+            "oLanguage": {
+                "oPaginate": {
+                    "sNext": "Siguiente",
+                    "sPrevious": "Anterior",
+                },
+                "sEmptyTable": "No hay registros",
+                "sInfoEmpty": "Mostrando 0 de 0 Entradas",
+                "sSearch": "Buscar",
+                "sInfo": "Mostrando _START_ a _END_ Entradas",
+
+            }
+        });
+    });
+</script>
+
+

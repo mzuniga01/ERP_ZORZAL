@@ -1,209 +1,240 @@
-﻿@model ERP_ZORZAL.Models.tbPedido
+﻿@model ERP_GMEDINA.Models.tbPedido
+@using ERP_GMEDINA.Models
 
 @{
     ViewBag.Title = "Pedidos";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
-        <h2>Pedido</h2>
-        @*<ol class="breadcrumb">
-            <li>
-                @Html.ActionLink("List", "Index")
-            </li>
-            <li class="active">
-                <strong>Create</strong>
-            </li>
-        </ol>*@
+        <h2>Pedidos</h2>
+
     </div>
     <div class="col-sm-8">
         <div class="title-action">
             <a href="/Pedido/Index">Regresar</a>
-			@*@Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-primary"})*@
         </div>
     </div>
 </div>
-
-
-
 <div class="wrapper wrapper-content animated fadeInRight">
     <div class="row">
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h5>Ingresar Pedido</h5>
+                    <h5>Registrar Pedidos</h5>
                 </div>
                 <div class="ibox-content">
 
-                    @using (Html.BeginForm())
+                    @using (Html.BeginForm("Create", "Pedido", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                     
                     {
                         @Html.AntiForgeryToken()
-
+                        @Html.HiddenFor(model => model.clte_Id)
                         <div class="form-horizontal">
                             @Html.ValidationSummary(true)
 
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.suc_Id, new { @class = "control-label col-md-2" })
+                                <div class="col-md-3">
+                                    @Html.EditorFor(model => model.tbSucursal.suc_Descripcion, new { htmlAttributes = new { @autocomplete = "off", @class = "form-control", @readonly = "readonly", Value = ViewBag.Sucursal } })
+                                    <p style="color:red">@Html.ValidationMessageFor(model => model.suc_Id)</p>
+                                </div>
+
+                                @Html.LabelFor(model => model.ped_FechaElaboracion, new { @class = "control-label col-md-3" })
+                                <div class="col-md-3">
+                                    @Html.EditorFor(model => model.ped_FechaElaboracion, new { htmlAttributes = new { @autocomplete = "off", @class = "form-control", @readonly = "readonly" } })
+                                    <p style="color:red">@Html.ValidationMessageFor(model => model.ped_FechaElaboracion)</p>
+                                </div>
+
+                            </div>
+         
+                                
+                                    
+                                   
 
                             <div class="form-group">
-                                <label class="control-label col-md-2">Fecha Elaboración</label>
-                                @*@Html.LabelFor(model => model.ped_FechaElaboracion, new { @class = "control-label col-md-2" }*@
-                                <div class="col-md-10">
-                                    @Html.EditorFor(model => model.ped_FechaElaboracion)
-                                    @Html.ValidationMessageFor(model => model.ped_FechaElaboracion)
+                                @Html.LabelFor(model => model.tbCliente.clte_Identificacion, new { @class = "control-label col-md-2" })
+                                <div class="col-md-3">
+                                    @Html.EditorFor(model => model.tbCliente.clte_Identificacion, new { htmlAttributes = new { @autocomplete = "off", @class = "form-control", @readonly = "readonly" } })
+                                    <p style="color:red"><span class="validation-error"> @Html.ValidationMessageFor(model => model.tbCliente.clte_Identificacion)</span></p>
+                                </div>
+                                <div class="col-md-1">
+                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalAgregarClientes"><span class="glyphicon glyphicon-search"></span></button>
+                                </div>
+
+                                @Html.LabelFor(model => model.tbCliente.clte_Nombres, new { @class = "control-label col-md-2" })
+                                <div class="col-md-3">
+                                    @Html.EditorFor(model => model.tbCliente.clte_Nombres, new { htmlAttributes = new { @autocomplete = "off", @class = "form-control", @readonly = "readonly" } })
+                                    <p style="color:red">@Html.ValidationMessageFor(model => model.tbCliente.clte_Nombres)</p>
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                <label class="control-label col-md-2">Fecha Entrega</label>
-                                @*@Html.LabelFor(model => model.ped_FechaEntrega, new { @class = "control-label col-md-2" })*@
-                                <div class="col-md-10">
+                                @Html.LabelFor(model => model.ped_FechaEntrega, new { @class = "control-label col-md-2" })
+                                <div class="col-md-3">
                                     @Html.EditorFor(model => model.ped_FechaEntrega)
-                                    @Html.ValidationMessageFor(model => model.ped_FechaEntrega)
+                                    <p style="color:red">@Html.ValidationMessageFor(model => model.ped_FechaEntrega)</p>
                                 </div>
                             </div>
 
-                            <div class="form-group">
-                                <label class="control-label col-md-2">Id Cliente</label>
-                                @*@Html.LabelFor(model => model.clte_Id, "clte_Id", new { @class = "control-label col-md-2" })*@
-                                <div class="col-md-10">
-                                    @Html.DropDownList("clte_Id", String.Empty)
-                                    @Html.ValidationMessageFor(model => model.clte_Id)
-                                </div>
-                            </div>
+                            @*--------------------OCULTOS--------------------*@
 
-                            <div class="form-group">
-                                <label class="control-label col-md-2">Id Sucursal</label>
-                                @*@Html.LabelFor(model => model.suc_Id, "suc_Id", new { @class = "control-label col-md-2" })*@
-                                <div class="col-md-10">
-                                    @Html.DropDownList("suc_Id", String.Empty)
-                                    @Html.ValidationMessageFor(model => model.suc_Id)
-                                </div>
-                            </div>
+                            <input type="hidden" id="ped_EsAnulado" name="ped_EsAnulado" value="false" />
+                            <input type="hidden" id="esped_Id" name="esped_Id" value="1" />
+                            <input type="hidden" id="ped_RazonAnulado" name="ped_RazonAnulado" value="" />
+                            <input type="hidden" id="suc_Id" name="suc_Id" value="1" />
 
-                            <div class="form-group">
-                                <label class="control-label col-md-2">Id Factura</label>
-                                @*@Html.LabelFor(model => model.fact_Id, "fact_Id", new { @class = "control-label col-md-2" })*@
-                                <div class="col-md-10">
-                                    @Html.DropDownList("fact_Id", String.Empty)
-                                    @Html.ValidationMessageFor(model => model.fact_Id)
-                                </div>
-                            </div>
+                            @*-------------------FIN-OCULTOS--------------------*@
 
-                            @*<div class="form-group">
-                        <label class="control-label col-md-2">Usuario Crea</label>
-                        @Html.LabelFor(model => model.ped_UsuarioCrea, "ped_UsuarioCrea", new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            @Html.DropDownList("ped_UsuarioCrea", String.Empty)
-                            @Html.ValidationMessageFor(model => model.ped_UsuarioCrea)
                         </div>
-                    </div>
+                        @Html.Partial("_ListPedidoDetalle", new tbPedidoDetalle())
 
-                    <div class="form-group">
-                        <label class="control-label col-md-2">Fecha Crea</label>
-                        @Html.LabelFor(model => model.ped_FechaCrea, new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            @Html.EditorFor(model => model.ped_FechaCrea)
-                            @Html.ValidationMessageFor(model => model.ped_FechaCrea)
-                        </div>
-                    </div>
 
-                    <div class="form-group">
-                        <label class="control-label col-md-2">Usuario Modifica</label>
-                        @Html.LabelFor(model => model.ped_UsuarioModifica, "ped_UsuarioModifica", new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            @Html.DropDownList("ped_UsuarioModifica", String.Empty)
-                            @Html.ValidationMessageFor(model => model.ped_UsuarioModifica)
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="control-label col-md-2">Fecha Modifica</label>
-                        @Html.LabelFor(model => model.ped_FechaModifica, new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            @Html.EditorFor(model => model.ped_FechaModifica)
-                            @Html.ValidationMessageFor(model => model.ped_FechaModifica)
-                        </div>
-                    </div>*@
-
-                            <div class="form-group">
-                                <div class="col-md-offset-2 col-md-10">
-                                    <input type="submit" value="Guardar" class="btn btn-primary" />
-                                    @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
-                                </div>
+                        <div class="form-group">
+                            <div class="col-md-offset-5 col-md-10">
+                                <input id="Save" type="submit" value="Guardar" class="btn btn-primary" />
+                                @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
                             </div>
                         </div>
                     }
-
-
-                  
-                    <div class="ibox-content">
-                        <br />
-                        <h2>Pedido Detalle</h2>
-                        <div class="ibox-content">
-                            <table class="table table-striped table-bordered table-hover dataTables-example">
-                                <thead>
-                                    <tr>
-                                        <th>Id Pedido Detalle</th>
-                                        <th>Id Pedido</th>
-                                        <th>Código Producto</th>
-                                        <th>Descripción</th>
-                                        <th>Cantidad</th>
-                                        <th>Cantidad Facturada</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr class="gradeX">
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td class="center"></td>
-                                        <td class="center"></td>
-                                        <td class="center"></td>
-                                    </tr>
-
-                                    <div class="form-group">
-                                        <div class="col-md-offset-10 col-md-2">
-                                            <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#ModalAgregarPedidoDetalle">Agregar Pedido Detalle</button>
-                                            
-
-                                        </div>
-                                    </div>
-                                </tbody>
-                            </table>
-                            
-                        </div>
-
-
-                    </div>
-                    </div>
-
-
-                  
+                </div>
+            </div>
         </div>
     </div>
- </div>
-
-
     <div>
-        <div class="modal fade" id="ModalAgregarPedidoDetalle" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal fade" id="ModalAgregarClientes" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
-                        <h4 class="modal-title" id="myModalLabel"> Pedido Detalle</h4>
+                        <h4 class="modal-title" id="myModalLabel">Agregar Cliente</h4>
                     </div>
                     <div class="modal-body" id="frmEditarMunicipios">
-                        @Html.Partial("_CreatePedidoDetalle", new ERP_ZORZAL.Models.tbPedidoDetalle())
+                        @Html.Partial("_IndexCliente", (List<tbCliente>)ViewBag.Cliente)
                     </div>
                 </div>
             </div>
         </div>
     </div>
- 
+</div>
 
+<script type="text/javascript">
+    jQuery('input,select').each(function () {
+        var req = jQuery(this).attr('data-val-required');
+        var label = jQuery('label[for="' + jQuery(this).attr('id') + '"]');
+        var text = label.text();
+        if (text.length > 0) {
+            label.append('<span style="color:red"> *</span>');
+        }
+    });
+
+    function validar(e) {
+        tecla = (document.all) ? e.keyCode : e.which;
+        tecla = String.fromCharCode(tecla)
+        return /^[0-9\-]+$/.test(tecla);
+    }
+</script>
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+    <script>
+        $(document).ready(function () {
+            $("#pedd_Cantidad").val('');
+        });
+    </script>
+    <script src="~/Scripts/app/SavePedidoDetalle.js"></script>
+    <script>
+        $.datepicker.regional['es'] = {
+            closeText: 'Cerrar',
+            prevText: '< Ant',
+            nextText: 'Sig >',
+            currentText: 'Hoy',
+            monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+            monthNamesShort: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
+            dayNames: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
+            dayNamesShort: ['Dom', 'Lun', 'Mar', 'Mié', 'Juv', 'Vie', 'Sáb'],
+            dayNamesMin: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sá'],
+            weekHeader: 'Sm',
+            dateFormat: 'mm/dd/yy',
+            firstDay: 1,
+            isRTL: false,
+            showMonthAfterYear: false,
+            yearSuffix: ''
+        };
+        $.datepicker.setDefaults($.datepicker.regional['es']);
 
+        $(function () {
+            $("#ped_FechaElaboracion").datepicker({ dateFormat: 'mm/dd/yy' }).datepicker('setDate', new Date()).datepicker("destroy");
+            $("#ped_FechaEntrega").datepicker({ dateFormat: 'mm/dd/yy', minDate: 0 }).datepicker('setDate', new Date());
+        });
+
+
+    </script> 
+
+    <script src="~/Scripts/app/Datepicker.js"></script>
+    <script src="~/Scripts/app/FacturaDetalle.js"></script>
+    <script src="~/Scripts/app/ProductoListaPrecios.js"></script>
+    <script src="~/Scripts/app/Clientes-Pedido-Credito.js"></script>
+    <script>
+        $("#pedd_Cantidad").on("keypress keyup blur", function (event) {
+            this.value = this.value.replace(/[a-záéíóúüñ#/=]+/ig, "");
+            this.value = this.value.replace(/[a-záéíóúüñ#/=\s-+*,.;]+/ig, "");
+        });
+    </script>
+    <script>
+        $("#pedd_Cantidad").on("keypress keyup blur", function (event) {
+            this.value = this.value.replace(/[a-záéíóúüñ#/=]+/ig, "");
+            this.value = this.value.replace(/[a-záéíóúüñ#/=\s-+*,.;]+/ig, "");
+        });
+
+    </script>
+
+<script>
+        $('#Save').click(function () {
+        var Identificacion = $('#cliente_Identificacionxx').val();
+        var diascredito = $('#fact_DiasCredito').val();
+
+
+        console.log(Identificacion)
+        if (Identificacion == "") {
+            valido = document.getElementById('err_cliente');
+            valido.innerText = "Seleccione un cliente";
+            return false;
+        }
+        else if ($('#pedd_Cantidad').is(':checked') && diascredito <= 0) {
+            valido = document.getElementById('DiasError');
+            valido.innerText = "Los dias de credito no deben de ser menores o iguales a 0.";
+            return false;
+        }
+        else if ($('#PedidoDetalle >tbody >tr').length <=0) {
+            $('#alerta').show();
+           return false;
+        }
+        else {
+            return true;
+        }
+    });
+    </script>
+
+
+<script src="~/Scripts/jquery.mask.min.js"></script>
+<script src="~/Scripts/jquery.mask.js"></script>
+<script>
+        $("#pedd_Cantidad").mask(
+'PN',
+{
+    translation:
+       {
+           P: { pattern: /[1-9]/ },
+           N: { pattern: /\d/, recursive: true }
+       }
 }
+);
+</script>
+}
+}
+
+
+
+

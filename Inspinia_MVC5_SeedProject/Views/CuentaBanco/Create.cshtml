@@ -1,27 +1,18 @@
-﻿@model ERP_ZORZAL.Models.tbCuentasBanco
+﻿@model ERP_GMEDINA.Models.tbCuentasBanco
 
 @{
     ViewBag.Title = "Create";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
 
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
-        <h2>Cuentas Banco</h2>
-        @*<ol class="breadcrumb">
-            <li>
-                @Html.ActionLink("List", "Index")
-            </li>
-            <li class="active">
-                <strong>Create</strong>
-            </li>
-        </ol>*@
+        <h2>Cuentas Bancarias</h2>
+
     </div>
     <div class="col-sm-8">
         <div class="title-action">
-            <a href="@Url.Action("Index","CuentaBanco")">Regresar</a>
-			@*@Html.ActionLink("Regresar", "Index", null, new { @class = "btn btn-primary"})*@
+            <a href="@Url.Action("Index", "CuentaBanco")">Regresar</a>
         </div>
     </div>
 </div>
@@ -33,134 +24,140 @@
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h5>Ingresar Cuenta Banco  </h5>
+                    <h5>Registrar Cuenta Bancaria  </h5>
                 </div>
                 <div class="ibox-content">
 
-				@using (Html.BeginForm()) 
-{
-    @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        @Html.ValidationSummary(true)
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.bcta_Id, new { @class = "control-label col-md-2" })
-            <div class="col-md-5">
-                @Html.EditorFor(model => model.bcta_Id, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
-                <p style="color:red">@Html.ValidationMessageFor(model => model.bcta_Id)</p>
-            </div>
-        </div>
+                        <div class="form-horizontal">
+                            <p style="color:red">@Html.ValidationSummary(true)</p>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.ban_Id, "Banco", new { @class = "control-label col-md-2" })
-            <div class="col-md-5">
-                @*@Html.DropDownList("ban_Id", String.Empty)*@
-                 @Html.DropDownList("ban_Id", null, "Seleccione Banco", new { @class = "form-control" })
-                <p style="color:red">@Html.ValidationMessageFor(model => model.ban_Id)</p>
-</div>
-        </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.ban_Id, "Banco", new { @class = "control-label col-md-2" })
+                                <div class="col-md-5">
+                                    @Html.DropDownList("ban_Id", null, "Seleccione Banco", new { @class = "form-control" })
+                                    <p style="color:red">@Html.ValidationMessageFor(model => model.ban_Id)</p>
+                                </div>
+                            </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.bcta_Numero, new { @class = "control-label col-md-2" })
-            <div class="col-md-5">
-                @Html.EditorFor(model => model.bcta_Numero)
-                <p style="color:red"> @Html.ValidationMessageFor(model => model.bcta_Numero)</p>
-            </div>
-        </div>
-        <div class="form-group">
-            @Html.LabelFor(model => model.mnda_Id, new { @class = "control-label col-md-2" })
-            <div class="col-md-5">
-                @*@Html.EditorFor(model => model.mnda_Id)*@
-                @Html.DropDownList("mnda_Id", null, "Seleccione Moneda", new { @class = "form-control" })
-                <p style="color:red">@Html.ValidationMessageFor(model => model.mnda_Id)</p>
-</div>
-        </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.bcta_Numero, new { @class = "control-label col-md-2" })
+                                <div class="col-md-5">
+                                    @Html.EditorFor(model => model.bcta_Numero, new { htmlAttributes = new { @autocomplete = "off", maxlength = 50, @style = "text-transform:uppercase;", @onkeyup = "this.value=Copy(this.value)",  @onkeypress = "return validar(event)" } })
+                                    <p style="color:red"> @Html.ValidationMessageFor(model => model.bcta_Numero)</p>
+                                </div>
+                            </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.bcta_TipoCuenta, new { @class = "control-label col-md-2" })
-            <div class="col-md-5">
-                @Html.DropDownListFor(model => model.bcta_TipoCuenta, new SelectList(Model.TipoCuentaList, "ID_TIPOCUENTA", "DESCRIPCION"), "Seleccione Tipo Cuenta", new { @class = "form-control" })
-                <p style="color:red">@Html.ValidationMessageFor(model => model.bcta_TipoCuenta)</p>
-</div>
-        </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.mnda_Id, new { @class = "control-label col-md-2" })
+                                <div class="col-md-5">
+                                    @Html.DropDownList("mnda_Id", null, "Seleccione Moneda", new { @class = "form-control" })
+                                    <p style="color:red">@Html.ValidationMessageFor(model => model.mnda_Id)</p>
+                                </div>
+                            </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.bcta_TotalCredito, new { @class = "control-label col-md-2" })
-            <div class="col-md-5">
-                @Html.EditorFor(model => model.bcta_TotalCredito)
-                <p style="color:red">@Html.ValidationMessageFor(model => model.bcta_TotalCredito)</p>
-</div>
-        </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.bcta_TipoCuenta, "Tipo Cuenta", htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-5">
+                                    <select class="form-control" id="bcta_TipoCuenta" name="bcta_TipoCuenta">
+                                        <option value="" selected disabled>Seleccione Tipo Cuenta</option>
+                                        <option value="1">AHORRO</option>
+                                        <option value="0">CHEQUES</option>
+                                    </select>
+                                    @Html.ValidationMessageFor(model => model.bcta_TipoCuenta, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.bcta_TotalDebito,  new { @class = "control-label col-md-2" })
-            <div class="col-md-5">
-                @Html.EditorFor(model => model.bcta_TotalDebito)
-                <p style="color:red">@Html.ValidationMessageFor(model => model.bcta_TotalDebito)</p>
-            </div>
-        </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.bcta_TotalCredito, new { @class = "control-label col-md-2" })
+                                <div class="col-md-5">
+                                    @Html.EditorFor(model => model.bcta_TotalCredito, new { htmlAttributes = new { @autocomplete = "off", @class = "form-control", @value = "value" } })
+                                    <p style="color:red">@Html.ValidationMessageFor(model => model.bcta_TotalCredito)</p>
+                                </div>
+                            </div>
 
-        <div class="form-group">
-        @Html.LabelFor(model => model.bcta_FechaApertura, new { @class = "control-label col-md-2" })
-        <div class="col-md-5">
-            @Html.EditorFor(model => model.bcta_FechaApertura , "{0:yyyy-MM-dd}", new { htmlAttributes = new { @id="fechaapertura"} })
-            <p style="color:red">@Html.ValidationMessageFor(model => model.bcta_FechaApertura)</p>
-        </div>
-    </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.bcta_TotalDebito, new { @class = "control-label col-md-2" })
+                                <div class="col-md-5">
+                                    @Html.EditorFor(model => model.bcta_TotalDebito, new { htmlAttributes = new { @autocomplete = "off",@class = "form-control", @value = "value" } })
+                                    <p style="color:red">@Html.ValidationMessageFor(model => model.bcta_TotalDebito)</p>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.bcta_FechaApertura, new { @class = "control-label col-md-2" })
+                                <div class="col-md-5">
+                                    @Html.EditorFor(model => model.bcta_FechaApertura, "{0:mm-dd-yyyy}", new { @autocomplete = "off", htmlAttributes = new { maxlength = 10 } })
+                                    <p style="color:red">@Html.ValidationMessageFor(model => model.bcta_FechaApertura)</p>
+                                </div>
+                            </div>
 
 
-    @*<div class="form-group">
-        @Html.LabelFor(model => model.bcta_UsuarioCrea, new { @class = "control-label col-md-2" })
-        <div class="col-md-5">
-            @Html.EditorFor(model => model.bcta_UsuarioCrea)
-            @Html.ValidationMessageFor(model => model.bcta_UsuarioCrea)
-        </div>
-    </div>
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.bcta_FechaCrea, new { @class = "control-label col-md-2" })
-        <div class="col-md-5">
-            @Html.EditorFor(model => model.bcta_FechaCrea)
-            @Html.ValidationMessageFor(model => model.bcta_FechaCrea)
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.bcta_UsuarioModifica, new { @class = "control-label col-md-2" })
-        <div class="col-md-5">
-            @Html.EditorFor(model => model.bcta_UsuarioModifica)
-            @Html.ValidationMessageFor(model => model.bcta_UsuarioModifica)
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.bcta_FechaModifica, new { @class = "control-label col-md-2" })
-        <div class="col-md-5">
-            @Html.EditorFor(model => model.bcta_FechaModifica)
-            @Html.ValidationMessageFor(model => model.bcta_FechaModifica)
-        </div>
-    </div>*@
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Guardar" class="btn btn-primary" />
-				@Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white"})
-            </div>
-        </div>
-    </div>
-}
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <input type="submit" value="Guardar" class="btn btn-primary" />
+                                    @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
+                                </div>
+                            </div>
+                        </div>
+                    }
 
                 </div>
             </div>
         </div>
     </div>
- </div>
+</div>
 
- 
+
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+
+    <script>
+  
+
+////Asterisco
+
+    jQuery('input,select').each(function () {
+        var req = jQuery(this).attr('data-val-required');
+        var label = jQuery('label[for="' + jQuery(this).attr('id') + '"]');
+        var text = label.text();
+        if (text.length > 0) {
+            label.append('<span style="color:red"> *</span>');
+        }
+    });
+
+
+
+
+        //Número CAI
+        function validar(e) {
+            tecla = (document.all) ? e.keyCode : e.which;
+            tecla = String.fromCharCode(tecla)
+            return /^[a-z0-9A-Z\-]+$/.test(tecla);
+        }
+    </script>
 }
-<script src="~/Scripts/jquery-3.3.1.js"></script>
+<script src="~/Scripts/jquery-3.4.1.js"></script>
 <script src="~/Scripts/app/Datepicker.js"></script>
+<script src="~/Scripts/app/CuentaBanco.js"></script>
+<script src="~/Scripts/app/ComandoGuardar.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

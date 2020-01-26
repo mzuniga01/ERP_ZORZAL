@@ -1,0 +1,93 @@
+﻿@model IEnumerable<ERP_GMEDINA.Models.UDV_Vent_ArqueoCaja_Select>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-sm-4">
+        <h2>Arqueo Caja</h2>
+        <ol class="breadcrumb">
+            <li class="active">
+                <strong></strong>
+            </li>
+        </ol>
+    </div>
+</div>
+
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Listado de Arqueos Cajas</h5>
+					<div class="ibox-tools">
+						@Html.ActionLink("Registrar Arqueo Caja", "Create", null, new { @class = "btn btn-primary"})
+					</div>
+                </div>
+                <div class="ibox-content">
+
+<table class="table table-striped table-responsive table-bordered table-hover" id="DataTable">
+    <thead>
+        <tr>
+            <th>
+               Sucursal
+            </th>
+            <th>
+               Caja
+            </th>
+            <th>
+                Fecha Apertura
+            </th>
+            <th>
+               Fecha Arqueo
+            </th>
+            <th>
+                Fecha Aceptación
+            </th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+
+    <tbody>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.suc_Descripcion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.cja_Descripcion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.mocja_FechaApertura)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.mocja_FechaArqueo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.mocja_FechaAceptacion)
+                </td>
+
+                <td>
+                    @Html.ActionLink("Detalles", "Details", new { id = item.mocja_Id }, new { @class = "btn btn-primary btn-xs" })
+                    @Html.ActionLink("Editar", "Edit", new { id = item.mocja_Id }, new { @class = "btn btn-white btn-xs" })
+                    @Html.ActionLink("Imprimir", "ExportReport", new { id = item.mocja_Id }, new { @class = "btn btn-primary btn-xs" })
+
+                </td>
+            </tr>
+        }
+    </tbody>
+
+</table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+ </div>
+<script src="~/Scripts/jquery-3.4.1.js"></script>
+<script src="~/Scripts/app/MovientoCaja.js"></script>

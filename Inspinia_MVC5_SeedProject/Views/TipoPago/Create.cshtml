@@ -1,25 +1,25 @@
-﻿@model ERP_ZORZAL.Models.tbTipoPago
+﻿@model ERP_GMEDINA.Models.tbTipoPago
 
 @{
     ViewBag.Title = "Create";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<style>
+    .AsteriscoRojo:after {
+        content: "*";
+        color: red;
+    }
+</style>
+
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
-        <h2>Nuevo</h2>
-        <ol class="breadcrumb">
-            <li>
-                @Html.ActionLink("Lista", "Index")
-            </li>
-            <li class="active">
-                <strong>Tipo Pago</strong>
-            </li>
-        </ol>
+        <h2>Tipo de Pago </h2>
+      
     </div>
     <div class="col-sm-8">
         <div class="title-action">
-			@Html.ActionLink("Regresar", "Index", null, new { @class = "btn btn-primary"})
+            <a href="@Url.Action("Index","TipoPago")">Regresar</a>
         </div>
     </div>
 </div>
@@ -31,7 +31,7 @@
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h5>Nuevo Tipo Pago</h5>
+                    <h5>Registrar Tipo de Pago</h5>
                 </div>
                 <div class="ibox-content">
 
@@ -43,10 +43,10 @@
         @Html.ValidationSummary(true)
 
         <div class="form-group">
-            @Html.LabelFor(model => model.tpa_Descripcion, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.tpa_Descripcion)
-                @Html.ValidationMessageFor(model => model.tpa_Descripcion)
+            @Html.LabelFor(model => model.tpa_Descripcion, new { @class = "control-label col-md-2 AsteriscoRojo" })
+            <div class="col-md-5">
+                @Html.EditorFor(model => model.tpa_Descripcion, new { htmlAttributes = new { @class = "form-control", @autocomplete = "off", @style = "text-transform:uppercase;", onkeypress = "return validar(event)" }})
+                @Html.ValidationMessageFor(model => model.tpa_Descripcion, "", new { @style = "color:red" })
             </div>
         </div>
 
@@ -82,10 +82,11 @@
             </div>
         </div>
 
-  
+   
+
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Nuevo" class="btn btn-primary" />
+                <input type="submit" value="Guardar" class="btn btn-primary" />
 				@Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white"})
             </div>
         </div>
@@ -102,4 +103,9 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+<script src="~/Scripts/jquery-3.4.1.js"></script>
+<script src="~/Scripts/app/CaracteresEspeciales.js"></script>
+<script src="~/Scripts/app/TipoPagoDescripcionSoloLetras.js"></script>
+<script src="~/Scripts/app/ComandoGuardar.js"></script>
 }
+

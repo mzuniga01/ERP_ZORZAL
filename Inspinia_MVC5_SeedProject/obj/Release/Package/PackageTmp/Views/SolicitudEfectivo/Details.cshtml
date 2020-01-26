@@ -1,0 +1,265 @@
+﻿@model ERP_GMEDINA.Models.tbSolicitudEfectivo
+@using ERP_GMEDINA.Models
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    #montosSolicitado {
+        font-family: Tahoma, Verdana, Arial;
+        font-size: 11px;
+        color: #707070;
+        background-color: #FFFFFF;
+        border-width: 0;
+    }
+
+    #montoEntregado {
+        font-family: Tahoma, Verdana, Arial;
+        font-size: 11px;
+        color: #707070;
+        background-color: #FFFFFF;
+        border-width: 0;
+    }
+</style>
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-sm-4">
+        <h2>Solicitud Efectivo</h2>
+    </div>
+    <div class="col-sm-8">
+        <div class="title-action">
+            <a href="/SolicitudEfectivo/Index">Regresar</a>
+        </div>
+    </div>
+</div>
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Detalle Solicitud Efectivo</h5>
+                </div>
+                <div class="ibox-content">
+                    @Html.HiddenFor(model => model.solef_Id)
+                    <dl class="dl-horizontal">
+                        <dt>
+                            @Html.DisplayNameFor(model => model.solef_Id)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.solef_Id)
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.tbMovimientoCaja.tbCaja.tbSucursal.suc_Descripcion)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.tbMovimientoCaja.tbCaja.tbSucursal.suc_Descripcion)
+                        </dd>
+                        <dt>
+                            Caja
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.tbMovimientoCaja.tbCaja.cja_Descripcion)
+                        </dd>
+                        <dt>
+                            Id Apertura
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.tbMovimientoCaja.mocja_Id)
+                        </dd>
+                        <dt>
+                            Moneda
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.tbMoneda.mnda_Nombre)
+                        </dd>
+                        <dt>
+                            Fecha de Solicitud
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.solef_FechaCrea)
+                        </dd>
+                        <dt>
+                            Monto Solicitud
+                        </dt>
+                        <dd>
+                            <input type="text" class="input" id="montosSolicitado" readonly size="50">
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.solef_FechaEntrega)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.solef_FechaEntrega)
+                        </dd>
+                        <dt>
+                            Monto Entregado
+                        </dt>
+                        <dd>
+                            <input type="text" class="input" id="montoEntregado" readonly size="50">
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.solef_EsApertura)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.solef_EsApertura)
+                        </dd>
+                    </dl>
+                    @if (Model.solef_FechaEntrega == null)
+                    {
+                        @Html.ActionLink("Editar", "Edit", new { id = Model.solef_Id }, new { @class = "btn btn-primary" })
+                    }
+                    else
+                    {
+
+                    }
+                    <div class="ibox-content">
+                        <div class="table table-responsive">
+                            <table class="table table-bordered" id="TBDetalleSolicitud">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            Denominación
+                                        </th>
+                                        <th>
+                                            Cantidad Solicitada
+                                        </th>
+                                        <th>
+                                            Monto Solicitado
+                                        </th>
+                                        <th>
+                                            Cantidad Entregada
+                                        </th>
+                                        <th>
+                                            Monto Entregado
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="ibox-content">
+                <table class="table table-striped">
+                    <tr>
+                        <th>Acción</th>
+                        <th>Usuario</th>
+                        <th>Fecha</th>
+                    </tr>
+                    <tr>
+                        <td>Creado</td>
+                        <td>
+                            @Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
+                            @Html.DisplayFor(model => model.tbUsuario.usu_Apellidos)
+                        </td>
+                        <td>@Html.DisplayFor(model => model.solef_FechaCrea)</td>
+                    </tr>
+                    <tr>
+                        <td>Modificado</td>
+                        <td>
+                            @Html.DisplayFor(model => model.tbUsuario2.usu_Nombres)
+                            @Html.DisplayFor(model => model.tbUsuario2.usu_Apellidos)
+                        </td>
+                        <td>@Html.DisplayFor(model => model.solef_FechaModifica)</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+        var MontoSolicitado = 0;
+        $("#mitabla tbody tr:nth-child(-n+20)").each(function () {
+            MontoSolicitado += parseFloat($(this).children("td:eq(3)").html());
+        });
+        $("#montosSolicitado").val(MontoSolicitado);
+        var MontoEntregado = 0;
+        $("#mitabla tbody tr:nth-child(-n+5)").each(function () {
+            MontoEntregado += parseFloat($(this).children("td:eq(5)").html());
+        });
+        $("#montoEntregado").val(MontoEntregado);
+    </script>
+    @* -----------------Ocultar Boton si el valor es mayor a 0------------ *@
+    <script>
+        function Cantidad() {
+            if ($('#montoEntregado').val() == 0) {
+                document.getElementById("mnda_Id").disabled = false;
+            }
+        };
+    </script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            GetDenominacions()
+        });
+        function GetDenominacions() {
+            var Solictud = $("#solef_Id").val();
+            $.ajax({
+                type: 'GET',
+                url: '/SolicitudEfectivo/GetDtalle',
+                datatype: 'JSON',
+                data: { 'Solictud': Solictud },
+                success: function (data) {
+                    $('#TBDetalleSolicitud tbody').empty();
+                    $.each(data, function (i, item) {
+                        var rows = "<tr data-id=" + item.soled_Id + ">" +
+
+                            "<td hidden>" + item.soled_Id + "</td>" +
+                            "<td>" + item.deno_Descripcion + "</td>" +
+                            "<td>" + item.soled_CantidadSolicitada + "</td>" +
+                            "<td class='sumTotal'>" + item.MontoSolicitado + "</td>" +
+                            "<td>" + item.soled_CantidadEntregada + "</td>" +
+                            "<td class='MontoEntregado'>" + item.MontoEntregado + "</td>" +
+                            "<td hidden>" + item.deno_Id + "</td>" +                         
+                            "</tr>";
+                        $('#TBDetalleSolicitud tbody').append(rows);
+                        //----------------------------------------------------------
+                        var suma = 0;
+                        var data = [];
+                        //Calculo Total solicitado
+                        $("td.sumTotal").each(function () {
+                            data.push(parseFloat($(this).text()));
+                        });
+                        var suma = data.reduce(function (a, b) { return a + b; }, 0)
+                        $("#montosSolicitado").val(suma);
+                        console.log(data);
+                        console.log('Monto Solicitado: ' + suma);
+                        //---------------------------------------------
+                        //Calcilo total Monto entregado
+                        var sumaentregada = 0;
+                        var datos = [];
+
+                        $("td.MontoEntregado").each(function () {
+                            datos.push(parseFloat($(this).text()));
+                        });
+                        var sumaentregada = datos.reduce(function (a, b) { return a + b; }, 0)
+                        $("#montoEntregado").val(sumaentregada);
+
+                        console.log(datos);
+                        console.log('Monto Entregado: ' + sumaentregada);
+                        //-----------------------------------------
+                    });
+                },
+                error: function (data) { alert(data.responseText); }
+            });
+        };
+    </script>
+}
+
+
+
+
+
+
+
+
+
+

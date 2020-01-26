@@ -1,5 +1,4 @@
-﻿@model IEnumerable<ERP_ZORZAL.Models.tbFactura>
-
+﻿@model IEnumerable<ERP_GMEDINA.Models.UDV_Vent_Busqueda_Factura>
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -8,191 +7,191 @@
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
         <h2>Factura</h2>
-        @*<ol class="breadcrumb">
-            <li class="active">
-                <strong>tbFactura</strong>
-            </li>
-        </ol>*@
     </div>
 </div>
 
 
-<div class="wrapper wrapper-content animated fadeInRight">
+<div class="wrapper wrapper-content">
     <div class="row">
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
                     <h5>Listado de Facturas</h5>
                     <div class="ibox-tools">
-                        <a href="@Url.Action("Index","EstadoFactura")" class="btn btn-primary btn-xs">Estado Factura</a>
-                        @Html.ActionLink("Registrar Factura", "Create", null, new { @class = "btn btn-primary btn-xs" })
+                       @Html.ActionLink("Registrar Factura", "Create", null, new { @class = "btn btn-primary btn-sm" })
                     </div>
-                    <div class="ibox-content">
-
-                        <div class="form-horizontal">
-                            <div class="form-group">
-                                <label class="control-label col-md-2">RTN-Identidad</label>
-                                <div class="col-md-4">
-                                    <input type="text" class="form-control " />
-                                </div>
-                                <label class="control-label col-md-1">Factura</label>
-                                <div class="col-md-4">
-                                    <input type="text" class="form-control" />
-                                </div>
+                </div>
+                <div class="ibox-content">
+                  @using (Html.BeginForm())
+                  {
+                    <div class="form-horizontal">
+                        <div class="form-group">
+                            <label class="control-label col-md-2">Cliente</label>
+                            <div class="col-md-4">
+                                <input type="text" value="@ViewBag.cliente" id="cliente" autocomplete="off" name="cliente" class="form-control" onkeypress = "return validar(event)" style="text-transform:uppercase" />
                             </div>
-                            <div class="form-group">
-                                <label class="control-label col-md-2">Nombre Cliente</label>
-                                <div class="col-md-4">
-                                    <input type="text" class="form-control " />
-                                </div>
-                                <label class="control-label col-md-1">Fecha </label>
-                                <div class="col-md-3">
-                                    <input type="text" class="form-control" />
-                                </div>
-                                <div class="">
-                                    <input type="button" value="Buscar" class="btn btn-primary btn-xl" />
-                                </div>
+                            <label class="control-label col-md-1">Fecha</label>
+                            <div class="col-md-4">
+                                <input type="text" id="fecha" value="@ViewBag.fecha" name="fecha" autocomplete="off" class="form-control" maxlength="10" />
                             </div>
                         </div>
-
-                        <table id="DataTable1" class="table table table-striped  table-bordered">
-                            <thead>
-                                <tr>
-                                    <th>
-                                        @Html.DisplayNameFor(model => model.suc_Id)
-                                    </th>
-                                    <th>
-                                        @Html.DisplayNameFor(model => model.cja_Id)
-                                    </th>
-                                    <th>
-                                        @Html.DisplayNameFor(model => model.pemi_NumeroCAI)
-                                    </th>
-                                    <th>
-                                        @Html.DisplayNameFor(model => model.fact_Codigo)
-                                    </th>
-                                    @*<th>
-                                            @Html.DisplayNameFor(model => model.fact_Fecha)
-                                        </th>*@
-                                    <th>
-                                        @Html.DisplayNameFor(model => model.clte_Id)
-                                    </th>
-                                    <th>
-                                        @Html.DisplayNameFor(model => model.esfac_Id)
-                                    </th>
-                                    @*<th>
-                                            @Html.DisplayNameFor(model => model.fact_AlCredito)
-                                        </th>
-                                        <th>
-                                            @Html.DisplayNameFor(model => model.fact_DiasCredito)
-                                        </th>
-                                        <th>
-                                            @Html.DisplayNameFor(model => model.fact_PorcentajeDescuento)
-                                        </th>
-                                        <th>
-                                            @Html.DisplayNameFor(model => model.fact_AutorizarDescuento)
-                                        </th>
-                                        <th>
-                                            @Html.DisplayNameFor(model => model.fact_Vendedor)
-                                        </th>*@
-                                    @*<th>
-                                            @Html.DisplayNameFor(model => model.clte_RTN_Identidad_Pasaporte)
-                                        </th>*@
-                                    @*<th>
-                                            @Html.DisplayNameFor(model => model.clte_Nombres)
-                                        </th>*@
-                                    @*<th>
-                                            @Html.DisplayNameFor(model => model.fact_UsuarioCrea)
-                                        </th>
-                                        <th>
-                                            @Html.DisplayNameFor(model => model.fact__FechaCrea)
-                                        </th>
-                                        <th>
-                                            @Html.DisplayNameFor(model => model.fact__UsuarioModifica)
-                                        </th>
-                                        <th>
-                                            @Html.DisplayNameFor(model => model.fact_FechaModifica)
-                                        </th>*@
-                                    <th> Acciones</th>
-                                </tr>
-                            </thead>
-
-                            <tbody>
-                                @foreach (var item in Model)
-                                {
-                                    <tr>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.suc_Id)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.cja_Id)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.pemi_NumeroCAI)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.fact_Codigo)
-                                        </td>
-                                        @*<td>
-                                            @Html.DisplayFor(modelItem => item.fact_Fecha)
-                                        </td>*@
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.clte_Id)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.esfac_Id)
-                                        </td>
-                                        @*<td>
-                                            @Html.DisplayFor(modelItem => item.fact_AlCredito)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.fact_DiasCredito)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.fact_PorcentajeDescuento)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.fact_AutorizarDescuento)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.fact_Vendedor)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.clte_RTN_Identidad_Pasaporte)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.clte_Nombres)
-                                        </td>*@
-                                        @*<td>
-                                                @Html.DisplayFor(modelItem => item.fact_UsuarioCrea)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.fact__FechaCrea)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.fact__UsuarioModifica)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.fact_FechaModifica)
-                                            </td>*@
-                                        <td>
-                                            @Html.ActionLink("Details", "Details", new { id = item.fact_Id }, new { @class = "btn btn-primary btn-sm" })
-                                            @Html.ActionLink("Edit", "Edit", new { id = item.fact_Id }, new { @class = "btn btn-white btn-sm" })
-                                            @Html.ActionLink("Delete", "Delete", new { id = item.fact_Id }, new { @class = "btn btn-white btn-sm" })
-                                        </td>
-                                    </tr>
-                                }
-                            </tbody>
-                        </table>
-
+                        <div class="form-group">
+                            <label class="control-label col-md-2">Caja</label>
+                            <div class="col-md-4">
+                                <input type="text" id="caja" value="@ViewBag.caja" name="caja" autocomplete="off" class="form-control" onkeyup = "format(this)" onkeypress = "return validar(event)" style="text-transform:uppercase" />
+                             </div>
+                            <div class="">
+                                <button id="search" type="submit" class="btn btn-primary btn-sm">Buscar</button>
+                            </div>
+                        </div>
                     </div>
+                  }
+ 
+                    <table id="DataTable1" class="table table table-striped  table-bordered">
+                        <thead>
+                            <tr>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.fact_Codigo)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.fact_Fecha)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.clte_Nombres)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.clte_Identificacion)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.cja_Id)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.esfac_Id)
+                                </th>
+                                <th>Acciónes</th>
+                            </tr>
+                        </thead>
+                        <tbody id="FacturaTbody">
+
+                            @foreach (var item in Model)
+                            {
+                                var sucursal = ViewBag.suc_Id;
+
+
+                                if (item.fact_EsAnulada)
+                                {
+                                    item.esfac_Descripcion = "Anulada";
+                                }
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.fact_Codigo)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.fact_Fecha)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.clte_Nombres)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.clte_Identificacion)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.cja_Descripcion)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.esfac_Descripcion)
+                                    </td>
+                                    @if (item.fact_EsAnulada == true)
+                                    {
+                                        <td>
+                                            @Html.ActionLink("Detalle", "Details", new { id = item.fact_Id }, new { @class = "btn btn-primary btn-xs" })
+
+                                            <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="No se puede Editar, Está Anulado">
+                                                <button class="btn btn-white btn-xs" style="pointer-events: none;" type="button">Editar</button>
+                                            </span>
+                                            <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="No se puede Imprimir, factura anulada">
+                                                <button class="btn btn-primary btn-xs" style="pointer-events: none;" type="button">Imprimir</button>
+                                            </span>
+                                        </td>
+
+                                    }
+                                    else if (item.esfac_Id == 2)
+                                    {
+                                        <td>
+                                            @Html.ActionLink("Detalle", "Details", new { id = item.fact_Id }, new { @class = "btn btn-primary btn-xs" })
+
+                                            <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="No se puede Editar, Está Impresa">
+                                                <button class="btn btn-white btn-xs" style="pointer-events: none;" type="button">Editar</button>
+                                            </span>
+                                            @Html.ActionLink("Imprimir", "ExportReport", new { id = item.fact_Id }, new { @class = "btn btn-primary btn-xs", target = "_blank" })
+                                        </td>
+                                    }
+                                    else
+                                    {
+                                        <td>
+                                            @Html.ActionLink("Detalle", "Details", new { id = item.fact_Id }, new { @class = "btn btn-primary btn-xs" })
+                                            @Html.ActionLink("Editar", "Edit", new { id = item.fact_Id }, new { @class = "btn btn-primary btn-xs" })
+                                            @Html.ActionLink("Imprimir", "ExportReport", new { id = item.fact_Id }, new { @class = "btn btn-primary btn-xs", target = "_blank" })
+                                        </td>
+                                        
+
+                                    }
+                                </tr>
+                                
+                            }
+                        </tbody>
+                    </table>
+
                 </div>
             </div>
         </div>
     </div>
 </div>
 
+<div class="modal fade" id="ModalImprimir" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Imprimir Factura</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                ¿Desea Imprimir Factura?
+            </div>
+            <div class="modal-footer">
+                <a href="@Url.Action("Index","Factura")" class="btn btn-primary">Si</a>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+            </div>
+        </div>
+    </div>
+</div>
 
-<script src="~/Scripts/jquery-3.3.1.js"></script>
-<script src="~/Scripts/app/DataTable1.js"></script>
+<script src="~/Scripts/jquery-3.4.1.js"></script>
+<script src="~/Scripts/app/Datepicker.js"></script>
+<script src="~/Scripts/app/CaracteresEspeciales.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#DataTable1').DataTable(
+        {
+            "searching": false,
+
+            "oLanguage": {
+                "oPaginate": {
+                    "sNext": "Siguiente",
+                    "sPrevious": "Anterior",
+                },
+                "sZeroRecords": "No se encontraron resultados",
+                "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
+                "sInfoEmpty": "Mostrando 0 de 0 Entradas",
+                "sSearch": "Buscar",
+                "sLengthMenu": "Mostrar _MENU_ registros por página",
+                "sInfo": "Mostrando _START_ a _END_ Entradas",
+            }
+        });
+    });
+
+</script>
 
 

@@ -1,4 +1,5 @@
-﻿@model ERP_ZORZAL.Models.tbPago
+﻿@model ERP_GMEDINA.Models.tbPago
+@using ERP_GMEDINA.Models
 
 @{
     ViewBag.Title = "Details";
@@ -7,15 +8,13 @@
 
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
-        <h2>Detalle Pago</h2>
-        <ol class="breadcrumb">
-            <li>
-                @Html.ActionLink("Lista", "Index")
-            </li>
-            <li class="active">
-                <strong>Detalle Pago</strong>
-            </li>
-        </ol>
+        <h2>Detalles de Pagos</h2>
+      
+    </div>
+    <div class="col-sm-8">
+        <div class="title-action">
+            @Html.ActionLink("Regresar", "Index", null, new { @class = "" })
+        </div>
     </div>
 </div>
 
@@ -27,93 +26,243 @@
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h5>Detalle Pago</h5>
+                    <h5>Detalles de Pagos</h5>
                 </div>
                 <div class="ibox-content">
 
 
-				    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.pago_Totalpagos)
-        </dt>
+                    <dl class="dl-horizontal">
+                        <dt>
+                            @Html.DisplayNameFor(model => model.pago_FechaElaboracion)
+                        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.pago_Totalpagos)
-        </dd>
+                        <dd>
+                            @Html.DisplayFor(model => model.pago_FechaElaboracion)
+                        </dd>
+                        <dt>
+                            Factura
+                        </dt>
+                        <dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.pago_Totalcambio)
-        </dt>
+                            @Html.DisplayFor(model => model.tbFactura.fact_Codigo)
+                        </dd>
+                        <dt>
+                            Cliente
+                        </dt>
+                        <dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.pago_Totalcambio)
-        </dd>
+                            @Html.DisplayFor(model => model.tbFactura.clte_Nombres)
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.tbFactura.tbCliente.clte_Identificacion)
+                        </dt>
+                        <dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.pago_Emisor)
-        </dt>
+                            @Html.DisplayFor(model => model.tbFactura.tbCliente.clte_Identificacion)
+                        </dd>
+                        <dt>
+                            Tipo Pago
+                            
+                        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.pago_Emisor)
-        </dd>
+                        <dd>
+                            @Html.DisplayFor(model => model.tbTipoPago.tpa_Descripcion)
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.pago_SaldoAnterior)
+                        </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.pago_Cuenta)
-        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.pago_SaldoAnterior)
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.pago_TotalPago)
+                        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.pago_Cuenta)
-        </dd>
+                        <dd>
+                            @Html.DisplayFor(model => model.pago_TotalPago)
+                        </dd>
+                        <di id="dEfectivo" name="dEfectivo">
+                            <dt>
+                                @Html.DisplayNameFor(model => model.pago_TotalCambio)
+                            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.pago_FechaVencimiento)
-        </dt>
+                            <dd>
+                                @Html.DisplayFor(model => model.pago_TotalCambio)
+                            </dd>
+                        </di>
+                        <div id="dTCD" name="dTCD">
+                            <dt>
+                                @Html.DisplayNameFor(model => model.pago_Emisor)
+                            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.pago_FechaVencimiento)
-        </dd>
+                            <dd>
+                                @Html.DisplayFor(model => model.pago_Emisor)
+                            </dd>
+                            <dt>
+                                @Html.DisplayNameFor(model => model.pago_FechaVencimiento)
+                            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.pago_Titular_)
-        </dt>
+                            <dd>
+                                @Html.DisplayFor(model => model.pago_FechaVencimiento)
+                            </dd>
+                            <dt>
+                                @Html.DisplayNameFor(model => model.pago_Titular)
+                            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.pago_Titular_)
-        </dd>
-     
-        <dt>
-            @Html.DisplayNameFor(model => model.tbFactura.cja_Codigo)
-        </dt>
+                            <dd>
+                                @Html.DisplayFor(model => model.pago_Titular)
+                            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.tbFactura.cja_Codigo)
-        </dd>
+                        </div>
+                        <div id="dCheque" name="dCheque">
+                            <dt>
+                                @Html.DisplayNameFor(model => model.pago_Emisor)
+                            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.tbTipoPago.tpa_Descripcion)
-        </dt>
+                            <dd>
+                                @Html.DisplayFor(model => model.pago_Emisor)
+                            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.tbTipoPago.tpa_Descripcion)
-        </dd>
+                            <dt>
+                                @Html.DisplayNameFor(model => model.pago_Titular)
+                            </dt>
 
-    </dl>
+                            <dd>
+                                @Html.DisplayFor(model => model.pago_Titular)
+                            </dd>
+                            <dt>
+                                @Html.DisplayNameFor(model => model.tbCuentasBanco.bcta_Numero)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.tbCuentasBanco.bcta_Numero)
+                            </dd>
+
+                        </div>
+
+                        @Html.HiddenFor(model => model.tbTipoPago.tpa_Id)
 
 
-	    @Html.ActionLink("Editar", "Edit", new { id = Model.pago_Id }, new { @class = "btn btn-primary"})
-    @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-white"})
+                    </dl>
+                    @if (Model.pago_EstaAnulado == false)
+                    {
 
+                    @Html.ActionLink("Editar", "Edit", new { id = Model.pago_Id }, new { @class = "btn btn-primary" }) 
+
+                    @Html.ActionLink("Imprimir", "ExportReport", new { id = Model.pago_Id }, new { @class = "btn btn-primary", @id = "bottonImprimir", @name = "bottonImprimir" })
+                    }
+                    else
+                    {
+                        <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="No se puede Editar, esta Anulado">
+                            <button class="btn btn-primary" style="pointer-events: none;" type="button" disabled>Editar</button>
+                        </span>
+
+                        <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="No se puede Imprimir, esta Anulado">
+                            <button id="bottonImprimir" class="btn btn-primary" style="pointer-events: none;" type="button" disabled>Imprimir</button>
+                        </span>
+                    }
+                    <br />
+                </div>
+            </div>
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Auditoría</h5>
+                </div>
+                <div class="ibox-content">
+                    <table class="table table table-striped  table-bordered">
+                        <tr>
+                            <th>Acción</th>
+                            <th>Usuario</th>
+                            <th>Fecha</th>
+                        </tr>
+                        <tr>
+                            <td>Creado</td>
+                            <td>
+                                @Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
+                                @Html.DisplayFor(model => model.tbUsuario.usu_Apellidos)
+                            </td>
+                            <td>@Html.DisplayFor(model => model.pago_FechaCrea)</td>
+                        </tr>
+                        <tr>
+                            <td>Modificado</td>
+                            <td>
+                                @Html.DisplayFor(model => model.tbUsuario1.usu_Nombres)
+                                @Html.DisplayFor(model => model.tbUsuario1.usu_Apellidos)
+                            </td>
+                            <td>@Html.DisplayFor(model => model.pago_FechaModifica)</td>
+                        </tr>
+                    </table>
                 </div>
             </div>
         </div>
     </div>
  </div>
+@* -------------------Modal Imprimir---------------- *@
+<div class="modal fade" id="Imprimir" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Imprimir Comprobante Pago</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                ¿Deseas Imprimir el Comprobante de Pago?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" @*onclick="Anular();"*@ data-dismiss="modal">Si</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 
 
+<script src="~/Scripts/jquery-3.4.1.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+    });
+</script>
+<script>
+    $('#btnImprimir').click(function () {
+        confirm('¿Deseas Imprimir Comproante Pago?');
+    });
 
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+    });
+</script>
+<script >
+    $(document).ready(function () {
 
+        $('#dEfectivo').hide();
+        $('#dTCD').hide();
+        $('#dCheque').hide();
 
+        if ($("#tbTipoPago_tpa_Id").val() == 1) {
+
+            $('#dEfectivo').show();
+            $('#dTCD').hide();
+            $('#dCheque').hide();
+        }
+        else if ($("#tbTipoPago_tpa_Id").val() == 2) {
+            $('#dEfectivo').hide();
+            $('#dTCD').show();
+            $('#dCheque').hide();
+
+        }
+        else {
+            $('#dEfectivo').hide();
+            $('#dTCD').hide();
+            $('#dCheque').show();
+        }
+
+    });
+</script>
 
 
 

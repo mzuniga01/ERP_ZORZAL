@@ -1,0 +1,131 @@
+﻿@model ERP_GMEDINA.Models.tbPedidoDetalle
+@using ERP_GMEDINA.Models
+
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+
+                <div class="ibox-content">
+
+                    <div class="form-horizontal">
+                        @Html.ValidationSummary(true)
+                        <input name="ped_Id" id="ped_Id" type="hidden" value="@ViewBag.ped_idd">
+                        <div class="form-horizontal">
+                            <div class="form-group">
+
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.prod_Codigo, new { @class = "control-label col-md-3" })
+
+                                <div class="col-md-6">
+                                    @Html.EditorFor(model => model.prod_Codigo, new { htmlAttributes = new { @autocomplete = "off", @class = "form-control", @readonly = "readonly"  } })
+                                    <p style="color:red">
+                                        @Html.ValidationMessageFor(model => model.prod_Codigo )
+                                </div>
+                                <div class="col-md-1">
+                                    <button type="button" class="btn btn-primary " data-toggle="modal" data-target="#ModalAgregarProducto"><span class="glyphicon glyphicon-search"></span></button>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.tbProducto.prod_CodigoBarras, "Código Barra", new { @class = "control-label col-md-3" })
+                                <div class="col-md-6">
+                                    @Html.EditorFor(model => model.tbProducto.prod_CodigoBarras, new { htmlAttributes = new { @autocomplete = "off", @class = "form-control", @readonly = "readonly" } })
+                                    @Html.ValidationMessageFor(model => model.tbProducto.prod_CodigoBarras)
+                                </div>
+                            </div>
+
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.tbProducto.prod_Descripcion, new { @class = "control-label col-md-3" })
+                                <div class="col-md-6">
+                                    @Html.EditorFor(model => model.tbProducto.prod_Descripcion, new { htmlAttributes = new { @autocomplete = "off", @class = "form-control", @readonly = "readonly" } })
+                                    @Html.ValidationMessageFor(model => model.tbProducto.prod_Descripcion)
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.pedd_Cantidad, new { @class = "control-label col-md-3" })
+                                <div class="col-md-6">
+                                    @Html.EditorFor(model => model.pedd_Cantidad, new { @onkeyup = "soloNumeros(e)" , @id="pedd_Cantidad_Ped"})
+                                    @Html.ValidationMessageFor(model => model.pedd_Cantidad)
+                                </div>
+                            </div>
+
+
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.pedd_CantidadFacturada, new { @class = "control-label col-md-3" , @id="pedd_Cantidad_Ped"})
+
+                                <div class="col-md-6">
+                                    @Html.EditorFor(model => model.pedd_CantidadFacturada, new { htmlAttributes = new { @autocomplete = "off", @class = "form-control", @readonly = "readonly" } })
+                                    @Html.ValidationMessageFor(model => model.pedd_CantidadFacturada)
+                                </div>
+                            </div>
+
+                            <input type="hidden" id="pedd_CantidadFacturada" name="pedd_CantidadFacturada" value="0" />
+
+
+                            <br />
+                            <br />
+
+
+
+
+                            <div class="form-group">
+                                <div class="col-md-offset-5 col-md-10">
+                                    <button class="btn btn-primary" type="submit" id="BtnGuardarDetalle"  tabindex="10"> Guardar </button>
+                                    @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
+                                </div>
+                            </div>
+
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+        <div>
+            <div class="modal fade" id="ModalAgregarProducto" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            <h4 class="modal-title" id="myModalLabel">Agregar Productos</h4>
+                        </div>
+                        <div class="modal-body" id="ModalAgregarDetalle">
+
+                            @Html.Partial("_IndexProducto", (List<tbProducto>)ViewBag.Producto)
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<script src="~/Scripts/app/ProductoListaPrecios.js"></script>
+<script src="~/Scripts/app/SaveDetallePedido.js"></script>
+<script>
+    $('#pedd_CantidadFacturada').val('0');
+</script>
+<script type="text/javascript">
+    $(document).on('click', '#buscar', function () {
+        $('#ModalAgregarDetalle').modal('hide');
+    });
+
+    $(document).on('click', '#seleccionar', function () {
+        $('#ModalAgregarDetalle').modal('show');
+    });
+</script>

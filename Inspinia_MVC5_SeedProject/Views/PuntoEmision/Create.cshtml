@@ -1,6 +1,9 @@
-﻿@model ERP_ZORZAL.Models.tbPuntoEmision
+﻿ @model ERP_GMEDINA.Models.tbPuntoEmision
+
+@using ERP_GMEDINA.Models
 
 @{
+
     ViewBag.Title = "Create";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -8,108 +11,103 @@
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
         <h2>Punto Emisión</h2>
-        @*<ol class="breadcrumb">
-            <li>
-                @Html.ActionLink("List", "Index")
-            </li>
-            <li class="active">
-                <strong>Create</strong>
-            </li>
-        </ol>*@
     </div>
     <div class="col-sm-8">
         <div class="title-action">
             <a href="@Url.Action("Index","PuntoEmision")">Regresar</a>
-			@*@Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-primary"})*@
         </div>
     </div>
 </div>
-
-
 
 <div class="wrapper wrapper-content animated fadeInRight">
     <div class="row">
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h5>Ingresar Punto Emisión</h5>
+                    <h5>Registrar Punto Emisión</h5>
                 </div>
                 <div class="ibox-content">
+                    @using (Html.BeginForm("Create", "PuntoEmision", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
+                        @Html.AntiForgeryToken()
 
-				@using (Html.BeginForm()) 
-{
-    @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        @Html.ValidationSummary(true)
+                        <div class="form-horizontal">
+                           @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            <div class="form-group">
+                                <label class="control-label col-md-2">Número CAI<span style="color:red">*</span></label>
+                                <div class="col-md-7">
+                                    @Html.EditorFor(model => model.pemi_NumeroCAI, new { htmlAttributes = new { @onkeypress = "return validarNúmeroCAI(event)", @style = "text-transform:uppercase;" } })
+                                    <div id="validacionNumeroCAICreate">
+                                        <p id="MessageNumeroCAICreate" style="color:red">@Html.ValidationMessageFor(model => model.pemi_NumeroCAI)</p>
+                                    </div>
+                                </div>
+                            </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.pemi_Id, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.pemi_Id)
-                @Html.ValidationMessageFor(model => model.pemi_Id)
-            </div>
-        </div>
+                            <div class="form-group">
+                                <div class="col-md-12">
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <div class="tabs-container">
+                                                <ul class="nav nav-tabs">
+                                                    <li class="active"><a data-toggle="tab" href="#tab-1">Numeración</a></li>
+                                                </ul>
+                                                <div class="tab-content">
+                                                    <div id="tab-1" class="tab-pane active">
+                                                        <div class="panel-body">
+                                                            @Html.Partial("_CreateNumeracion", new tbPuntoEmisionDetalle())
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.pemi_NumeroCAI, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.pemi_NumeroCAI)
-                @Html.ValidationMessageFor(model => model.pemi_NumeroCAI)
-            </div>
-        </div>
-
-        @*<div class="form-group">
-            @Html.LabelFor(model => model.pemi_UsuarioCrea, "Usuario Crea", new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("pemi_UsuarioCrea", String.Empty)
-                @Html.DropDownList("pemi_UsuarioCrea", null, new { @class = "form-control", @readonly = "readonly" })
-                @Html.ValidationMessageFor(model => model.pemi_UsuarioCrea)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.pemi_FechaCrea, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.pemi_FechaCrea)
-                @Html.ValidationMessageFor(model => model.pemi_FechaCrea)
-            </div>
-        </div>*@
-
-        @*<div class="form-group">
-            @Html.LabelFor(model => model.pemi_UsuarioModifica, "Usuario Modifica", new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("pemi_UsuarioModifica", String.Empty)
-                @Html.DropDownList("pemi_UsuarioModifica", null, new { @class = "form-control", @readonly = "readonly" })
-                @Html.ValidationMessageFor(model => model.pemi_UsuarioModifica)
-            </div>
-        </div>*@
-
-        @*<div class="form-group">
-            @Html.LabelFor(model => model.pemi_FechaModifica, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.pemi_FechaModifica)
-                @Html.ValidationMessageFor(model => model.pemi_FechaModifica)
-            </div>
-        </div>*@
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Guardar" class="btn btn-primary" />
-				@Html.ActionLink("Guardar", "Index", null, new { @class = "btn btn-white"})
-            </div>
-        </div>
-    </div>
-}
-
+                            <div class="form-group">
+                                <div class="col-md-12 text-center">
+                                    <input type="submit" id="btnGuardar" value="Guardar" class="btn btn-primary" />
+                                    @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
+                                </div>
+                            </div>
+                        </div>
+                    }
                 </div>
+
             </div>
         </div>
     </div>
- </div>
+</div>
+<script src="~/Scripts/jquery-3.4.1.js"></script>
+<script src="~/Scripts/app/PuntoEmision.js"></script>
+<script src="~/Scripts/app/PuntoEmisionDetalle.js"></script>
+<script src="~/Scripts/app/Datepicker.js"></script>
+<script src="~/Scripts/app/ComandoGuardar.js"></script>
+<script type="text/javascript">
+    $('#btnGuardar').click(function () {
+        var NumeroCAI = $('#pemi_NumeroCAI').val();
+        if (NumeroCAI == '') {
+            $('#MessageRequeridoNumeroCAI').text('');
+            $('#validacionNumeroCAICreate').after('<p id="MessageRequeridoNumeroCAI" style="color:red">El campo Número CAI es requerido</p>');
+            return false;
+        }
+    });
 
- 
+    $("#pemi_NumeroCAI").keyup(function () {
+        $('#MessageRequeridoNumeroCAI').text('');
+    });
 
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
+    //Rango Inicial y Final
+    function validar(e) {
+        tecla = (document.all) ? e.keyCode : e.which;
+        tecla = String.fromCharCode(tecla)
+        return /^[0-9\-]+$/.test(tecla);
+    }
+
+    //Número CAI
+    function validarNúmeroCAI(e) {
+        tecla = (document.all) ? e.keyCode : e.which;
+        tecla = String.fromCharCode(tecla)
+        return /^[a-z0-9A-Z\-]+$/.test(tecla);
+    }
+</script>

@@ -1,4 +1,5 @@
-﻿@model IEnumerable<ERP_ZORZAL.Models.tbMoneda>
+﻿@model IEnumerable<ERP_GMEDINA.Models.tbMoneda>
+@using ERP_GMEDINA.Models
 
 @{
     ViewBag.Title = "Moneda";
@@ -7,11 +8,9 @@
 
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
-        <h2>Monedas</h2>
+        <h2> Monedas</h2>
         <ol class="breadcrumb">
-            @*<li class="active">
-                <strong>tbMoneda</strong>
-            </li>*@
+
         </ol>
     </div>
 </div>
@@ -22,9 +21,9 @@
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h5>Listado de Monedas</h5>
+                    <h5>Listado Moneda</h5>
 					<div class="ibox-tools">
-						@Html.ActionLink("Nuevo", "Create", null, new { @class = "btn btn-primary"})
+						@Html.ActionLink("Registrar Moneda", "Create", null, new { @class = "btn btn-primary"})
 					</div>
                 </div>
                 <div class="ibox-content">
@@ -33,26 +32,19 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.mnda_Id)
+                Número
+
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.mnda_Abreviatura)
+                Abreviatura
+
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.mnda_Nombre)
+                Nombre
+
             </th>
-            @*<th>
-                    @Html.DisplayNameFor(model => model.mnda_FechaCrea)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.mnda_FechaModifica)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.tbUsuario.usu_NombreUsuario)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.tbUsuario1.usu_NombreUsuario)
-                </th>*@
+
+
             <th>
                 Acciones
             </th>
@@ -72,22 +64,11 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.mnda_Nombre)
                 </td>
-                @*<td>
-                        @Html.DisplayFor(modelItem => item.mnda_FechaCrea)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.mnda_FechaModifica)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.tbUsuario.usu_NombreUsuario)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.tbUsuario1.usu_NombreUsuario)
-                    </td>*@
+
                 <td>
-                    @Html.ActionLink("Detalles", "Details", new { id = item.mnda_Id }, new { @class = "btn btn-primary btn-sm" })
-                    @Html.ActionLink("Editar", "Edit", new { id = item.mnda_Id }, new { @class = "btn btn-white btn-sm" })
-                    @*@Html.ActionLink("Delete", "Delete", new { id=item.mnda_Id }, new { @class = "btn btn-white btn-sm"})*@
+                    @Html.ActionLink("Detalles", "Details", new { id = item.mnda_Id }, new { @class = "btn btn-primary btn-xs" })
+                    @Html.ActionLink("Editar", "Edit", new { id = item.mnda_Id }, new { @class = "btn btn-white btn-xs" })
+
                 </td>
             </tr>
         }
@@ -101,6 +82,6 @@
     </div>
  </div>
 
-<script src="~/Scripts/jquery-3.3.1.js"></script>
+<script src="~/Scripts/jquery-3.4.1.js"></script>
 <script src="~/Scripts/app/DataTable.js"></script>
 

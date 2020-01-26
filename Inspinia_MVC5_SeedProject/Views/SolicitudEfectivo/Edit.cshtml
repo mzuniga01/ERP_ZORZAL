@@ -1,0 +1,652 @@
+﻿@model ERP_GMEDINA.Models.tbSolicitudEfectivo
+@using ERP_GMEDINA.Models
+
+@{
+    var test = new ERP_GMEDINA.Models.tbDenominacion();
+}
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-sm-4">
+        <h2>Solicitud de Efectivo</h2>
+    </div>
+    <div class="col-sm-8">
+        <div class="title-action">
+            <a href="/SolicitudEfectivo/Index">Regresar</a>
+        </div>
+    </div>
+</div>
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Modificar Solicitud de Efectivo</h5>
+                </div>
+                <div class="ibox-content">
+
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <div class="form-horizontal">
+
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            @Html.HiddenFor(model => model.solef_Id)
+                            @Html.Hidden("RedirectTo", Url.Action("Index", "SolicitudEfectivo"))
+                            @**Auditoria*@
+                            @Html.HiddenFor(model => model.solef_UsuarioCrea)
+                            @Html.HiddenFor(model => model.solef_FechaCrea)
+                            @Html.HiddenFor(model => model.solef_UsuarioModifica)
+                            @Html.HiddenFor(model => model.solef_FechaModifica)
+                            @Html.HiddenFor(model => model.tbUsuario.usu_Nombres)
+                            @Html.HiddenFor(model => model.tbUsuario.usu_Apellidos)
+                            @Html.HiddenFor(model => model.tbUsuario2.usu_Nombres)
+                            @Html.HiddenFor(model => model.tbUsuario2.usu_Apellidos)
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.solef_Id, new { @class = "control-label col-md-2" })
+                                <div class="col-md-3">
+                                    @Html.EditorFor(model => model.solef_Id, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                    @Html.ValidationMessageFor(model => model.solef_Id)
+                                </div>
+                                @Html.LabelFor(model => model.tbMovimientoCaja.tbCaja.tbSucursal.suc_Descripcion, new { @class = "control-label col-md-2" })
+                                <div class="col-md-3">
+                                    @Html.EditorFor(model => model.tbMovimientoCaja.tbCaja.tbSucursal.suc_Descripcion, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                    @Html.ValidationMessageFor(model => model.tbMovimientoCaja.tbCaja.tbSucursal.suc_Descripcion)
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+
+                                @Html.LabelFor(model => model.tbMovimientoCaja.tbCaja.cja_Descripcion, "Caja", new { @class = "control-label col-md-2" })
+                                <div class="col-md-3">
+                                    @Html.EditorFor(model => model.tbMovimientoCaja.tbCaja.cja_Descripcion, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                    @Html.ValidationMessageFor(model => model.tbMovimientoCaja.tbCaja.cja_Descripcion)
+                                </div>
+                                @Html.LabelFor(model => model.mocja_Id, "Id Apertura", new { @class = "control-label col-md-2" })
+                                <div class="col-md-3">
+                                    @Html.EditorFor(model => model.mocja_Id, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                    @Html.ValidationMessageFor(model => model.mocja_Id, "", new { style = "Color:red" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.mnda_Id, new { @class = "control-label col-md-2" })
+                                <div class="col-md-3">
+                                    @Html.DropDownList("mnda_Id", null, "Seleccione la Moneda", new { @class = "form-control" })
+                                    @Html.TextBoxFor(model => model.mnda_Id, new { style = "display:none" })
+                                    @Html.ValidationMessageFor(model => model.mnda_Id, "", new { style = "Color:red" })
+                                </div>
+                            </div>
+                            <div class="ibox-content"></div>
+                            <div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-2">Total Solicitado</label>
+                                    <div class="col-md-3">
+                                        <input id="total" type="number" class="form-control" readonly />
+                                    </div>
+                                    <input id="Monto1" class="hidden" />
+                                    <input id="Monto2" class="hidden" />
+                                    <label class="control-label col-md-2">Monto actual a Solicitar</label>
+                                    <div class="col-md-3">
+                                        <input id="MontoNuevo" type="number" class="form-control col-md-2" readonly />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="ibox-content">
+                                <h4 style="color:dodgerblue">Denominaciones Solicitadas</h4>
+                                <div class="table table-responsive">
+                                    <table class="table table-striped table-bordered" id="TBDenominacionesSolicitadas">
+                                        <thead>
+                                            <tr>
+                                                <th class="hidden">
+                                                    Id Solicitud Detalle
+                                                </th>
+                                                <th>
+                                                    Denominación
+                                                </th>
+                                                <th>
+                                                    Cantidad Solicitada
+                                                </th>
+                                                <th>
+                                                    Monto Solicitado
+                                                </th>
+                                                <th>
+                                                    Cantidad Entregada
+                                                </th>
+                                                <th>
+                                                    Monto Entregado
+                                                </th>
+                                                <th class="hidden">
+                                                    Id Denominación
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody></tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                            <div class="ibox-content">
+                                <h4 style="color:dodgerblue">Solicitar Denominación</h4>
+                                <div class="table table-responsive">
+                                    <table class="table table-striped table-bordered" id="TBSolicitarDenominacion">
+                                        <thead>
+                                            <tr>
+                                                <th>
+                                                    Denominación
+                                                </th>
+                                                <th>
+                                                    Cantidad Solicitada
+                                                </th>
+                                                <th>
+                                                    Monto Solicitado
+                                                </th>
+                                                <th>
+                                                    Cantidad Entregada
+                                                </th>
+                                                <th>
+                                                    Monto Entregado
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody></tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-offset-5 col-md-10">
+                                    <input type="submit" value="Guardar" id="guardaencabezado" class="btn btn-primary" />
+                                    @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
+                                    <button id="bottonAnular" name="bottonAnular" type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#Anular">
+                                        Anular
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Auditoría</h5>
+                </div>
+                <div class="ibox-content">
+                    <table class="table table-striped table-bordered">
+                        <tr>
+                            <th>Acción</th>
+                            <th>Usuario</th>
+                            <th>Fecha</th>
+                        </tr>
+                        <tr>
+                            <td>Creado</td>
+                            <td>
+                                @Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
+                                @Html.DisplayFor(model => model.tbUsuario.usu_Apellidos)
+                            </td>
+                            <td>@Html.DisplayFor(model => model.solef_FechaCrea)</td>
+                        </tr>
+                        <tr>
+                            <td>Modificado</td>
+                            <td>
+                                @Html.DisplayFor(model => model.tbUsuario2.usu_Nombres)
+                                @Html.DisplayFor(model => model.tbUsuario2.usu_Apellidos)
+                            </td>
+                            <td>@Html.DisplayFor(model => model.solef_FechaModifica)</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@* -------------------Modal Anular---------------- *@
+<div class="modal fade" id="Anular" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Anular Solicitud Efectivo</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                ¿Está seguro de anular esta Solcitud de Efectivo?
+                <textarea rows="4" cols="50" placeholder="Ingrese la razon de anulación" id="Motivo" name="Motivo" onkeyup="format(this)" , style="text-transform:capitalize;" onkeypress="return validar(event)"></textarea>
+                <p id="Mensaje" style="color:red"></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" onclick="AnularSolictud();">Guardar</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@*<script src="~/Scripts/app/SolicitudEfectivoEsAnulada.js"></script>*@
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @* ----------Calculos Monto 1-------------- *@
+    <script>
+        $(document).on("keyup", "#TBDenominacionesSolicitadas tbody tr td input#csolicitada", function () {
+            var row = $(this).closest("tr");
+            var Cantidad = $(this).val();
+            var ValorDenominacion = $(this).parents("tr").find("td")[7].innerHTML;
+            var montosoli = parseFloat(Cantidad * ValorDenominacion);
+            var suma = 0;
+            var montoss1 = $("#Monto1").val();
+            var montoss2 = $("#Monto2").val();
+            var Montoactualizado = 0;
+            var mostrarmonto = 0;
+            var data = [];
+            MontoInicial = 0;
+            $(this).parents("tr").find("td")[3].innerHTML = montosoli;
+            if (montosoli != 0 || montosoli == '') {
+                MontoInicial += montosoli;
+                //Calculo Total
+                $("td.sumTotal").each(function () {
+                    data.push(parseFloat($(this).text()));
+                });
+                var suma = data.reduce(function (a, b) { return a + b; }, 0);
+                $("#Monto1").val(suma);
+
+                Montoactualizado = parseFloat(montoss2) + parseFloat(suma);
+                mostrarmonto = parseFloat(Montoactualizado);
+                $("#MontoNuevo").val(mostrarmonto);
+                console.log(data);
+                console.log(suma);
+                //---------------------------------------------
+            }
+            else {
+                MontoInicial = 0;
+                $("#TBDenominacionesSolicitadas tbody tr  td label#MontoSolicitado").each(function (index) {
+                    Monto = $(this).children("td:eq(3)").html();
+                    if (Monto != '') {
+                        Monto = parseFloat(Monto);
+                        MontoInicial += Monto;
+                    }
+                })
+            }
+        });
+    </script>
+    @* ----------------------------Monto 2----------------------------------------------- *@
+    @* ________________________________________Calculos_____________________________________ *@
+    <script>
+        $(document).on("keyup", "#TBSolicitarDenominacion tbody tr td input#cantidad", function () {
+            var row = $(this).closest("tr");
+            var Cantidad = $(this).val();
+            var ValorDenominacion = $(this).parents("tr").find("td")[6].innerHTML;
+            var montosoli = parseFloat(Cantidad * ValorDenominacion);
+            var data = [];
+            var montos1 = $("#Monto1").val();
+            var montos2 = $("#Monto2").val();
+            var Montoactualizado = 0;
+            var mostrarmonto = 0;
+            MontoInicial = 0;
+
+            $(this).parents("tr").find("td")[3].innerHTML = montosoli;
+            if (montosoli != 0 || montosoli == '') {
+                MontoInicial += montosoli;
+                $("td.monto").each(function () {
+                    data.push(parseFloat($(this).text()));
+                });
+                var suma = data.reduce(function (a, b) { return a + b; }, 0);
+                $("#Monto2").val(suma);
+                Montoactualizado = parseFloat(montos1) + parseFloat(suma);
+                mostrarmonto = parseFloat(Montoactualizado);
+                $("#MontoNuevo").val(mostrarmonto);
+            }
+            else {
+                MontoInicial = 0;
+                $("#TBSolicitarDenominacion tbody tr  td label#MontoSolicitado").each(function (index) {
+                    Monto = $(this).children("td:eq(3)").html();
+                    if (Monto != '') {
+                        Monto = parseFloat(Monto);
+                        MontoInicial += Monto;
+                    }
+                })
+            }
+        });
+    </script>
+
+    <script>
+        function AnularSolictud() {
+            var solefId = $('#solef_Id').val();
+            var Anulada = 1;
+            var Motivo = $('#Motivo').val();
+            if (Motivo == "") {
+                var valido = document.getElementById('Mensaje');
+                valido.innerText = "La razón anulación es requerida";
+            }
+            else if (Motivo.length < 3) {
+                var valido = document.getElementById('Mensaje');
+                valido.innerText = "No se aceptan menos de tres caracteres";
+            }
+            else {
+                $.ajax({
+                    url: "/SolicitudEfectivo/AnularSolcitudEfectivo",
+                    method: "POST",
+                    dataType: 'json',
+                    contentType: "application/json; charset=utf-8",
+                    data: JSON.stringify({ solefId: solefId, Anulada: Anulada, Motivo: Motivo }),
+                })
+            .done(function (data) {
+                if (data.length > 0) {
+                    window.location.href = "/SolicitudEfectivo/Index";
+                }
+                else {
+                    alert("Registro No Actualizado");
+                }
+            });
+            }
+        }
+    </script>
+
+    <script>
+        var MontoSolicitado = 0;
+        $("#mitabla tbody tr:nth-child(-n+20)").each(function () {
+            MontoSolicitado += parseFloat($(this).children("td:eq(4)").html());
+        });
+
+        $("#total").val(MontoSolicitado);
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            var montoprimero = 0;
+            var montosegunto = 0
+            var montofinal = 0;
+            $("#Monto1").val(montoprimero);
+            $("#Monto2").val(montosegunto);
+            $("#MontoNuevo").val(montofinal);
+        });
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            if (jQuery("#solef_EsAnulada").is(":checked")) {
+                $('#bottonAnular').hide();
+                $('#AñadirDenominacion').hide();
+            }
+            else if (jQuery("#solef_EsApertura").is(":checked")) {
+                $('#bottonAnular').hide();
+                $('#AñadirDenominacion').hide();
+            }
+            else {
+                $('#bottonAnular').show();
+                $('#AñadirDenominacion').show();
+            }
+        });
+    </script>
+    @* ________________________Remplazar Ceros por espacio y bloquiar letras_________________________________________ *@
+    <script>
+        //function soloNumeros(e) {
+        //    var key = window.Event ? e.which : e.keyCode;
+        //    return ((key >= 48 && key <= 57) || (key == 8))
+        //}
+        function soloNumeros(e) {
+            tecla = (document.all) ? e.keyCode : e.which;
+            tecla = String.fromCharCode(tecla)
+            return /^[0-9\-]+$/.test(tecla);
+        }
+        function pierdeFoco(e) {
+            var valor = e.value.replace(/^0*/, '');
+            e.value = valor;
+        }
+    </script>
+    @* ___________________________Tabla de Add Detalle_______________________________________________ *@
+    <script>
+        $(document).ready(function () {
+            $("#mnda_Id").change(function () {
+                var mon = $("#mnda_Id").val();
+                console.log(mon);
+                $.ajax({
+                    type: 'GET',
+                    url: '/SolicitudEfectivo/GetDenominacion',
+                    datatype: 'JSON',
+                    data: { 'moneda': $(this).val() },
+                    success: function (data) {
+                        $('#TBSolicitarDenominacion tbody').empty();
+                        $.each(data, function (i, item) {
+                            var rows = "<tr data-id=" + item.deno_Id + ">" +
+                                       "<td hidden>" + item.deno_Id + "</td>" +
+                                       "<td>" + item.deno_Descripcion + "</td>" +
+                                        "<td>" + '<input type="number" id="cantidad" name="name" onKeyPress="if(this.value.length==3) return false;" onKeyPress="return soloNumeros(event)" onKeyUp="pierdeFoco(this)" autocomplete="off" class="form-control" ize="3">' + "</td>" +
+                                        "<td class='sumTotal'>" + 0 + "</td>" +
+                                        "<td>" + 0 + "</td>" +
+                                        "<td >" + 0 + "</td>" +
+                                       "<td hidden>" + item.deno_valor + "</td>" +
+                                       "</tr>";
+                            $('#TBSolicitarDenominacion tbody').append(rows);
+                        });
+                    },
+                    error: function (data) { alert(data.responseText); }
+                });
+            });
+
+        });
+    </script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            GetDenominacion()
+            $('#TBSolicitarDenominacion').hide();
+            function GetDenominacion() {
+                var DENOID = $("#solef_Id").val();
+                var idSolicitud = $("#solef_Id").val();
+
+                $.ajax({
+                    type: 'GET',
+                    url: '/SolicitudEfectivo/GetAddDenominacion',
+                    datatype: 'JSON',
+                    data: { 'DENOID': DENOID },
+                    success: function (data) {
+                        $('#TBSolicitarDenominacion tbody').empty();
+                        $.each(data, function (i, item) {
+                            var rows = "<tr data-id=" + item.denoId + ">" +
+                                       "<td hidden>" + item.denoId + "</td>" +
+                                       "<td>" + item.DenoDescripcion + "</td>" +
+                                        "<td>" + '<input type="number" id="cantidad" onKeyPress="if(this.value.length==3) return false;" name="name" onKeyPress="return soloNumeros(event)" onKeyUp="pierdeFoco(this)" autocomplete="off" class="form-control" ize="3">' + "</td>" +
+                                        "<td class='monto'>" + 0 + "</td>" +
+                                        "<td>" + 0 + "</td>" +
+                                        "<td >" + 0 + "</td>" +
+                                        "<td hidden>" + item.valor + "</td>" +
+                                        "<td hidden>" + idSolicitud + "</td>" +
+                                       "</tr>";
+                            $('#TBSolicitarDenominacion tbody').append(rows);
+                            if ($('#TBSolicitarDenominacion >tbody >tr').length == 0) {
+                            }
+                            else {
+                                $('#TBSolicitarDenominacion').show();
+                            }
+                        });
+                    },
+                    error: function (data) { alert(data.responseText); }
+                });
+            };
+        });
+
+    </script>
+    @* ___________________________________________Guardar mas Detalle Denominación________________________________ *@
+    <script>
+        $('#guardaencabezado').click(function () {
+            $('#mnda_Id').attr("readOnly", "False");
+            var obj = document.getElementById('mnda_Id');
+            if (obj.getAttribute("readonly") == "readonly")
+                alert('Moneda es Nula');
+            else {
+                $('#mnda_Id').attr("readOnly", "False");
+                var idmovimiento
+                var Detail = [];
+                var monedas = $('#mnda_Id').val();
+
+                if (monedas <= 0) {
+                    valido = document.getElementById('mone');
+                    valido.innerText = "El Campo Moneda es Requierido";
+                    return false;
+                }
+                else if (monedas > 0) {
+                    $('#TBSolicitarDenominacion > tbody  > tr').each(function () {
+                        idItem = $(this).data('id');
+                        var soledCantidadSolicitada = $(this).find("td:eq(2)").find("input").val();
+                        var idSolicitud = ($(this).children("td:eq(7)").html());
+                        if (soledCantidadSolicitada != '' && soledCantidadSolicitada != 0) {
+                            console.log('idItem', idItem);
+                            console.log('soledCantidadSolicitada', soledCantidadSolicitada);
+                            var item = {
+                                deno_Id: idItem,
+                                soled_CantidadSolicitada: parseInt(soledCantidadSolicitada),
+                                solef_Id: parseInt(idSolicitud),
+                            }
+                            Detail.push(item);
+                        }
+                    });
+                    console.log(Detail);
+                    $.ajax({
+                        url: "/SolicitudEfectivo/InsertDetalleSolicitudDetalle",
+                        method: 'POST',
+                        dataType: "json",
+                        contentType: "application/json; charset=utf-8",
+                        data: JSON.stringify({ procesoData: Detail }),
+                    })
+                    .done(function (data) {
+                        if (data == 'Error') {
+                            alert('No Enviado');
+                        }
+                        else {
+                            console.log(procesoData);
+                            console.log(cantisoli);
+                        }
+                    });
+                }
+            }
+        });
+    </script>
+    @* ______________________Mas Detalle______________________________________ *@
+    <script type="text/javascript">
+        $(document).ready(function () {
+            GetDenominacions()
+            $('#TBDenominacionesSolicitadas').hide();
+        });
+        function GetDenominacions() {
+            var Solictud = $("#solef_Id").val();
+            $.ajax({
+                type: 'GET',
+                url: '/SolicitudEfectivo/GetDtalle',
+                datatype: 'JSON',
+                data: { 'Solictud': Solictud },
+                success: function (data) {
+                    $('#TBDenominacionesSolicitadas tbody').empty();
+                    $.each(data, function (i, item) {
+                        var rows = "<tr data-id=" + item.soled_Id + ">" +
+                            "<td hidden>" + item.soled_Id + "</td>" +
+                            "<td>" + item.deno_Descripcion + "</td>" +
+                            '<td><input type="number" id="csolicitada" onKeyPress="if(this.value.length==3) return false;" onKeyPress="return soloNumeros(event)" onKeyUp="pierdeFoco(this)" autocomplete="off" class="form-control" ize="3"  value="' + item.soled_CantidadSolicitada + '"  /></td>' +
+                            "<td class='sumTotal'>" + item.MontoSolicitado + "</td>" +
+                            "<td>" + item.soled_CantidadEntregada + "</td>" +
+                            "<td>" + item.MontoEntregado + "</td>" +
+                            "<td hidden>" + item.deno_Id + "</td>" +
+                            "<td hidden>" + item.deno_valor + "</td>" +
+                            "</tr>";
+                        $('#TBDenominacionesSolicitadas tbody').append(rows);
+                        if ($('#TBDenominacionesSolicitadas >tbody >tr').length == 0) {
+                        }
+                        else {
+                            $('#mnda_Id').attr("disabled", "disabled");
+                            $('#TBDenominacionesSolicitadas').show();
+                            var suma = 0;
+                            var data = [];
+                            //Calculo Total
+                            $("td.sumTotal").each(function () {
+                                data.push(parseFloat($(this).text()));
+                            });
+                            var suma = data.reduce(function (a, b) { return a + b; }, 0)
+                            $("#total").val(suma);
+                            $("#Monto1").val(suma);
+
+                            console.log(data);
+                            console.log('Monto Solicitado: ' + suma);
+                            //---------------------------------------------
+                        }
+                    });
+                },
+                error: function (data) { alert(data.responseText); }
+            });
+        };
+    </script>
+    @* '''''''''''''''Actualizar''''''''''''''''''' *@
+    <script>
+        $(document).on("change", "#TBDenominacionesSolicitadas tbody tr td input#csolicitada", function () {
+            var IdSolicitudDetalle = $(this).parents("tr").find("td")[0].innerHTML;
+            console.log("IdSolicitudDetalle:", IdSolicitudDetalle);
+            var denoID = $(this).parents("tr").find("td")[6].innerHTML;
+            console.log('denoID: ', denoID);
+            var CantidadSolicitada = $(this).parents("tr").find('#csolicitada').val();
+            console.log("CantidadSolicitada:", CantidadSolicitada);
+            var CantidadEntregada = $(this).parents("tr").find("td")[4].innerHTML;
+            console.log('CantidadEntregada: ', CantidadEntregada);
+            var Monto = $(this).parents("tr").find("td")[4].innerHTML;
+            console.log('Monto Entregado:', Monto);
+            console.log('----------------------------');
+            var SolicitudEfectivoDetalle = UpdateEfectivoDetalle();
+
+            $.ajax({
+                url: "/SolicitudEfectivo/SaveEditSolicitudEfectivoDetalleCantidad",
+                method: "POST",
+                dataType: 'json',
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify({ tbSolicitudEfectivoDetalle: SolicitudEfectivoDetalle }),
+                success: function (data) {
+                }
+            })
+            .done(function (data) {
+                if (data == 'El registro se guardó exitosamente') {
+                }
+                else {
+                }
+            });
+            function UpdateEfectivoDetalle() {
+                var ActualizarEfectivoDetalle = {
+                    soled_Id: IdSolicitudDetalle,
+                    soled_CantidadSolicitada: CantidadSolicitada,
+                    soled_CantidadEntregada: CantidadEntregada,
+                    soled_MontoEntregado: Monto,
+                    deno_Id: denoID,
+                }
+                return ActualizarEfectivoDetalle
+            };
+        });
+    </script>
+    @* ----CARACTERES ESPECIALES*@
+    <script>
+        function validar(e) {
+            tecla = (document.all) ? e.keyCode : e.which;
+            tecla = String.fromCharCode(tecla)
+            return /^[[A-Za-z0-9 .,]+]*$/i.test(tecla);
+            /^([0-9]+\.?[0-9]{0,2})$/
+        }
+    </script>
+    <script>
+        $(document).keydown(function (e) {
+            if ((e.key == 'g' || e.key == 'G') && (e.ctrlKey || e.metaKey)) {
+                e.preventDefault();
+                //alert("Ctrl-g pressed");
+                $("#guardaencabezado").click();
+                return false;
+            }
+            return true;
+        });
+    </script>
+
+
+
+
+
+
+}

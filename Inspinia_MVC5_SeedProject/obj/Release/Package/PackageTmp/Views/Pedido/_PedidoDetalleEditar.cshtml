@@ -1,0 +1,69 @@
+﻿@model ERP_GMEDINA.Models.tbPedidoDetalle
+@using ERP_GMEDINA.Models
+
+@using (Ajax.BeginForm("UpdatePedidoDetalle", "Pedido", new AjaxOptions() { HttpMethod = "POST", UpdateTargetId = "EditPedidoDetalle" }))
+{
+    <div class="wrapper wrapper-content animated fadeInRight">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-content">
+                        @Html.AntiForgeryToken()
+                        <div class="form-horizontal">
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            @Html.HiddenFor(model => model.ped_Id)
+                            @Html.HiddenFor(model => model.pedd_UsuarioCrea)
+                            @Html.HiddenFor(model => model.pedd_FechaCrea)
+                            @Html.HiddenFor(model => model.pedd_UsuarioModifica)
+                            @Html.HiddenFor(model => model.pedd_FechaModifica)
+
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.pedd_Id, new { @class = "control-label col-sm-2" })
+                                <div class="col-sm-6">
+                                    @Html.EditorFor(model => model.pedd_Id, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                    @Html.ValidationMessageFor(model => model.pedd_Id)
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.prod_Codigo, new { @class = "control-label col-md-2" })
+                                <div class="col-md-6">
+                                    @Html.EditorFor(model => model.prod_Codigo, new { htmlAttributes = new { @onkeypress = "return soloLetras(event)"} })
+                                    <p style="color:red">
+                                        @Html.ValidationMessageFor(model => model.prod_Codigo)
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.pedd_Cantidad, new { @class = "control-label col-md-2" })
+                                <div class="col-md-6">
+                                    @Html.EditorFor(model => model.pedd_Cantidad, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                    <p style="color:red">
+                                        @Html.ValidationMessageFor(model => model.pedd_Cantidad)
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.pedd_CantidadFacturada, new { @class = "control-label col-sm-2" })
+                                <div class="col-sm-6">
+                                    @Html.EditorFor(model => model.pedd_CantidadFacturada, new { htmlAttributes = new { @onkeyup = "format(this)", @autocomplete = "off" } })
+                                    <p style="color:red">
+                                        @Html.ValidationMessageFor(model => model.pedd_CantidadFacturada)
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <hr />
+                                <div class="col-md-12 text-right">
+                                    <input type="submit" id="modal" value="Guardar" class="btn btn-primary" />
+                                    @Html.ActionLink("Cancelar", "Edit", null, new { @class = "btn btn-white" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}

@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ERP_ZORZAL.Models.tbNotaCredito>
+﻿@model IEnumerable<ERP_GMEDINA.Models.tbNotaCredito>
 
 @{
     ViewBag.Title = "Listado";
@@ -8,116 +8,148 @@
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
         <h2>Nota Crédito</h2>
-        @*<ol class="breadcrumb">
-            <li class="active">
-                <strong>tbNotaCredito</strong>
-            </li>
-        </ol>*@
     </div>
 </div>
-
 
 <div class="wrapper wrapper-content animated fadeInRight">
     <div class="row">
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h5>Lista de Nota Crédito</h5>
-					<div class="ibox-tools">
-						@Html.ActionLink("Crear Nuevo", "Create", null, new { @class = "btn btn-primary btn-xs"})
-					</div>
+                    <h5>Listado de Nota Crédito</h5>
+                    <div class="ibox-tools">
+
+
+                        @Html.ActionLink("Registrar Nota Crédito", "Create", null, new { @class = "btn btn-primary" })
+                    </div>
                 </div>
                 <div class="ibox-content">
 
-<table class="table table-striped table-bordered table-hover" id="DataTable">
-    <thead>
-        <tr>
-            @*<th>
-                @Html.DisplayNameFor(model => model.nocre_Codigo)
-            </th>*@
-            <th>
-                @Html.DisplayNameFor(model => model.nocre_FechaEmision)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.nocre_MotivoEmision)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.nocre_Monto)
-            </th>
-            @*<th>
-                @Html.DisplayNameFor(model => model.nocre_FechaCrea)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.nocre_FechaModifica)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.tbUsuario.usu_NombreUsuario)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.tbUsuario1.usu_NombreUsuario)
-            </th>*@
-            <th>
-                Cliente
-                @*@Html.DisplayNameFor(model => model.tbCliente.clte_RTN_Identidad_Pasaporte)*@
-            </th>
-            <th>
-                Devolución
-                @*@Html.DisplayNameFor(model => model.tbDevolucion.dev_Id)*@
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
-            <tr>
-                @*<td>
-                    @Html.DisplayFor(modelItem => item.nocre_Codigo)
-                </td>*@
-                <td>
-                    @Html.DisplayFor(modelItem => item.nocre_FechaEmision)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.nocre_MotivoEmision)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.nocre_Monto)
-                </td>
-                @*<td>
-                    @Html.DisplayFor(modelItem => item.nocre_FechaCrea)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.nocre_FechaModifica)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.tbUsuario.usu_NombreUsuario)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.tbUsuario1.usu_NombreUsuario)
-                </td>*@
-                <td>
-                    @Html.DisplayFor(modelItem => item.tbCliente.clte_RTN_Identidad_Pasaporte)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.tbDevolucion.dev_Id)
-                </td>
-                <td>
-                    @Html.ActionLink("Editar", "Edit", new { id = item.nocre_Id }, new { @class = "btn btn-primary btn-sm" })
-                    @Html.ActionLink("Detalles", "Details", new { id = item.nocre_Id }, new { @class = "btn btn-primary btn-sm" })
-                    @*@Html.ActionLink("Delete", "Delete", new { id = item.nocre_Id }, new { @class = "btn btn-white btn-sm" })*@
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
+                    <table class="table table-striped table-responsive table-bordered table-hover" id="DataTable">
+                        <thead>
+                            <tr>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.suc_Id)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.nocre_Codigo)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.clte_Id)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.nocre_Monto)
+                                </th>
+                                <th>
+                                    Código Devolución
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.nocre_FechaEmision)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.nocre_Anulado)
+                                </th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.tbSucursal.suc_Descripcion)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.nocre_Codigo)
+                                    </td>
+                                    @if (item.tbCliente.clte_EsPersonaNatural == true)
+                                    {
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.tbCliente.clte_Nombres)
+                                            @Html.DisplayFor(modelItem => item.tbCliente.clte_Apellidos)
+                                        </td>
+                                    }
+                                    else
+                                    {
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.tbCliente.clte_NombreComercial)
+                                        </td>
+                                    }
+
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.nocre_Monto)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.tbDevolucion.dev_Id)
+                                    </td>
+
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.nocre_FechaEmision)
+                                    </td>
+                                    @if (item.nocre_Anulado == false)
+                                    {
+                                        <td>No</td>
+                                    }
+                                    else
+                                    {
+                                        <td>Si</td>
+                                    }
+
+                                    @if (item.nocre_Anulado == false && item.nocre_Redimido == false && item.nocre_EsImpreso == false)
+                                    {
+                                        <td>
+                                            @Html.ActionLink("Detalles", "Details", new { id = item.nocre_Id }, new { @class = "btn btn-primary btn-xs" })
+                                            @Html.ActionLink("Editar", "Edit", new { id = item.nocre_Id }, new { @class = "btn btn-white btn-xs" })
+                                        </td>
+                                    }
+                                    else
+                                    {
+                                        <td>
+                                            @Html.ActionLink("Detalles", "Details", new { id = item.nocre_Id }, new { @class = "btn btn-primary btn-xs" })
+                                            <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="No se puede Editar">
+                                                <button class="btn btn-white btn-xs" style="pointer-events: none;" type="button" disabled>Editar</button>
+                                            </span>
+                                        </td>
+                                    }
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
 
                 </div>
             </div>
         </div>
     </div>
- </div>
+</div>
 
-<script src="~/Scripts/jquery-3.3.1.js"></script>
+<script src="~/Scripts/jquery-3.4.1.js"></script>
 <script src="~/Scripts/app/DataTable.js"></script>
+<script>
+    $('#btnImprimir').click(function () {
+        confirm('¿Deseas Imprimir Cupón Descuento?');
+    });
 
+    $(document).ready(function () {
+        var Estado = $('#nocre_Anulado').val();
+        if (Estado == false) {
+            $('#bottonAnularNC').hide();
+            document.getElementById("nocre_Anulado").disabled = true;
+        }
+    });
 
+    function AnularFactura() {
+        var CodAnulada = $('#nocre_Id').val();
+        var Estado = false
+        $.ajax({
+            url: "/NotaCredito/AnularNotaCredito",
+            method: "POST",
+            dataType: 'json',
+            contentType: "application/json; charset=utf-8",
+            data: JSON.stringify({ CodAnulada: CodAnulada, Estado: Estado }),
+        });
+    }
+
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+    });
+</script>

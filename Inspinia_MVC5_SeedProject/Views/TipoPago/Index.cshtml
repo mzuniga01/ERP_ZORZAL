@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ERP_ZORZAL.Models.tbTipoPago>
+﻿@model IEnumerable<ERP_GMEDINA.Models.tbTipoPago>
 
 @{
     ViewBag.Title = "Index";
@@ -7,12 +7,12 @@
 
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
-        <h2>Tipo Pago</h2>
-        <ol class="breadcrumb">
-            @*<li class="active">
+        <h2>Tipos de Pago</h2>
+        @*<ol class="breadcrumb">
+            <li class="active">
                 <strong>tbTipoPago</strong>
-            </li>*@
-        </ol>
+            </li>
+        </ol>*@
     </div>
 </div>
 
@@ -22,15 +22,19 @@
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h5>Lista de Tipo Pago</h5>
+                    <h5>Listado de Tipos de Pago</h5>
 					<div class="ibox-tools">
-						@Html.ActionLink("Nuevo", "Create", null, new { @class = "btn btn-primary btn-xs"})
+						@Html.ActionLink("Registrar Tipo Pago", "Create", null, new { @class = "btn btn-primary"})
 					</div>
                 </div>
                 <div class="ibox-content">
 
-<table class="table table-striped">
+<table class="table table-striped table-responsive table-bordered"   id="DataTable">
+    <thead>
     <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.tpa_Id)
+        </th>
         <th>
             @Html.DisplayNameFor(model => model.tpa_Descripcion)
         </th>
@@ -46,12 +50,16 @@
         <th>
             @Html.DisplayNameFor(model => model.tpa_Titular)
         </th>
-       
+        
         <th></th>
     </tr>
-
+        </thead>
+    <tbody>
 @foreach (var item in Model) {
     <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.tpa_Id)
+        </td>
         <td>
             @Html.DisplayFor(modelItem => item.tpa_Descripcion)
         </td>
@@ -67,15 +75,16 @@
         <td>
             @Html.DisplayFor(modelItem => item.tpa_Titular)
         </td>
-      
+    
         <td>
-			@Html.ActionLink("Detalle", "Details", new { id=item.tpa_Id }, new { @class = "btn btn-primary btn-sm"})
-            @Html.ActionLink("Editar", "Edit", new { id=item.tpa_Id }, new { @class = "btn btn-white btn-sm"})
-            @Html.ActionLink("Eliminar", "Delete", new { id=item.tpa_Id }, new { @class = "btn btn-white btn-sm"})
+			@Html.ActionLink("Detalle", "Details", new { id=item.tpa_Id }, new { @class = "btn btn-primary btn-xs"})
+            @Html.ActionLink("Editar", "Edit", new { id=item.tpa_Id }, new { @class = "btn btn-white btn-xs"})
+            @*@Html.ActionLink("Delete", "Delete", new { id=item.tpa_Id }, new { @class = "btn btn-white btn-sm"})*@
         </td>
     </tr>
-}
 
+}
+        </tbody>
 </table>
 
                 </div>
@@ -84,5 +93,5 @@
     </div>
  </div>
 
-
-
+<script src="~/Scripts/jquery-3.4.1.js"></script>
+<script src="~/Scripts/app/DataTable.js"></script>

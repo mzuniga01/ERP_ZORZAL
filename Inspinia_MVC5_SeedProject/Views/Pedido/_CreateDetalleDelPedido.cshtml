@@ -1,0 +1,89 @@
+﻿@model ERP_GMEDINA.Models.tbPedidoDetalle
+@using ERP_GMEDINA.Models
+
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Pedido Detalles</h5>
+                </div>
+                <div class="ibox-content">
+                    <div class="form-horizontal">
+                        @Html.ValidationSummary(true)
+
+                        <div class="form-horizontal">
+                            <div class="form-group">
+
+                            </div>
+
+                            <div class="col-md-offset-11 col-md-2">
+                                <button type="button" class="btn btn-primary btn-sm" id="AñadirPedidoDetalle">Añadir</button>
+                            </div>
+
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.tbProducto.prod_CodigoBarras, "Código Barra", new { @class = "control-label col-md-2" })
+                                <div class="col-md-3">
+                                    @Html.EditorFor(model => model.tbProducto.prod_CodigoBarras, new { htmlAttributes = new { @autocomplete = "off", @class = "form-control", @readonly = "readonly" } })
+                                    <p style="color:red">@Html.ValidationMessageFor(model => model.tbProducto.prod_CodigoBarras)
+                                </div>
+                                <div class="col-md-1">
+                                    <button type="button" class="btn btn-primary " data-toggle="modal" data-target="#ModalAgregarProducto"><span class="glyphicon glyphicon-search"></span></button>
+                                </div>
+
+
+                                @Html.LabelFor(model => model.prod_Codigo, new { @class = "control-label col-md-2" })
+
+                                <div class="col-md-3">
+                                    @Html.EditorFor(model => model.prod_Codigo, new { htmlAttributes = new { @autocomplete = "off", @class = "form-control", @readonly = "readonly" } })
+                                    <p style="color:red">
+                                        @Html.ValidationMessageFor(model => model.prod_Codigo)
+                                </div>
+
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.tbProducto.prod_Descripcion, new { @class = "control-label col-md-2" })
+                                <div class="col-md-3">
+                                    @Html.EditorFor(model => model.tbProducto.prod_Descripcion, new { htmlAttributes = new { @autocomplete = "off", @class = "form-control", @readonly = "readonly" } })
+                                    <p style="color:red">@Html.ValidationMessageFor(model => model.tbProducto.prod_Descripcion)
+                                </div>
+
+                                @Html.LabelFor(model => model.pedd_Cantidad, new { @class = "control-label col-md-3" })
+                                <div class="col-md-3">
+                                    @Html.EditorFor(model => model.pedd_Cantidad, new { @onkeyup = "soloNumeros(e)" , @onkeypress = "return filterFloat(event,this);"})
+                                    @Html.ValidationMessageFor(model => model.pedd_Cantidad)
+                                </div>
+
+                            </div>
+
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.pedd_CantidadFacturada, new { @class = "control-label col-md-2" })
+
+                                <div class="col-md-3">
+                                    @Html.EditorFor(model => model.pedd_CantidadFacturada, new { htmlAttributes = new { @autocomplete = "off", @class = "form-control", @readonly = "readonly" } })
+                                    @Html.ValidationMessageFor(model => model.pedd_CantidadFacturada)
+                                </div>
+                            </div>
+
+
+
+                            <br />
+                            <br />
+                            <div class="alert alert-danger text-center text-uppercase" id="alerta" style="display:none;">...Por favor ingrese productos al Pedido...</div>
+                                    
+                        </div>
+                    </div>
+                  
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    
+</div>
+
+

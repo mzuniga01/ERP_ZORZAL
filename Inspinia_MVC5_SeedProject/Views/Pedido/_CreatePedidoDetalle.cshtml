@@ -1,4 +1,5 @@
-﻿@model ERP_ZORZAL.Models.tbPedidoDetalle
+﻿@model ERP_GMEDINA.Models.tbPedidoDetalle
+
 
 
 <div class="wrapper wrapper-content animated fadeInRight">
@@ -6,7 +7,7 @@
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h5>Ingresar Pedido Detalle </h5>
+                    <h5>Pedido Detalle</h5>
                 </div>
                 <div class="ibox-content">
 
@@ -18,26 +19,28 @@
         @Html.ValidationSummary(true)
 
         <div class="form-group">
-            <label class="control-label col-md-2">Id Pedido</label>
+            <label class="control-label col-md-2">Número Pedido Detalle</label>
+            @*@Html.LabelFor(model => model.pedd_Id, new { @class = "control-label col-md-2" })*@
+            <div class="col-md-4">
+                @Html.EditorFor(model => model.pedd_Id)
+                @Html.ValidationMessageFor(model => model.pedd_Id)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Número Pedido</label>
             @*@Html.LabelFor(model => model.ped_Id, new { @class = "control-label col-md-2" })*@
-            <div class="col-md-10">
+            <div class="col-md-4">
                 @Html.EditorFor(model => model.ped_Id)
                 @Html.ValidationMessageFor(model => model.ped_Id)
             </div>
         </div>
 
-        @*<div class="form-group">
-            @Html.LabelFor(model => model.prod_Codigo, "prod_Codigo", new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("prod_Codigo", String.Empty)
-                @Html.ValidationMessageFor(model => model.prod_Codigo)
-            </div>
-        </div>*@
 
         <div class="form-group">
             <label class="control-label col-md-2">Descripción</label>
             @*@Html.LabelFor(model => model.pedd_Descripcion, new { @class = "control-label col-md-2" })*@
-            <div class="col-md-10">
+            <div class="col-md-4">
                 @Html.EditorFor(model => model.pedd_Descripcion)
                 @Html.ValidationMessageFor(model => model.pedd_Descripcion)
             </div>
@@ -46,16 +49,13 @@
         <div class="form-group">
             <label class="control-label col-md-2">Cantidad</label>
             @*@Html.LabelFor(model => model.pedd_Cantidad, new { @class = "control-label col-md-2" })*@
-            <div class="col-md-10">
+            <div class="col-md-4">
                 @Html.EditorFor(model => model.pedd_Cantidad)
                 @Html.ValidationMessageFor(model => model.pedd_Cantidad)
             </div>
-        </div>
-
-        <div class="form-group">
-            <label class="control-label col-md-2">Cantidad Facturada</label>
-            @*@Html.LabelFor(model => model.pedd_CantidadFacturada, new { @class = "control-label col-md-2" })*@
-            <div class="col-md-10">
+        
+            @Html.LabelFor(model => model.pedd_CantidadFacturada, new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
                 @Html.EditorFor(model => model.pedd_CantidadFacturada)
                 @Html.ValidationMessageFor(model => model.pedd_CantidadFacturada)
             </div>
@@ -95,8 +95,8 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Guardar" class="btn btn-primary" />
-				@Html.ActionLink("Cancelar", "Create", null, new { @class = "btn btn-white"})
+                <input type="submit" value="Create" class="btn btn-primary" />
+				@Html.ActionLink("Cancel", "Index", null, new { @class = "btn btn-white"})
             </div>
         </div>
     </div>
@@ -109,3 +109,7 @@
  </div>
 
  
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

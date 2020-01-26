@@ -1,0 +1,46 @@
+﻿@model IEnumerable<ERP_GMEDINA.Models.tbSucursal>
+
+
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h3><b>Listado de Sucursales</b></h3>
+                </div>
+                <div class="ibox-content">
+
+                    <table class="table table table-striped  table-bordered" id="DataTable">
+                        <thead>
+                            <tr>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.suc_Descripcion)
+                                </th>
+
+                                <th>
+                                    @Html.DisplayNameFor(model => model.suc_Direccion)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.suc_Telefono)
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.suc_Descripcion)
+                                    </td>
+
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.suc_Direccion)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.suc_Telefono)
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+  
