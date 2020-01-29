@@ -254,7 +254,6 @@
     <Compile Include="Controllers\Facturacion\Configuracion\SucursalController.cs" />
     <Compile Include="Controllers\Facturacion\Catalogos\TipoIdentificacionController.cs" />
     <Compile Include="Controllers\Facturacion\Catalogos\TipoPagoController.cs" />
-    <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Dataset\ArqueoCaja.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -326,7 +325,6 @@
     <Compile Include="Models\crud_tbProductoSelect_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Test.cs" />
     <Compile Include="Models\Facturacion\Catalogos\TipoCuenta.cs" />
     <Compile Include="Models\Facturacion\Catalogos\TipoPagos.cs" />
     <Compile Include="Models\Facturacion\Catalogos\CuentaBanco.cs" />
@@ -381,7 +379,6 @@
     <Compile Include="Models\Facturacion\Caja\PagosArqueo.cs" />
     <Compile Include="Models\Facturacion\Ventas\PedidoDetalle.cs" />
     <Compile Include="Models\Facturacion\Ventas\Pedido.cs" />
-    <Compile Include="Models\Producto.cs" />
     <Compile Include="Models\Prueba1_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
@@ -1437,7 +1434,6 @@
     <Compile Include="Models\UDV_Vent_VentasPorCaja_EntreFechas.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\UnidadesMedida.cs" />
     <Compile Include="Models\VistaInventarioHistorico.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
@@ -1891,7 +1887,7 @@
     <Content Include="Scripts\app\ArqueoCaja.js" />
     <Content Include="Scripts\app\Banco.js" />
     <Content Include="Scripts\app\BCliente.js" />
-    <Content Include="Scripts\app\CaracteresEspeciales.js" />
+    <Content Include="Scripts\app\General\CaracteresEspeciales.js" />
     <Content Include="Scripts\app\ClienteDevolucion.js" />
     <Content Include="Scripts\app\ClienteExoneracion.js" />
     <Content Include="Scripts\app\ClientePago.js" />
@@ -2202,7 +2198,7 @@
     </Content>
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Shared\_LayoutFacturacion.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Home\Minor.cshtml" />
     <Content Include="Views\Shared\_Footer.cshtml" />
@@ -2238,11 +2234,6 @@
     <Content Include="Views\DocumentoFiscal\Details.cshtml" />
     <Content Include="Views\DocumentoFiscal\Edit.cshtml" />
     <Content Include="Views\DocumentoFiscal\Index.cshtml" />
-    <Content Include="Views\UnidadesMedida\Create.cshtml" />
-    <Content Include="Views\UnidadesMedida\Delete.cshtml" />
-    <Content Include="Views\UnidadesMedida\Details.cshtml" />
-    <Content Include="Views\UnidadesMedida\Edit.cshtml" />
-    <Content Include="Views\UnidadesMedida\Index.cshtml" />
     <Content Include="Views\CuponDescuento\Create.cshtml" />
     <Content Include="Views\CuponDescuento\Details.cshtml" />
     <Content Include="Views\CuponDescuento\Edit.cshtml" />
@@ -2385,17 +2376,6 @@
     <Content Include="Views\Login\SinRol.cshtml" />
     <Content Include="Views\Pedido\_CreateDetallePedido.cshtml" />
     <Content Include="Views\Pago\_IndexCuponDescuento.cshtml" />
-    <Content Include="Views\Usuario\Create.cshtml" />
-    <Content Include="Views\Usuario\Delete.cshtml" />
-    <Content Include="Views\Usuario\Details.cshtml" />
-    <Content Include="Views\Usuario\Edit.cshtml" />
-    <Content Include="Views\Usuario\Editct.cshtml" />
-    <Content Include="Views\Usuario\Index.cshtml" />
-    <Content Include="Views\Usuario\ModificarCuenta.cshtml" />
-    <Content Include="Views\Usuario\ModificarPass.cshtml" />
-    <Content Include="Views\Usuario\RestaurarPassword.cshtml" />
-    <Content Include="Views\Usuario\_BuscarEmpleado.cshtml" />
-    <Content Include="Views\Usuario\_IndexRolesUsuario.cshtml" />
     <Content Include="Views\TipoPago\Create.cshtml" />
     <Content Include="Views\Reportes\Index.cshtml" />
     <Content Include="Views\EstadoPedido\Create.cshtml" />
@@ -2406,6 +2386,7 @@
     <Content Include="Views\MovimientoCaja\DetailsApertura.cshtml" />
     <Content Include="Views\Home\Main.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\Facturacion.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

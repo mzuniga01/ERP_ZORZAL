@@ -3,7 +3,7 @@
 @{
     var vtbMvimientoCaja = new ERP_GMEDINA.Models.tbMovimientoCaja();
     ViewBag.Title = "Registrar";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/_LayoutFacturacion.cshtml";
 }
 @{
     string UserName = "";
@@ -270,10 +270,10 @@
 </div>
 @*------------------------------------------FINAL MODAL AUTORIZAR NOTA CREDITO--------------------------------------*@
 
-<script src="~/Scripts/app/CaracteresEspeciales.js"></script>
+<script src="~/Scripts/app/General/CaracteresEspeciales.js"></script>
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
-    <script src="~/Scripts/app/CaracteresEspeciales.js"></script>
+    <script src="~/Scripts/app/General/CaracteresEspeciales.js"></script>
     <script src="~/Scripts/app/NotaCredito.js"></script>
     <script src="~/Scripts/app/GetCodigoNotaCredito.js"></script>
     <script>

@@ -228,30 +228,6 @@
                     <a href="@Url.Action("Index", "Reportes")"><i class="fa fa-dashboard"></i> <span class="nav-label">Reportes</span></a>
                 </li>
             }
-            <li>
-                <a href="#"><i class="fa fa-lock"></i><span class="nav-label">Seguridad</span><span class="fa arrow"></span></a>
-                <ul class="nav nav-second-level collapse">
-                    @if (Login.GetUserRols("Usuario/Index"))
-                    {
-                        <li class="@Html.IsSelected(action: "Index")">
-                            <a href="@Url.Action("Index", "Usuario")"><i class="fa fa-users fa-fw"></i>Usuario <span class="nav-label"></span> </a>
-                        </li>
-                    }
-                    @if (Login.GetUserRols("AccesoRol/Index"))
-                    {
-                        <li class="@Html.IsSelected(action: "Index")">
-                            <a href="@Url.Action("Index", "AccesoRol")"><i class="fa fa-ticket fa-fw"></i> Acceso Rol<span class="nav-label"></span> </a>
-                        </li>
-                    }
-                    @if (Login.GetUserRols("Roles/Index"))
-                    {
-                        <li class="@Html.IsSelected(action: "Index")">
-                            <a href="@Url.Action("Index", "Roles")"><i class="fa fa-ticket fa-fw"></i>Roles<span class="nav-label"></span> </a>
-                        </li>
-                    }
-                </ul>
-            </li>
-
         </ul>
     </div>
 </nav>
