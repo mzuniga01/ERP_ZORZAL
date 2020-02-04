@@ -2391,6 +2391,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Controllers\Inventario\" />
     <Folder Include="Scripts\app\Facturacion\Catalogos\" />
   </ItemGroup>
   <ItemGroup>
