@@ -21,7 +21,7 @@ namespace ERP_GMEDINA.Controllers
     public class ProductoController : Controller
     {
         private ERP_ZORZALEntities db = new ERP_ZORZALEntities();
-        private GeneralFunctions Function = new GeneralFunctions();
+        private Helpers Function = new Helpers();
 
         // GET: /Producto/
         [SessionManager("Producto/Index")]

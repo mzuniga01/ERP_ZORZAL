@@ -15,7 +15,7 @@ namespace ERP_GMEDINA.Controllers
     public class DepartamentoController : Controller
     {
         private ERP_ZORZALEntities db = new ERP_ZORZALEntities();
-        GeneralFunctions Function = new GeneralFunctions();
+        Helpers Function = new Helpers();
         // GET: /Departamento/
         [SessionManager("Departamento/Index")]
         public ActionResult Index()
@@ -321,45 +321,31 @@ namespace ERP_GMEDINA.Controllers
 
         public ActionResult EliminarMunicipio(string id, string dep_Codigo)
         {
-            //Validar Inicio de Sesión
-            GeneralFunctions Function = new GeneralFunctions();
-            if (Function.GetUserLogin())
+            try
             {
-                if (Function.GetUserRols("Departamento/DeleteMunicipio"))
+                tbMunicipio obj = db.tbMunicipio.Find(id);
+                IEnumerable<object> list = null;
+                var MsjError = ""; list = db.UDP_Gral_tbMunicipio_Delete(id);
+                foreach (UDP_Gral_tbMunicipio_Delete_Result mun in list)
+                    MsjError = mun.MensajeError;
+                if (MsjError.StartsWith("-1The DELETE statement conflicted with the REFERENCE constraint"))
                 {
-                    try
-                    {
-                        tbMunicipio obj = db.tbMunicipio.Find(id);
-                        IEnumerable<object> list = null;
-                        var MsjError = ""; list = db.UDP_Gral_tbMunicipio_Delete(id);
-                        foreach (UDP_Gral_tbMunicipio_Delete_Result mun in list)
-                            MsjError = mun.MensajeError;
-                        if (MsjError.StartsWith("-1The DELETE statement conflicted with the REFERENCE constraint"))
-                        {
-                            TempData["smserror"] = "No se puede eliminar el registro porque posee dependencias, favor contacte al administrador.";
-                            ViewBag.smserror = TempData["smserror"];
-                            ModelState.AddModelError("", "No se puede borrar el registro");
-                            return RedirectToAction("Edit/" + dep_Codigo);
-                        }
-                        else
-                        {
-                            return RedirectToAction("Edit/" + dep_Codigo);
-                        }
-                    }
-                    catch (Exception Ex)
-                    {
-                        Ex.Message.ToString();
-                        ModelState.AddModelError("", "No se Actualizo el registro");
-                        return RedirectToAction("Edit/" + dep_Codigo);
-                    }
+                    TempData["smserror"] = "No se puede eliminar el registro porque posee dependencias, favor contacte al administrador.";
+                    ViewBag.smserror = TempData["smserror"];
+                    ModelState.AddModelError("", "No se puede borrar el registro");
+                    return RedirectToAction("Edit/" + dep_Codigo);
                 }
                 else
                 {
-                    return RedirectToAction("SinAcceso", "Login");
+                    return RedirectToAction("Edit/" + dep_Codigo);
                 }
             }
-            else
-                return RedirectToAction("Index", "Login");
+            catch (Exception Ex)
+            {
+                Ex.Message.ToString();
+                ModelState.AddModelError("", "No se Actualizo el registro");
+                return RedirectToAction("Edit/" + dep_Codigo);
+            }
         }
 
         [HttpPost]

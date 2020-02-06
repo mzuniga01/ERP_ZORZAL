@@ -14,7 +14,7 @@ namespace ERP_GMEDINA.Controllers
     public class ObjetoController : Controller
     {
         private ERP_ZORZALEntities db = new ERP_ZORZALEntities();
-        GeneralFunctions Function = new GeneralFunctions();
+        Helpers Function = new Helpers();
         // GET: /Objeto/
         [SessionManager("Objeto/Index")]
         public ActionResult Index()

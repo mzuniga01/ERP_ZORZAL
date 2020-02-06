@@ -20,7 +20,7 @@ namespace ERP_GMEDINA.Controllers
     public class RolController : Controller
     {
         private ERP_ZORZALEntities db = new ERP_ZORZALEntities();
-        GeneralFunctions Function = new GeneralFunctions();
+        Helpers Function = new Helpers();
         // GET: /Rol/
         [SessionManager("Rol/Index")]
         public ActionResult Index()
@@ -185,8 +185,7 @@ namespace ERP_GMEDINA.Controllers
         public JsonResult InsertRol(string DescripcionRol, ICollection<tbAccesoRol> AccesoRol)
         {
             int idUser = 0;
-            GeneralFunctions Login = new GeneralFunctions();
-            List<tbUsuario> User = Login.getUserInformation();
+            List<tbUsuario> User = Function.getUserInformation();
             foreach (tbUsuario Usuario in User)
             {
                 idUser = Convert.ToInt32(Usuario.usu_Id);
@@ -344,8 +343,7 @@ namespace ERP_GMEDINA.Controllers
             string Nombre = "";
             string Apellido = "";
             string UsuarioFull = "";
-            GeneralFunctions Login = new GeneralFunctions();
-            List<tbUsuario> User = Login.getUserInformation();
+            List<tbUsuario> User = Function.getUserInformation();
             foreach (tbUsuario Usuario in User)
             {
                 Nombre = Usuario.usu_Nombres;

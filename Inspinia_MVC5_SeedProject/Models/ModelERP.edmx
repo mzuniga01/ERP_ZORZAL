@@ -10068,13 +10068,6 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_Entr
             <Parameter Name="ent_UsuarioModifica" Mode="In" Type="Int32" />
             <Parameter Name="ent_FechaModifica" Mode="In" Type="DateTime" />
           </FunctionImport>
-          <FunctionImport Name="UDP_Acce_tbBitacoraErrores_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Acce_tbBitacoraErrores_Insert_Result)">
-            <Parameter Name="bite_Pantalla" Mode="In" Type="String" />
-            <Parameter Name="bite_Usuario" Mode="In" Type="String" />
-            <Parameter Name="bite_Fecha" Mode="In" Type="DateTime" />
-            <Parameter Name="bite_MensajeError" Mode="In" Type="String" />
-            <Parameter Name="bite_Accion" Mode="In" Type="String" />
-          </FunctionImport>
           <FunctionImport Name="UDP_Acce_tbUsuario_Estado" ReturnType="Collection(ERP_ZORZALModel.UDP_Acce_tbUsuario_Estado_Result)">
             <Parameter Name="usu_Id" Mode="In" Type="Int32" />
             <Parameter Name="usu_EsActivo" Mode="In" Type="Boolean" />
@@ -12587,6 +12580,13 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_Entr
             <Parameter Name="bod_Id" Mode="In" Type="Int32" />
             <Parameter Name="prod_Codigo" Mode="In" Type="String" />
           </FunctionImport>
+          <FunctionImport Name="UDP_Acce_tbBitacoraErrores_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Acce_tbBitacoraErrores_Insert_Result)">
+            <Parameter Name="bite_Pantalla" Mode="In" Type="String" />
+            <Parameter Name="bite_Usuario" Mode="In" Type="String" />
+            <Parameter Name="bite_Fecha" Mode="In" Type="DateTime" />
+            <Parameter Name="bite_MensajeError" Mode="In" Type="String" />
+            <Parameter Name="bite_Accion" Mode="In" Type="String" />
+          </FunctionImport>
           </EntityContainer>
         <EntityType Name="tbInventarioFisico">
           <Key>
@@ -13269,9 +13269,6 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_Entr
           <Property Type="String" Name="MensajeError" Nullable="false" MaxLength="3" />
         </ComplexType>
         <ComplexType Name="UDP_Inv_tbEntrada_Update_Result">
-          <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
-        </ComplexType>
-        <ComplexType Name="UDP_Acce_tbBitacoraErrores_Insert_Result">
           <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
         </ComplexType>
         <ComplexType Name="UDP_Acce_tbUsuario_Estado_Result">
@@ -19760,6 +19757,9 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_Entr
           <Property Type="String" Name="prod_Codigo" Nullable="false" MaxLength="15" />
           <Property Type="Decimal" Name="bodd_CantidadExistente" Nullable="false" Precision="10" Scale="2" />
         </ComplexType>
+        <ComplexType Name="UDP_Acce_tbBitacoraErrores_Insert_Result">
+          <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -20828,13 +20828,6 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_Entr
           <FunctionImportMapping FunctionImportName="UDP_Inv_tbEntrada_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbEntrada_Update" >
             <ResultMapping>
               <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_tbEntrada_Update_Result">
-                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="UDP_Acce_tbBitacoraErrores_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Acce_tbBitacoraErrores_Insert" >
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Acce_tbBitacoraErrores_Insert_Result">
                 <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
               </ComplexTypeMapping>
             </ResultMapping>
@@ -24262,6 +24255,13 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_Entr
                 <ScalarProperty Name="bod_Id" ColumnName="bod_Id" />
                 <ScalarProperty Name="prod_Codigo" ColumnName="prod_Codigo" />
                 <ScalarProperty Name="bodd_CantidadExistente" ColumnName="bodd_CantidadExistente" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UDP_Acce_tbBitacoraErrores_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Acce_tbBitacoraErrores_Insert" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Acce_tbBitacoraErrores_Insert_Result">
+                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

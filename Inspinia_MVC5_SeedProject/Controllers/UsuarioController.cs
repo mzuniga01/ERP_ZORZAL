@@ -18,34 +18,33 @@ namespace ERP_GMEDINA.Controllers
     public class UsuarioController : Controller
     {
         private ERP_ZORZALEntities db = new ERP_ZORZALEntities();
-        GeneralFunctions Function = new GeneralFunctions();
+        Helpers Function = new Helpers();
+        Helpers Help = new Helpers();
         // GET: /Usuario/
         [SessionManager("Usuario/Index")]
         public ActionResult Index()
         {
             return View(db.tbUsuario.ToList());
         }
-
-        [SessionManager("Usuario/ModificarPass")]
+        //Cualquier usuario puede modificar su contrasenia
         public ActionResult ModificarPass(int? id)
         {
-            if (id == null)
+            if(id!=null)
             {
-                return RedirectToAction("Index");
+                tbUsuario tbUsuario = db.tbUsuario.Find(id);
+                if(tbUsuario!=null)
+                {
+                    ViewBag.User_ID = id;
+                    ViewBag.ConfirmarPassword = "Password";
+                    return View(tbUsuario);
+                }
             }
-            tbUsuario tbUsuario = db.tbUsuario.Find(id);
-            ViewBag.User_ID = id;
-            ViewBag.ConfirmarPassword = "Password";
-            if (tbUsuario == null)
-            {
-                return RedirectToAction("NotFound", "Login");
-            }
-            return View(tbUsuario);
+            return RedirectToAction("Index", "Login");
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [SessionManager("Usuario/ModificarPass")]
+        //Cualquier usuario puede modificar su contrasenia
         public ActionResult ModificarPass([Bind(Include = "usu_Id,usu_NombreUsuario,usu_Nombres,usu_Apellidos,usu_Correo,ConfirmarPassword,suc_Id")] tbUsuario tbUsuario, string usu_Password, string txtPassword)
         {
             ModelState.Remove("usu_Password");
@@ -71,17 +70,7 @@ namespace ERP_GMEDINA.Controllers
                         }
                         else
                         {
-                            Session.Clear();
-                            Session.Abandon();
-                            Response.Buffer = true;
-                            Response.ExpiresAbsolute = Function.DatetimeNow().AddDays(-1D);
-                            Response.Expires = -1500;
-                            Response.CacheControl = "no-cache";
-                            Response.Cache.SetCacheability(HttpCacheability.NoCache);
-                            AuthenticationManager.SignOut();
-                            Session["UserLogin"] = null;
-                            Session["UserLoginRols"] = null;
-                            Session["UserLoginEsAdmin"] = null;
+                            Help.fCerrarSesion();
                             return RedirectToAction("Index", "Login");
                         }
                     }

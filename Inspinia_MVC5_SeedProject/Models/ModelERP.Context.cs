@@ -2689,31 +2689,6 @@ namespace ERP_GMEDINA.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Inv_tbEntrada_Update_Result>("UDP_Inv_tbEntrada_Update", ent_IdParameter, ent_NumeroFormatoParameter, ent_FechaElaboracionParameter, bod_IdParameter, prov_IdParameter, ent_FacturaCompraParameter, ent_FechaCompraParameter, fact_IdParameter, ent_RazonDevolucionParameter, ent_BodegaDestinoParameter, tent_IdParameter, ent_UsuarioCreaParameter, ent_FechaCreaParameter, ent_UsuarioModificaParameter, ent_FechaModificaParameter);
         }
     
-        public virtual ObjectResult<UDP_Acce_tbBitacoraErrores_Insert_Result> UDP_Acce_tbBitacoraErrores_Insert(string bite_Pantalla, string bite_Usuario, Nullable<System.DateTime> bite_Fecha, string bite_MensajeError, string bite_Accion)
-        {
-            var bite_PantallaParameter = bite_Pantalla != null ?
-                new ObjectParameter("bite_Pantalla", bite_Pantalla) :
-                new ObjectParameter("bite_Pantalla", typeof(string));
-    
-            var bite_UsuarioParameter = bite_Usuario != null ?
-                new ObjectParameter("bite_Usuario", bite_Usuario) :
-                new ObjectParameter("bite_Usuario", typeof(string));
-    
-            var bite_FechaParameter = bite_Fecha.HasValue ?
-                new ObjectParameter("bite_Fecha", bite_Fecha) :
-                new ObjectParameter("bite_Fecha", typeof(System.DateTime));
-    
-            var bite_MensajeErrorParameter = bite_MensajeError != null ?
-                new ObjectParameter("bite_MensajeError", bite_MensajeError) :
-                new ObjectParameter("bite_MensajeError", typeof(string));
-    
-            var bite_AccionParameter = bite_Accion != null ?
-                new ObjectParameter("bite_Accion", bite_Accion) :
-                new ObjectParameter("bite_Accion", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Acce_tbBitacoraErrores_Insert_Result>("UDP_Acce_tbBitacoraErrores_Insert", bite_PantallaParameter, bite_UsuarioParameter, bite_FechaParameter, bite_MensajeErrorParameter, bite_AccionParameter);
-        }
-    
         public virtual ObjectResult<UDP_Acce_tbUsuario_Estado_Result> UDP_Acce_tbUsuario_Estado(Nullable<int> usu_Id, Nullable<bool> usu_EsActivo, string usu_RazonInactivo)
         {
             var usu_IdParameter = usu_Id.HasValue ?
@@ -7962,6 +7937,31 @@ namespace ERP_GMEDINA.Models
                 new ObjectParameter("prod_Codigo", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Inv_CantidadExistente_Result>("UDP_Inv_CantidadExistente", bod_IdParameter, prod_CodigoParameter);
+        }
+    
+        public virtual ObjectResult<UDP_Acce_tbBitacoraErrores_Insert_Result> UDP_Acce_tbBitacoraErrores_Insert(string bite_Pantalla, string bite_Usuario, Nullable<System.DateTime> bite_Fecha, string bite_MensajeError, string bite_Accion)
+        {
+            var bite_PantallaParameter = bite_Pantalla != null ?
+                new ObjectParameter("bite_Pantalla", bite_Pantalla) :
+                new ObjectParameter("bite_Pantalla", typeof(string));
+    
+            var bite_UsuarioParameter = bite_Usuario != null ?
+                new ObjectParameter("bite_Usuario", bite_Usuario) :
+                new ObjectParameter("bite_Usuario", typeof(string));
+    
+            var bite_FechaParameter = bite_Fecha.HasValue ?
+                new ObjectParameter("bite_Fecha", bite_Fecha) :
+                new ObjectParameter("bite_Fecha", typeof(System.DateTime));
+    
+            var bite_MensajeErrorParameter = bite_MensajeError != null ?
+                new ObjectParameter("bite_MensajeError", bite_MensajeError) :
+                new ObjectParameter("bite_MensajeError", typeof(string));
+    
+            var bite_AccionParameter = bite_Accion != null ?
+                new ObjectParameter("bite_Accion", bite_Accion) :
+                new ObjectParameter("bite_Accion", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Acce_tbBitacoraErrores_Insert_Result>("UDP_Acce_tbBitacoraErrores_Insert", bite_PantallaParameter, bite_UsuarioParameter, bite_FechaParameter, bite_MensajeErrorParameter, bite_AccionParameter);
         }
     }
 }

@@ -14,7 +14,7 @@ namespace ERP_GMEDINA.Controllers
     public class EstadoInventarioFisicoController : Controller
     {
         private ERP_ZORZALEntities db = new ERP_ZORZALEntities();
-        GeneralFunctions Function = new GeneralFunctions();
+        Helpers Function = new Helpers();
 
         // GET: EstadoInventarioFisico
         [SessionManager("EstadoInventarioFisico/Index")]

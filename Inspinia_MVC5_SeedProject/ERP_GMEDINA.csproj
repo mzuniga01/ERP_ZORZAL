@@ -257,7 +257,6 @@
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\FuctionIndexP.cs" />
-    <Compile Include="Models\GeneralFunctions.cs" />
     <Compile Include="Models\Helpers.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\InventariosFisicos.cs" />

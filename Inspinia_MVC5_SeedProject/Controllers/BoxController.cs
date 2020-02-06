@@ -19,7 +19,7 @@ namespace ERP_ZORZAL.Controllers
     public class BoxController : Controller
     {
         private ERP_ZORZALEntities db = new ERP_ZORZALEntities();
-        private GeneralFunctions Function = new GeneralFunctions();
+        private Helpers Function = new Helpers();
 
         public object ACTUALIZAR_tbBoxDetalle { get; private set; }
 
@@ -295,8 +295,7 @@ namespace ERP_ZORZAL.Controllers
             }
             string UserName = "";
             int idUser = 0;
-            GeneralFunctions Login = new GeneralFunctions();
-            List<tbUsuario> User = Login.getUserInformation();
+            List<tbUsuario> User = Function.getUserInformation();
             tbBodega tbBod = new tbBodega();
             foreach (tbUsuario Usuario in User)
             {

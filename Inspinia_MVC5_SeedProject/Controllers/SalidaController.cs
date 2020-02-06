@@ -17,7 +17,7 @@ namespace ERP_GMEDINA.Controllers
     public class SalidaController : Controller
     {
         private ERP_ZORZALEntities db = new ERP_ZORZALEntities();
-        private GeneralFunctions Function = new GeneralFunctions();
+        private Helpers Function = new Helpers();
 
         // GET: /Salida/
         [SessionManager("Salida/Index")]

@@ -15,7 +15,7 @@ namespace ERP_GMEDINA.Controllers
     public class BodegaController : Controller
     {
         private ERP_ZORZALEntities db = new ERP_ZORZALEntities();      
-        GeneralFunctions Function = new GeneralFunctions();
+        Helpers Function = new Helpers();
 
         [SessionManager("Bodega/Index")]
         // GET: /Bodega/

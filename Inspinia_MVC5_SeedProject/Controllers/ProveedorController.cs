@@ -14,7 +14,7 @@ namespace ERP_ZORZAL.Controllers
     public class ProveedorController : Controller
     {
         private ERP_ZORZALEntities db = new ERP_ZORZALEntities();
-        GeneralFunctions Function = new GeneralFunctions();
+        Helpers Function = new Helpers();
         // GET: /Proveedor/
         [SessionManager("Proveedor/Index")]
         public ActionResult Index()
