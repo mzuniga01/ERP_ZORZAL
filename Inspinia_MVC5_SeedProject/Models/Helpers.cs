@@ -41,7 +41,6 @@ namespace ERP_GMEDINA.Models
         public bool GetUserAccesoRol(string sPantalla)
         {
             bool Retorno = false;
-
             try
             {
                 if (!Convert.ToBoolean(HttpContext.Current.Session["UserLoginEsAdmin"]))
@@ -58,10 +57,9 @@ namespace ERP_GMEDINA.Models
             }
             catch (Exception Ex)
             {
-                Ex.Message.ToString();
+                InsertBitacoraErrores("Helpers", Ex.Message.ToString(), "GetUserAccesoRol");
             }
             return Retorno;
-
         }
 
         public void ValidarUsuario(string sPantalla, out int SesionesValidas, out bool UsuarioEstado, out bool EsAdmin, out int UsuarioRol, out bool AccesoPantalla)
@@ -132,13 +130,12 @@ namespace ERP_GMEDINA.Models
                 {
                     UsuarioList = db.tbUsuario.Where(s => s.usu_Id == user).ToList();
                 }
-                return UsuarioList;
             }
             catch (Exception Ex)
             {
-                Ex.Message.ToString();
-                return UsuarioList;
+                InsertBitacoraErrores("Helpers", Ex.Message.ToString(), "getUserInformation");
             }
+            return UsuarioList;
         }
 
         public int GetUser()
@@ -150,7 +147,7 @@ namespace ERP_GMEDINA.Models
             }
             catch (Exception Ex)
             {
-                Ex.Message.ToString();
+                InsertBitacoraErrores("Helpers", Ex.Message.ToString(), "GetUser");
             }
             return user;
         }
